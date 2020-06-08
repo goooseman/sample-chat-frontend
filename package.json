@@ -2,8 +2,10 @@
   "name": "sample-chat-frontend",
   "version": "0.0.0",
   "description": "A sample real-time chat built on React",
-  "main": "src/index.js",
+  "private": true,
   "scripts": {
+    "build:dev": "webpack --config configs/webpack/config.webpack.development.js",
+    "build:prod": "webpack --config configs/webpack/config.webpack.production.js",
     "test": "jest"
   },
   "repository": {
@@ -22,5 +24,10 @@
   "bugs": {
     "url": "https://github.com/goooseman/sample-chat-frontend/issues"
   },
-  "homepage": "https://github.com/goooseman/sample-chat-frontend#readme"
+  "homepage": "https://github.com/goooseman/sample-chat-frontend#readme",
+  "dependencies": {
+    "html-webpack-plugin": "^4.3.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
 }
