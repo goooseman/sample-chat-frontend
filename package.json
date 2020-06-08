@@ -1,0 +1,26 @@
+{
+  "name": "sample-chat-frontend",
+  "version": "0.0.0",
+  "description": "A sample real-time chat built on React",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/goooseman/sample-chat-frontend.git"
+  },
+  "keywords": [
+    "react",
+    "chat",
+    "socket.io",
+    "cdd",
+    "tdd"
+  ],
+  "author": "goooseman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/goooseman/sample-chat-frontend/issues"
+  },
+  "homepage": "https://github.com/goooseman/sample-chat-frontend#readme"
+}
