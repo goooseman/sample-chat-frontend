@@ -1,6 +1,7 @@
 const webpackDevelopment = require("../config/webpack/config.webpack.development");
 const webpackProduction = require("../config/webpack/config.webpack.production");
 const webpackStorybook = require("../config/webpack/config.webpack.storybook");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   addons: [
@@ -22,11 +23,15 @@ module.exports = {
 
     // https://storybook.js.org/docs/configurations/custom-webpack-config/#examples
 
+    const safeCustomPlugins = customConfig.plugins.filter((p) => {
+      return !(p instanceof HtmlWebpackPlugin);
+    });
+
     const finalConfig = webpackStorybook({
       ...customConfig,
       entry: config.entry,
       output: config.output,
-      plugins: [...config.plugins, ...customConfig.plugins], // https://github.com/storybookjs/storybook/issues/6020
+      plugins: [...config.plugins, ...safeCustomPlugins], // https://github.com/storybookjs/storybook/issues/6020
     });
 
     return finalConfig;
