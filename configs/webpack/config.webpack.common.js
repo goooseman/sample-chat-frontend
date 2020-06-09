@@ -39,6 +39,7 @@ module.exports = {
             options: {
               importLoaders: 1,
               modules: true,
+              localsConvention: "camelCaseOnly",
             },
           },
           "postcss-loader",
