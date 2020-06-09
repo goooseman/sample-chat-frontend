@@ -1,8 +1,9 @@
 const webpackDevelopment = require("../configs/webpack/config.webpack.development");
 const webpackProduction = require("../configs/webpack/config.webpack.production");
+const webpackStorybook = require("../configs/webpack/config.webpack.storybook");
 
 module.exports = {
-  addons: ["@storybook/addon-actions/register"],
+  addons: ["@storybook/addon-actions/register", "@storybook/addon-storysource"],
   stories: ["../src/**/*.stories.[tj]sx"],
   webpackFinal: async (config, { configType }) => {
     // `configType` has a value of 'DEVELOPMENT' or 'PRODUCTION'
@@ -14,11 +15,13 @@ module.exports = {
 
     // https://storybook.js.org/docs/configurations/custom-webpack-config/#examples
 
-    return {
+    const finalConfig = webpackStorybook({
       ...customConfig,
       entry: config.entry,
       output: config.output,
       plugins: [...config.plugins, ...customConfig.plugins], // https://github.com/storybookjs/storybook/issues/6020
-    };
+    });
+
+    return finalConfig;
   },
 };
