@@ -12,7 +12,11 @@
     "build:dev": "webpack --config configs/webpack/config.webpack.development.js",
     "build:prod": "webpack --config configs/webpack/config.webpack.production.js",
     "serve:app": "ws -d dist/ --spa index.html --https",
-    "test": "jest"
+    "test": "jest",
+    "lint:check": "npm run lint:prettier:check .",
+    "lint:write": "npm run lint:prettier:write .",
+    "lint:prettier:check": "prettier --check",
+    "lint:prettier:write": "prettier --write"
   },
   "repository": {
     "type": "git",
@@ -39,7 +43,10 @@
     "webpack-cli": "^3.3.11"
   },
   "devDependencies": {
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.9",
     "local-web-server": "^4.2.0",
+    "prettier": "^2.0.5",
     "webpack-dev-server": "^3.11.0"
   }
 }
