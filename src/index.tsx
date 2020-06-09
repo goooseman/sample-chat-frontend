@@ -1,11 +1,11 @@
 import React from "react";
 import { render } from "react-dom";
 import Button from "src/components/ui-kit/Button";
-import "src/styles/global.css";
+import StorybookSharedWrapper from "src/wrappers/StorybookSharedWrapper";
 
 render(
-  <div className="theme-default">
+  <StorybookSharedWrapper>
     <Button>Hello world</Button>
-  </div>,
+  </StorybookSharedWrapper>,
   document.body
 );
