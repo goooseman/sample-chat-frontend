@@ -1,5 +1,7 @@
 /* This a default theme, so no extra css selectors are needed */
+
 /* Colors: https://www.materialui.co/colors */
+
 /* This vars will be taken by postcss-custom-properties to create fallback css properties */
 :root {
   /* colors */
@@ -12,8 +14,8 @@
   --color-danger: #b71c1c;
 
   /* fonts */
-  --font-family-primary: Helvetica Neue, Helvetica, Arial, sans-serif;
-  --font-family-secondary: Georgia, Times New Roman, Times, serif;
+  --font-family-primary: helvetica neue, helvetica, arial, sans-serif;
+  --font-family-secondary: georgia, times new roman, times, serif;
   --font-size-base: 16px;
   --letter-spacing-base: 0;
   --line-height-base: 1.3;
