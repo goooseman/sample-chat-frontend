@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 module.exports = {
-  entry: path.resolve(__dirname, '../..', 'src', 'index.tsx'),
+  entry: path.resolve(__dirname, "../..", "src", "index.tsx"),
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, '../..', 'dist'),
+    filename: "main.js",
+    path: path.resolve(__dirname, "../..", "dist"),
   },
   module: {
     rules: [
@@ -14,7 +14,7 @@ module.exports = {
         test: /\.tsx?$/,
         use: [
           {
-            loader: 'ts-loader',
+            loader: "ts-loader",
             options: {
               transpileOnly: true,
             },
