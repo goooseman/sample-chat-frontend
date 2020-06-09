@@ -18,3 +18,7 @@
 .button:focus {
   background-color: var(--color-primary-darker);
 }
+
+.button-lg {
+  padding: 1rem 1.5rem;
+}

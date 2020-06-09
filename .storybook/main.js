@@ -3,8 +3,12 @@ const webpackProduction = require("../configs/webpack/config.webpack.production"
 const webpackStorybook = require("../configs/webpack/config.webpack.storybook");
 
 module.exports = {
-  addons: ["@storybook/addon-actions/register", "@storybook/addon-storysource"],
-  stories: ["../src/**/*.stories.[tj]sx"],
+  addons: [
+    "@storybook/addon-actions/register",
+    "@storybook/addon-storysource",
+    "@storybook/addon-docs",
+  ],
+  stories: ["../src/**/*.stories.(tsx|mdx)"],
   webpackFinal: async (config, { configType }) => {
     // `configType` has a value of 'DEVELOPMENT' or 'PRODUCTION'
     // You can change the configuration based on that.
