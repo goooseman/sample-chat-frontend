@@ -11,6 +11,7 @@
     "start": "webpack-dev-server --config configs/webpack/config.webpack.development.js",
     "build:dev": "webpack --config configs/webpack/config.webpack.development.js",
     "build:prod": "webpack --config configs/webpack/config.webpack.production.js",
+    "serve:app": "ws -d dist/ --spa index.html --https",
     "test": "jest"
   },
   "repository": {
@@ -36,6 +37,7 @@
     "webpack-cli": "^3.3.11"
   },
   "devDependencies": {
+    "local-web-server": "^4.2.0",
     "webpack-dev-server": "^3.11.0"
   }
 }
