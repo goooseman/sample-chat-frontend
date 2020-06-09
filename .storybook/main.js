@@ -2,6 +2,7 @@ const webpackDevelopment = require("../configs/webpack/config.webpack.developmen
 const webpackProduction = require("../configs/webpack/config.webpack.production");
 
 module.exports = {
+  addons: ["@storybook/addon-actions/register"],
   stories: ["../src/**/*.stories.[tj]sx"],
   webpackFinal: async (config, { configType }) => {
     // `configType` has a value of 'DEVELOPMENT' or 'PRODUCTION'
