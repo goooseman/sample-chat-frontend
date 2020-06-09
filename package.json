@@ -40,6 +40,7 @@
   "homepage": "https://github.com/goooseman/sample-chat-frontend#readme",
   "dependencies": {
     "autoprefixer": "^9.8.0",
+    "clsx": "^1.1.1",
     "css-loader": "^3.5.3",
     "cssnano": "^4.1.10",
     "html-webpack-plugin": "^4.3.0",

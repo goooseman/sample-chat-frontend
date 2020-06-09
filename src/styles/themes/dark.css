@@ -1,7 +1,9 @@
 :global .theme-dark {
   /* colors */
-  --color-primary: #d1c4e9;
+  --color-primary: #42a5f5;
+  --color-primary-darker: #0d47a1;
   --color-text: #fff;
+  --color-text-contrast: #fff;
   --color-border: #fff;
   --color-background: #000;
   --color-danger: #b71c1c;

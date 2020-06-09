@@ -1,4 +1,6 @@
 import React, { PureComponent } from "react";
+import classes from "./Button.css";
+import cn from "clsx";
 
 type ButtonProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -7,9 +9,13 @@ type ButtonProps = React.DetailedHTMLProps<
 
 class Button extends PureComponent<ButtonProps> {
   render(): React.ReactNode {
-    const { children, ...otherProps } = this.props;
+    const { children, className, ...otherProps } = this.props;
 
-    return <button {...otherProps}>{children}</button>;
+    return (
+      <button className={cn(classes.button, className)} {...otherProps}>
+        {children}
+      </button>
+    );
   }
 }
 
