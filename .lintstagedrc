@@ -1,6 +1,6 @@
 {
   "*.(js|jsx|ts|tsx)": [
     "npm run lint:prettier:write",
-    "git add"
+    "npm run lint:eslint:write"
   ]
 }
