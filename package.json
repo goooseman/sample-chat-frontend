@@ -8,11 +8,11 @@
     "npm": ">=6.14.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --config configs/webpack/config.webpack.development.js",
+    "start": "webpack-dev-server --config config/webpack/config.webpack.development.js",
     "storybook:start": "start-storybook",
     "storybook:build": "build-storybook",
-    "build:dev": "webpack --config configs/webpack/config.webpack.development.js",
-    "build:prod": "webpack --config configs/webpack/config.webpack.production.js",
+    "build:dev": "webpack --config config/webpack/config.webpack.development.js",
+    "build:prod": "webpack --config config/webpack/config.webpack.production.js",
     "serve:app": "ws -d dist/ --spa index.html --https",
     "test": "jest",
     "lint:check": "npm run lint:prettier:check . && npm run lint:tsc:check && npm run lint:eslint:check . && npm run lint:stylelint:check .",

@@ -1,6 +1,6 @@
-const webpackDevelopment = require("../configs/webpack/config.webpack.development");
-const webpackProduction = require("../configs/webpack/config.webpack.production");
-const webpackStorybook = require("../configs/webpack/config.webpack.storybook");
+const webpackDevelopment = require("../config/webpack/config.webpack.development");
+const webpackProduction = require("../config/webpack/config.webpack.production");
+const webpackStorybook = require("../config/webpack/config.webpack.storybook");
 
 module.exports = {
   addons: [
