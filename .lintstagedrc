@@ -2,5 +2,8 @@
   "*.(js|jsx|ts|tsx)": [
     "npm run lint:prettier:write",
     "npm run lint:eslint:write"
+  ],
+  "*.css": [
+    "npm run lint:stylelint:write"
   ]
 }
