@@ -18,8 +18,8 @@
     "lint:prettier:check": "prettier --check",
     "lint:prettier:write": "prettier --write",
     "lint:tsc:check": "tsc --noEmit",
-    "lint:eslint:check": "eslint --ext .ts",
-    "lint:eslint:write": "eslint --ext .ts --fix"
+    "lint:eslint:check": "eslint --ext .ts,.tsx",
+    "lint:eslint:write": "eslint --ext .ts,.tsx --fix"
   },
   "repository": {
     "type": "git",
