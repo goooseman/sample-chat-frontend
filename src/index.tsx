@@ -7,5 +7,5 @@ render(
   <AppWrapper>
     <Button>Hello world</Button>
   </AppWrapper>,
-  document.body
+  document.getElementById("root") as HTMLElement
 );
