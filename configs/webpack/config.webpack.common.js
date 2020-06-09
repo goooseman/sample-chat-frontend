@@ -9,17 +9,18 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.tsx?$/, 
+      {
+        test: /\.tsx?$/,
         use: [
           {
             loader: 'ts-loader',
             options: {
-              transpileOnly: true
-            }
-          }
-        ]
-      }
-    ]
+              transpileOnly: true,
+            },
+          },
+        ],
+      },
+    ],
   },
-  plugins: [new HtmlWebpackPlugin()]
+  plugins: [new HtmlWebpackPlugin()],
 };
