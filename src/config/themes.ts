@@ -1,17 +1,14 @@
 export const themes = [
   {
     name: "default",
-    class: "theme-default",
-    color: "#fff",
+    props: { activeTheme: "default" },
     default: true,
   },
   {
     name: "dark",
-    class: "theme-dark",
-    color: "#000",
-    default: false,
+    props: { activeTheme: "dark" },
   },
-] as const;
+];
 
 export const defaultThemeName: ThemeName = "default";
 

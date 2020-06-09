@@ -7,24 +7,34 @@ export interface WithTheme {
   setActiveTheme(theme: ThemeName): void;
 }
 
+interface ThemeContextProviderState extends Pick<WithTheme, "activeTheme"> {}
+
 const { Provider, Consumer } = React.createContext<WithTheme>({
   activeTheme: defaultThemeName,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   setActiveTheme: () => {},
 });
 
-export class ThemeContextProvider extends React.PureComponent<{}, WithTheme> {
-  constructor(props: {}) {
+export class ThemeContextProvider extends React.PureComponent<
+  Partial<ThemeContextProviderState>,
+  ThemeContextProviderState
+> {
+  constructor(props: Partial<WithTheme>) {
     super(props);
     this.state = {
       activeTheme: defaultThemeName,
-      setActiveTheme: this.setActiveTheme,
     };
   }
 
   public render(): React.ReactNode {
     const { state, props } = this;
-    return <Provider value={state}>{props.children}</Provider>;
+
+    const providerValue = {
+      activeTheme: props.activeTheme || state.activeTheme,
+      setActiveTheme: this.setActiveTheme,
+    };
+
+    return <Provider value={providerValue}>{props.children}</Provider>;
   }
 
   private setActiveTheme = (theme: ThemeName) => {
