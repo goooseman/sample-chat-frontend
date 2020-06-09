@@ -13,10 +13,11 @@
     "build:prod": "webpack --config configs/webpack/config.webpack.production.js",
     "serve:app": "ws -d dist/ --spa index.html --https",
     "test": "jest",
-    "lint:check": "npm run lint:prettier:check .",
+    "lint:check": "npm run lint:prettier:check . && npm run lint:tsc:check",
     "lint:write": "npm run lint:prettier:write .",
     "lint:prettier:check": "prettier --check",
-    "lint:prettier:write": "prettier --write"
+    "lint:prettier:write": "prettier --write",
+    "lint:tsc:check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
