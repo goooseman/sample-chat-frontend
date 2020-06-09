@@ -1,0 +1,29 @@
+/* This a default theme, so no extra css selectors are needed */
+
+/* This vars will be taken by postcss-custom-properties to create fallback css properties */
+:root {
+  /* colors */
+  --color-primary: #ff9800;
+  --color-text: #000;
+  --color-border: #000;
+  --color-background: #fff;
+  --color-danger: #b71c1c;
+
+  /* fonts */
+  --font-family-primary: Helvetica Neue, Helvetica, Arial, sans-serif;
+  --font-family-secondary: Georgia, Times New Roman, Times, serif;
+  --font-size-base: 16px;
+  --letter-spacing-base: 0;
+  --line-height-base: 1.3;
+
+  /* sizes */
+  --border-width-regular: 0.1rem;
+
+  /* z-indexes */
+  --z-index-0: 0;
+  --z-index-1: 1;
+  --z-index-2: 10;
+  --z-index-3: 100;
+  --z-index-4: 1000;
+  --z-index-5: 10000;
+}

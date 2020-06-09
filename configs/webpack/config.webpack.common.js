@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
@@ -21,9 +22,31 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.css$/i,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // only enable hot in development
+              hmr: process.env.NODE_ENV === "development",
+              // if hmr does not work, this is a forceful method.
+              reloadAll: true,
+            },
+          },
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              modules: true,
+            },
+          },
+          "postcss-loader",
+        ],
+      },
     ],
   },
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [new HtmlWebpackPlugin(), new MiniCssExtractPlugin()],
   resolve: {
     extensions: [".js", ".ts", ".tsx", ".json"],
     alias: {
