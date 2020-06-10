@@ -15,8 +15,8 @@ msgstr ""
 
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Ooops... Page not found..."
-msgstr ""
+msgstr "אופס… הדף לא נמצא…"
 
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Go home"
-msgstr ""
+msgstr "עבור לאינדקס"

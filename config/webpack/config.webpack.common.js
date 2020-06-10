@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const path = require("path");
+const WebpackShellPluginNext = require("webpack-shell-plugin-next");
 
 module.exports = {
   entry: path.resolve(__dirname, "../..", "src", "index.tsx"),
@@ -68,6 +69,13 @@ module.exports = {
     new MiniCssExtractPlugin(),
     new CopyPlugin({
       patterns: [{ from: "public" }],
+    }),
+    new WebpackShellPluginNext({
+      onBuildStart: {
+        scripts: ["npm run intl:generate-json"],
+        blocking: true,
+        parallel: false,
+      },
     }),
   ],
   resolve: {

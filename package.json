@@ -26,7 +26,7 @@
     "lint:stylelint:check": "stylelint",
     "lint:stylelint:write": "stylelint --fix",
     "intl:update-po": "gettext-utils export-strings --default-locale=en-GB && git add src/i18n/*.po*",
-    "intl:import": "gettext-utils import-strings"
+    "intl:generate-json": "gettext-utils import-strings"
   },
   "repository": {
     "type": "git",
@@ -66,7 +66,8 @@
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.5",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-shell-plugin-next": "^1.1.9"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
