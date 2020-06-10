@@ -5,6 +5,7 @@
     "npm run intl:update-po"
   ],
   "*.css": [
+    "npm run lint:prettier:write",
     "npm run lint:stylelint:write"
   ]
 }

@@ -5,5 +5,5 @@ module.exports = {
     "stylelint-config-idiomatic-order",
     "stylelint-config-prettier",
   ],
-  ignoreFiles: ["**/*.js", "**/*.json"],
+  ignoreFiles: ["!**/*.css"],
 };
