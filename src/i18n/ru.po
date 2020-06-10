@@ -15,7 +15,7 @@ msgstr ""
 
 #: src/pages/HomePage/HomePage.tsx:
 msgid "Hello world"
-msgstr ""
+msgstr "Привет мир"
 
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Ooops... Page not found..."
@@ -26,6 +26,8 @@ msgid ""
 "The page you are looking for might have been removed, had its name changed, or "
 "is temporarily unavailable."
 msgstr ""
+"Возможно, страница, которую вы открыли, была удалена, переименована, или она "
+"временно недоступна."
 
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Go home"
