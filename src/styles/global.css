@@ -16,7 +16,10 @@ html {
 }
 
 :global [class^="theme"] {
+  display: flex;
   overflow: hidden;
   min-height: 100vh;
+  flex-direction: row;
+  justify-content: stretch;
   background-color: var(--color-background);
 }

@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.inner-container {
+  display: flex;
+}
+
+.text-container {
+  margin-right: 3rem;
+  margin-left: 3rem;
+}
