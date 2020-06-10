@@ -9,6 +9,9 @@
   --color-primary-darker: #e65100;
   --color-text: #000;
   --color-text-contrast: #fff;
+  --color-text-link: #00e;
+  --color-text-link-visited: #551a8b;
+  --color-text-link-active: #f00;
   --color-border: #000;
   --color-background: #fff;
   --color-danger: #b71c1c;

@@ -1,5 +1,6 @@
 import React from "react";
 import Typography from "./Typography";
+import { Link } from "react-router-dom";
 
 export default { title: "components/ui-kit/Typography", component: Typography };
 
@@ -31,4 +32,10 @@ export const withContrastColor = (): React.ReactNode => (
 
 export const withDangerColor = (): React.ReactNode => (
   <Typography color="danger">Hello, world!</Typography>
+);
+
+export const withLink = (): React.ReactNode => (
+  <Typography>
+    <Link to="/">Hello, world!</Link>
+  </Typography>
 );

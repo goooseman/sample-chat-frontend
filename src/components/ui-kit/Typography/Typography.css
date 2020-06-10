@@ -1,10 +1,20 @@
-.p,
-.h1,
-.h2,
-.h3 {
+.common {
+  margin-top: 0;
   color: var(--color-text);
   letter-spacing: var(--letter-spacing-base);
   line-height: var(--line-height-base);
+}
+
+.common a {
+  color: var(--color-text-link);
+}
+
+.common a:visited {
+  color: var(--color-text-link-visited);
+}
+
+.common a:active {
+  color: var(--color-text-link-active);
 }
 
 .color-contrast {
