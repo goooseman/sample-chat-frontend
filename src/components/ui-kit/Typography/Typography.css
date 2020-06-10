@@ -1,0 +1,39 @@
+.p,
+.h1,
+.h2,
+.h3 {
+  color: var(--color-text);
+  letter-spacing: var(--letter-spacing-base);
+  line-height: var(--line-height-base);
+}
+
+.color-contrast {
+  color: var(--color-text-contrast);
+}
+
+.color-danger {
+  color: var(--color-danger);
+}
+
+.p {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+}
+
+.h1,
+.h2,
+.h3 {
+  font-family: var(--font-family-secondary);
+}
+
+.h1 {
+  font-size: 2.8rem;
+}
+
+.h2 {
+  font-size: 2.4rem;
+}
+
+.h3 {
+  font-size: 2rem;
+}
