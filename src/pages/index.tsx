@@ -10,7 +10,7 @@ class Pages extends PureComponent<PagesProps> {
   render(): React.ReactNode {
     return (
       <Switch>
-        <Route path={routes.home} component={HomePage} />
+        <Route path={routes.home} exact component={HomePage} />
         <Route path="*" component={NotFound} />
       </Switch>
     );
