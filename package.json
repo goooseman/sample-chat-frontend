@@ -25,7 +25,7 @@
     "lint:eslint:write": "eslint --ext .ts,.tsx --fix",
     "lint:stylelint:check": "stylelint",
     "lint:stylelint:write": "stylelint --fix",
-    "intl:update-po": "gettext-utils export-strings --default-locale=en-GB",
+    "intl:update-po": "gettext-utils export-strings --default-locale=en-GB && git add src/i18n/*.po*",
     "intl:import": "gettext-utils import-strings"
   },
   "repository": {

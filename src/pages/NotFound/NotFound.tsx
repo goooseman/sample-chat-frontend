@@ -29,7 +29,9 @@ class NotFound extends PureComponent<NotFoundProps> {
               changed, or is temporarily unavailable.
             </Typography>
             <Typography>
-              <Link to={routes.home}>Go home</Link>
+              <Link to={routes.home}>
+                <T message="Go home" />
+              </Link>
             </Typography>
           </div>
         </div>
