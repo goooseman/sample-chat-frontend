@@ -20,6 +20,12 @@ html {
   overflow: hidden;
   min-height: 100vh;
   flex-direction: row;
-  justify-content: stretch;
+  align-items: flex-start;
   background-color: var(--color-background);
+}
+
+:global [class^="theme"] > main {
+  /* pages should have a minimum height of 100% to have an ability to vertically center the content */
+
+  align-self: stretch;
 }

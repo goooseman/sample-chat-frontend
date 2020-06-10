@@ -6,7 +6,11 @@ interface HomePageProps extends RouteComponentProps {}
 
 class HomePage extends PureComponent<HomePageProps> {
   render(): React.ReactNode {
-    return <Button>Hello world</Button>;
+    return (
+      <main>
+        <Button>Hello world</Button>
+      </main>
+    );
   }
 }
 

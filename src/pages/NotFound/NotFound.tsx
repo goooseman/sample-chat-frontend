@@ -14,7 +14,7 @@ interface NotFoundProps extends RouteComponentProps {}
 class NotFound extends PureComponent<NotFoundProps> {
   render(): React.ReactNode {
     return (
-      <div className={cn(classes.container)}>
+      <main className={cn(classes.container)}>
         <div className={cn(classes.innerContainer)}>
           {/* "error page" by eoshea is licensed under CC BY-NC-SA 2.0 */}
           {/* https://ccsearch.creativecommons.org/photos/3803cd7d-a9a2-413b-a01c-86182d316197 */}
@@ -30,7 +30,7 @@ class NotFound extends PureComponent<NotFoundProps> {
             </Typography>
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 }
