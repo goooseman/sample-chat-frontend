@@ -17,9 +17,11 @@ class StorybookSharedWrapper extends PureComponent<
 
     return (
       <BrowserRouter>
-        <div className={cn(`theme-${activeTheme}`)} dir={direction}>
-          {children}
-        </div>
+        <React.StrictMode>
+          <div className={cn(`theme-${activeTheme}`)} dir={direction}>
+            {children}
+          </div>
+        </React.StrictMode>
       </BrowserRouter>
     );
   }
