@@ -12,9 +12,21 @@ msgstr ""
 "Last-Translator: \n"
 "Language: en\n"
 
+#: src/pages/HomePage/HomePage.tsx:
+msgid "Hello world"
+msgstr "Hello world"
+
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Ooops... Page not found..."
 msgstr "Ooops... Page not found..."
+
+#: src/pages/NotFound/NotFound.tsx:
+msgid ""
+"The page you are looking for might have been removed, had its name changed, or "
+"is temporarily unavailable."
+msgstr ""
+"The page you are looking for might have been removed, had its name changed, or "
+"is temporarily unavailable."
 
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Go home"

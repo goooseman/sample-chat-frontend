@@ -2,12 +2,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sample-chat-frontend 0.0.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
-"POT-Creation-Date: Wed Jun 10 2020 13:56:51 GMT+0300 (Israel Daylight Time)\n"
+"POT-Creation-Date: Wed Jun 10 2020 15:11:55 GMT+0300 (Israel Daylight Time)\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: src/pages/HomePage/HomePage.tsx:
+msgid "Hello world"
+msgstr ""
+
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Ooops... Page not found..."
+msgstr ""
+
+#: src/pages/NotFound/NotFound.tsx:
+msgid ""
+"The page you are looking for might have been removed, had its name changed, or "
+"is temporarily unavailable."
 msgstr ""
 
 #: src/pages/NotFound/NotFound.tsx:

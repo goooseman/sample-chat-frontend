@@ -13,9 +13,19 @@ msgstr ""
 "Last-Translator: \n"
 "Language: ru\n"
 
+#: src/pages/HomePage/HomePage.tsx:
+msgid "Hello world"
+msgstr ""
+
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Ooops... Page not found..."
 msgstr "Уууупс… Страница не найдена..."
+
+#: src/pages/NotFound/NotFound.tsx:
+msgid ""
+"The page you are looking for might have been removed, had its name changed, or "
+"is temporarily unavailable."
+msgstr ""
 
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Go home"

@@ -25,8 +25,7 @@ class NotFound extends PureComponent<NotFoundProps> {
               <T message="Ooops... Page not found..." />
             </Typography>
             <Typography>
-              The page you are looking for might have been removed, had its name
-              changed, or is temporarily unavailable.
+              <T message="The page you are looking for might have been removed, had its name changed, or is temporarily unavailable." />
             </Typography>
             <Typography>
               <Link to={routes.home}>
