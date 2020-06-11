@@ -1,6 +1,6 @@
-<center>
+<p align="center">
   <img src="./public/android-chrome-192x192.png" alt="Logo" />
-</center>
+</p>
 
 ### Quick start
 
