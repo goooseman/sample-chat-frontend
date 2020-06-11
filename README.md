@@ -11,6 +11,8 @@
 - `npm test` to run unit and integration tests with [jest](https://jestjs.io/).
 - `npm run lint:check` to check the project using all available [linters](#linters). This command should be a part of your CI setup.
 
+NodeJS version is specified at `.nvmrc`. NPM version is specified at the `engines` section of `package.json`. Dependencies can not be installed with npm version lower to prevent unnecessary `package-lock.json` git conflicts, but can be opted-out by deleting `.npmrc`.
+
 ### Browser compatibility
 
 The project is compatible with IE11.
