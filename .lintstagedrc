@@ -4,6 +4,9 @@
     "npm run lint:eslint:write",
     "npm run intl:update-po"
   ],
+  "*.json": [
+    "npm run lint:prettier:write"
+  ],
   "*.css": [
     "npm run lint:prettier:write",
     "npm run lint:stylelint:write"
