@@ -1,3 +1,9 @@
+# Sample React Chat
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3ad6d92e-0c62-4c1c-ab3f-241387186de0/deploy-status)](https://app.netlify.com/sites/sample-chat/deploys) [![Coverage Status](https://coveralls.io/repos/github/goooseman/sample-chat-frontend/badge.svg?branch=master)](https://coveralls.io/github/goooseman/sample-chat-frontend?branch=master) ![Tests status](https://github.com/goooseman/sample-chat-frontend/workflows/Tests/badge.svg) ![Linters status](https://github.com/goooseman/sample-chat-frontend/workflows/Linters/badge.svg) [![Dependencies status](https://david-dm.org/goooseman/sample-chat-frontend/status.svg)](https://david-dm.org/goooseman/sample-chat-frontend) [![Dev dependencies status](https://david-dm.org/goooseman/sample-chat-frontend/dev-status.svg)](https://david-dm.org/goooseman/sample-chat-frontend?type=dev)
+
+[Storybook Preview](https://sample-chat.storybooks.goooseman.ru/) | [Project Preview](https://sample-chat.goooseman.ru/)
+
 <p align="center">
   <img src="./public/android-chrome-192x192.png" alt="Logo" />
 </p>
@@ -36,6 +42,8 @@ The project is built with Typescript using a strict config. If a 3rd-party libra
 The project is **not type-checked during development run-time**, because it should be made on the CI server.
 
 #### Storybook 📖
+
+> [Check it out!](https://sample-chat.storybooks.goooseman.ru/) It's really cool!
 
 [Storybook tutorial](https://www.learnstorybook.com/) | [Component Driven Development](https://blog.hichroma.com/component-driven-development-ce1109d56c8e)
 
