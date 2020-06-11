@@ -5,11 +5,11 @@
 ### Quick start
 
 - `npm start` to start the project in development mode
-- `npm run storybook` to start [storybook](#storybook) in development mode
+- `npm run storybook` to start [storybook](#storybook-) in development mode
 - `npm run build:prod` to build the project in production mode to the `/dist` folder. Use `npm run serve:app` to serve this folder locally with HTTPS support.
 - `npm run build:storybook` to build the storybook in production mode to the `/storybook-static` folder. Use `npm run serve:storybook` to serve this folder locally with HTTPS support.
 - `npm test` to run unit and integration tests with [jest](https://jestjs.io/).
-- `npm run lint:check` to check the project using all available [linters](#linters). This command should be a part of your CI setup.
+- `npm run lint:check` to check the project using all available [linters](#linters-). This command should be a part of your CI setup.
 
 NodeJS version is specified at `.nvmrc`. NPM version is specified at the `engines` section of `package.json`. Dependencies can not be installed with npm version lower to prevent unnecessary `package-lock.json` git conflicts, but can be opted-out by deleting `.npmrc`.
 
@@ -100,7 +100,7 @@ The project uses [react-targem](https://github.com/trucknet-io/react-targem#read
 - Webpack is not able to import .po files directly, so [webpack-shell-plugin-next](https://www.npmjs.com/package/webpack-shell-plugin-next) is used to build `src/i18n/translation.json` file automatically on each build. In the future this can be improved by creating a webpack loader.
 - `dir="ltr"` or `dir="rtl"` is added automatically to the root div automatically to support **right-to-left** languages. If you need to support one of those languages make sure to follow [RTL CSS Guidelines](https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/RTL_Guidelines).
 - To add a new language support, just open `src/i18n/template.pot` in [POEdit](https://poedit.net/) and create a new locale file from it. Save it to `src/i18n` folder and update `src/config/locales.ts` file.
-- [Storybook](#storybook) is configured to display components in different languages and different directions.
+- [Storybook](#storybook-) is configured to display components in different languages and different directions.
 
 #### Styles 🎨
 
@@ -123,7 +123,7 @@ Linters are not your enemies, they help developers to avoid mistakes and to foll
 
 Linters are useless if they are not integrated with the development workflow. This project provides you with the **following integrations**:
 
-- VSCode users should install the recommended extensions. Files are fixed on every save automatically. Refer to [VSCode section](#vs-code).
+- VSCode users should install the recommended extensions. Files are fixed on every save automatically. Refer to [VSCode section](#vs-code-).
 - [husky](https://github.com/typicode/husky) is used to check every commit message with `commitlint`.
 - [husky](https://github.com/typicode/husky) and [lint-staged](https://github.com/okonet/lint-staged) are used to automatically run linters across staged files on every git commit.
 - Use `npm run lint:check` to check all the codebase at once. Configure this command to be run on your CI server.
