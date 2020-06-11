@@ -6,6 +6,7 @@ import "@testing-library/jest-dom";
 const AllTheProviders = ({ children }: { children?: React.ReactNode }) => {
   return (
     <TargemStatefulProvider translations={{}}>
+      {/** StrictMode is useful for `this.setState` functions to be called twice and to prevent side-effects */}
       <React.StrictMode>{children}</React.StrictMode>
     </TargemStatefulProvider>
   );
