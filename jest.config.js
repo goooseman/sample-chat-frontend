@@ -7,4 +7,9 @@ module.exports = {
     "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
   },
   modulePaths: ["<rootDir>/"],
+  collectCoverageFrom: [
+    "src/**/*.ts?(x)",
+    "!src/**/*.stories.tsx",
+    "!src/**/index.ts?(x)",
+  ],
 };

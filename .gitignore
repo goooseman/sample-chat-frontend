@@ -2,3 +2,4 @@
 /dist
 /storybook-static
 /src/i18n/translations.json
+/coverage
