@@ -1,2 +1,2 @@
-import ChatInput from "./ChatInput";
+import ChatInput from "./ChatInput.container";
 export default ChatInput;

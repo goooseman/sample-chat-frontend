@@ -7,8 +7,11 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { withLocale, WithLocale } from "react-targem";
 import Input from "src/components/ui-kit/Input";
 
-interface ChatInputProps extends WithLocale {
+export interface ChatInputPureProps {
   onSubmit: (message: string) => void;
+}
+
+interface ChatInputProps extends ChatInputPureProps, WithLocale {
   isCtrlEnterToSend: boolean;
 }
 
