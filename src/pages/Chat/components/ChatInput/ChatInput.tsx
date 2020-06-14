@@ -5,6 +5,7 @@ import Button from "src/components/ui-kit/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { withLocale, WithLocale } from "react-targem";
+import Input from "src/components/ui-kit/Input";
 
 interface ChatInputProps extends WithLocale {
   onSubmit: (message: string) => void;
@@ -13,7 +14,9 @@ interface ChatInputProps extends WithLocale {
 interface ChatInputState {
   message: string;
 }
-
+/**
+ * Custom `Input` component to be used as a drop-in replacement for `<textarea /> and `<input />`.
+ */
 class ChatInput extends PureComponent<ChatInputProps, ChatInputState> {
   public state: ChatInputState = {
     message: "",
@@ -25,7 +28,8 @@ class ChatInput extends PureComponent<ChatInputProps, ChatInputState> {
 
     return (
       <div className={cn(classes.container)}>
-        <textarea
+        <Input
+          type="textarea"
           aria-label={t("Message contents")}
           value={message}
           onChange={this.handleInputChange}
