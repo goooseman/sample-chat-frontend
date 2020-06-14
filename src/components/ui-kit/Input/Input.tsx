@@ -61,9 +61,9 @@ class Input extends PureComponent<InputProps> {
     return (
       <div className={cn(classes.container)}>
         {this.props.labelledWith ? (
-          <label id={this.props.id}>
-            <Typography>{this.props.labelledWith}</Typography>
-          </label>
+          <Typography variant="label" htmlFor={this.props.id}>
+            {this.props.labelledWith}
+          </Typography>
         ) : null}
         {element}
       </div>

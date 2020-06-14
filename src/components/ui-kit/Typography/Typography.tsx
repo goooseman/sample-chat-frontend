@@ -3,13 +3,14 @@ import classes from "./Typography.css";
 import cn from "clsx";
 
 interface TypographyProps {
-  variant: "p" | "h1" | "h2" | "h3"; // Inlined to be displayed in Storybook Docs
+  variant: "p" | "h1" | "h2" | "h3" | "label"; // Inlined to be displayed in Storybook Docs
   gutterBottom: boolean;
   size: "small" | "normal";
   color: "normal" | "muted" | "contrast" | "danger";
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
+  htmlFor?: string;
 }
 
 /** A component to be used as a drop-in replacement for `<p />`, `<h1 />`, `<h2 />`, `<h3 />` */
@@ -22,11 +23,19 @@ class Typography extends PureComponent<TypographyProps> {
   };
 
   render(): React.ReactNode {
-    const { variant, children, style, size } = this.props;
+    const {
+      variant,
+      children,
+      style,
+      size,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      gutterBottom,
+      ...otherProps
+    } = this.props;
     const Component = variant;
 
     return (
-      <Component style={style} className={this.getClassName()}>
+      <Component {...otherProps} style={style} className={this.getClassName()}>
         {size === "small" ? <small>{children}</small> : children}
       </Component>
     );
