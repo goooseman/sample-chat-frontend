@@ -1,6 +1,7 @@
 // https://github.com/storybookjs/storybook/tree/master/addons/contexts
 
 import { ThemeContextProvider } from "../src/contexts/ThemeContext";
+import { SettingsContextProvider } from "../src/contexts/SettingsContext";
 import { themes } from "../src/config/themes";
 import { locales } from "../src/config/locales";
 import { TargemProvider } from "react-targem";
@@ -29,6 +30,24 @@ export const contexts = [
     title: "Locale",
     components: [TargemProvider],
     params: localeParams,
+    options: {
+      deep: false,
+    },
+  },
+  {
+    icon: "wrench",
+    title: "Settings",
+    components: [SettingsContextProvider],
+    params: [
+      {
+        name: "12 hours",
+        props: { is12hours: true },
+      },
+      {
+        name: "24 hours",
+        props: { is12hours: false },
+      },
+    ],
     options: {
       deep: false,
     },
