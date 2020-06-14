@@ -9,11 +9,13 @@ import Input from "src/components/ui-kit/Input";
 
 interface ChatInputProps extends WithLocale {
   onSubmit: (message: string) => void;
+  isCtrlEnterToSend: boolean;
 }
 
 interface ChatInputState {
   message: string;
 }
+
 /**
  * Custom `Input` component to be used as a drop-in replacement for `<textarea /> and `<input />`.
  */
@@ -21,6 +23,17 @@ class ChatInput extends PureComponent<ChatInputProps, ChatInputState> {
   public state: ChatInputState = {
     message: "",
   };
+
+  public componentDidMount() {
+    if (this.props.isCtrlEnterToSend) {
+      document.addEventListener("keypress", this.handleKeyDown);
+    }
+  }
+
+  public componentWillUnmount() {
+    /** Props could change while component was mounted, so it is a good idea to remove event listener anyway */
+    document.removeEventListener("keypress", this.handleKeyDown);
+  }
 
   render(): React.ReactNode {
     const { t } = this.props;
@@ -58,6 +71,18 @@ class ChatInput extends PureComponent<ChatInputProps, ChatInputState> {
     this.setState({
       message: event.target.value,
     });
+  };
+
+  private handleKeyDown = (event: KeyboardEvent): void => {
+    if (event.keyCode === 13 && event.ctrlKey) {
+      this.handleSubmit();
+      return;
+    }
+    if (event.keyCode === 10 && event.ctrlKey) {
+      this.handleSubmit();
+      return;
+    }
+    return;
   };
 }
 

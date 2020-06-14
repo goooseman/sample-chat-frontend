@@ -9,6 +9,10 @@ export default {
 
 const handleSubmit = action("onSubmit");
 
-export const withDefaultInput = (): React.ReactNode => (
-  <ChatInput onSubmit={handleSubmit} />
+export const withCtrlPlusEnterToSend = (): React.ReactNode => (
+  <ChatInput onSubmit={handleSubmit} isCtrlEnterToSend />
+);
+
+export const withoutCtrlPlusEnterToSend = (): React.ReactNode => (
+  <ChatInput onSubmit={handleSubmit} isCtrlEnterToSend={false} />
 );

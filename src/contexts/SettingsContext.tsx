@@ -13,7 +13,7 @@ export interface WithSettings extends SettingsContextProviderState {
 
 const defaults: SettingsContextProviderState = {
   is12hours: false,
-  isCtrlEnterToSend: false,
+  isCtrlEnterToSend: true,
 };
 
 const { Provider, Consumer } = React.createContext<WithSettings>({
