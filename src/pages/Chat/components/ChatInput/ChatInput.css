@@ -7,10 +7,10 @@
     0 1px 8px 0 rgba(0, 0, 0, 0.12);
 }
 
-.textarea {
+.container .textarea {
   border: 0;
 }
 
-.textarea::-webkit-resizer {
+.container .textarea::-webkit-resizer {
   display: none;
 }
