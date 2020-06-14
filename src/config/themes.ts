@@ -1,15 +1,5 @@
-export const themes = [
-  {
-    name: "default",
-    props: { activeTheme: "default" },
-    default: true,
-  },
-  {
-    name: "dark",
-    props: { activeTheme: "dark" },
-  },
-];
+export const themes = ["default", "dark"] as const;
 
 export const defaultThemeName: ThemeName = "default";
 
-export type ThemeName = typeof themes[number]["name"];
+export type ThemeName = typeof themes[number];

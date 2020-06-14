@@ -1,8 +1,10 @@
 import React from "react";
 import createContextHOC from "./createContextHOC";
+import { defaultThemeName, ThemeName } from "src/config/themes";
 
 interface SettingsContextProviderState {
   username?: string;
+  theme: ThemeName;
   is12hours: boolean;
   isCtrlEnterToSend: boolean;
 }
@@ -13,6 +15,7 @@ export interface WithSettings extends SettingsContextProviderState {
 }
 
 const defaults: SettingsContextProviderState = {
+  theme: defaultThemeName,
   is12hours: false,
   isCtrlEnterToSend: true,
 };

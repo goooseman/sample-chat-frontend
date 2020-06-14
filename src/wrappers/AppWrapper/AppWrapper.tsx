@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { ThemeContextProvider } from "src/contexts/ThemeContext";
+import { SettingsContextProvider } from "src/contexts/SettingsContext";
 import StorybookSharedWrapper from "src/wrappers/StorybookSharedWrapper";
 import { TargemStatefulProvider } from "react-targem";
 
@@ -16,9 +16,9 @@ class AppWrapper extends PureComponent<AppWrapperProps> {
   render(): React.ReactNode {
     return (
       <TargemStatefulProvider detectLocale translations={translationsJson}>
-        <ThemeContextProvider>
+        <SettingsContextProvider>
           <StorybookSharedWrapper>{this.props.children}</StorybookSharedWrapper>
-        </ThemeContextProvider>
+        </SettingsContextProvider>
       </TargemStatefulProvider>
     );
   }

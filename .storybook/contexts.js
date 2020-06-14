@@ -1,6 +1,5 @@
 // https://github.com/storybookjs/storybook/tree/master/addons/contexts
 
-import { ThemeContextProvider } from "../src/contexts/ThemeContext";
 import { SettingsContextProvider } from "../src/contexts/SettingsContext";
 import { themes } from "../src/config/themes";
 import { locales } from "../src/config/locales";
@@ -17,39 +16,32 @@ const localeParams = locales.map((l, i) => {
 
 export const contexts = [
   {
-    icon: "paintbrush", // https://storybooks-official.netlify.app/?path=/story/basics-icon--labels
-    title: "Themes",
-    components: [ThemeContextProvider],
-    params: themes,
-    options: {
-      deep: false, // pass the `props` deeply into all wrapping components
-    },
+    icon: "wrench",
+    title: "Settings",
+    components: [SettingsContextProvider],
+    params: [
+      {
+        name: "Default theme / 12 hours / CTRL + ENTER disabled",
+        props: { is12hours: true, theme: "default", isCtrlEnterToSend: false },
+      },
+      {
+        name: "Dark theme / 12 hours / CTRL + ENTER disabled",
+        props: { is12hours: true, theme: "dark", isCtrlEnterToSend: false },
+      },
+      {
+        name: "Default theme / 24 hours / CTRL + ENTER disabled",
+        props: { is12hours: false, theme: "default", isCtrlEnterToSend: false },
+      },
+      {
+        name: "Default theme / 12 hours / CTRL + ENTER enabled",
+        props: { is12hours: true, theme: "default", isCtrlEnterToSend: true },
+      },
+    ],
   },
   {
     icon: "globe",
     title: "Locale",
     components: [TargemProvider],
     params: localeParams,
-    options: {
-      deep: false,
-    },
-  },
-  {
-    icon: "wrench",
-    title: "Settings",
-    components: [SettingsContextProvider],
-    params: [
-      {
-        name: "12 hours",
-        props: { is12hours: true },
-      },
-      {
-        name: "24 hours",
-        props: { is12hours: false },
-      },
-    ],
-    options: {
-      deep: false,
-    },
   },
 ];
