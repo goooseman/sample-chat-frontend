@@ -1,24 +1,72 @@
 import React, { PureComponent } from "react";
 import classes from "./Input.css";
 import cn from "clsx";
+import Typography from "../Typography";
 
-interface InputProps
-  extends React.DetailedHTMLProps<
-    React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-    HTMLTextAreaElement
-  > {
+interface CommonInputProps {
+  labelledWith?: React.ReactNode;
+}
+
+interface InputPropsTextarea
+  extends CommonInputProps,
+    React.DetailedHTMLProps<
+      React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+      HTMLTextAreaElement
+    > {
+  id: string;
   type: "textarea";
 }
 
+interface InputPropsInput
+  extends CommonInputProps,
+    React.DetailedHTMLProps<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      HTMLInputElement
+    > {
+  id: string;
+  inputType: HTMLInputElement["type"];
+  type: "input";
+}
+
+type InputProps = InputPropsTextarea | InputPropsInput;
+
 class Input extends PureComponent<InputProps> {
   render(): React.ReactNode {
-    const { type, className, ...otherProps } = this.props;
-    const Component = type;
+    let element: React.ReactNode;
+
+    if (this.props.type === "textarea") {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { className, labelledWith, type, ...otherProps } = this.props;
+      element = (
+        <textarea
+          {...otherProps}
+          className={cn({ [classes.common]: true, [className || ""]: true })}
+        />
+      );
+    }
+
+    if (this.props.type === "input") {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { className, inputType, labelledWith, ...otherProps } = this.props;
+
+      element = (
+        <input
+          {...otherProps}
+          className={cn({ [classes.common]: true, [className || ""]: true })}
+          type={inputType}
+        />
+      );
+    }
+
     return (
-      <Component
-        className={cn({ [classes.common]: true, [className || ""]: true })}
-        {...otherProps}
-      />
+      <div className={cn(classes.container)}>
+        {this.props.labelledWith ? (
+          <label id={this.props.id}>
+            <Typography>{this.props.labelledWith}</Typography>
+          </label>
+        ) : null}
+        {element}
+      </div>
     );
   }
 }

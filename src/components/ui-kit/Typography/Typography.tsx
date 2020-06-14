@@ -7,7 +7,7 @@ interface TypographyProps {
   gutterBottom: boolean;
   size: "small" | "normal";
   color: "normal" | "muted" | "contrast" | "danger";
-  children: React.ReactChild;
+  children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
 }
