@@ -8,7 +8,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 interface ChatMessageProps {
   text: string;
-  isSent: boolean;
+  type: "inbox" | "outbox";
   username: string;
   createdAt: Date;
   status: "none" | "receivedByServer";
@@ -16,14 +16,14 @@ interface ChatMessageProps {
 
 class ChatMessage extends PureComponent<ChatMessageProps> {
   render(): React.ReactNode {
-    const { createdAt, isSent, username, text } = this.props;
+    const { createdAt, type, username, text } = this.props;
 
     return (
       <div
         className={cn({
           [classes.container]: true,
-          [classes.sent]: isSent,
-          [classes.received]: !isSent,
+          [classes.inbox]: type === "inbox",
+          [classes.outbox]: type === "outbox",
         })}
       >
         <Typography

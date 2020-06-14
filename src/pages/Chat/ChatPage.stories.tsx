@@ -5,14 +5,14 @@ import { action } from "@storybook/addon-actions";
 export default { title: "pages/Chat", component: ChatPage };
 
 const defaultRecievedChatMessage = {
-  isSent: false,
+  type: "inbox" as const,
   username: "PimpMasta",
   createdAt: new Date(2020, 0, 1),
   status: "none" as const,
 };
 
 const defaulSentChatMessage = {
-  isSent: true,
+  type: "outbox" as const,
   username: "HolyGrandma",
   createdAt: new Date(2020, 0, 1),
   status: "receivedByServer" as const,

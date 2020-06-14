@@ -8,7 +8,7 @@ export default {
 
 const defaultMessage = {
   text: "Yo!",
-  isSent: false,
+  type: "inbox",
   username: "goooseman",
   createdAt: new Date(),
   status: "none",
@@ -19,11 +19,11 @@ export const withRecievedMessage = (): React.ReactNode => (
 );
 
 export const withSentMessage = (): React.ReactNode => (
-  <ChatMessage {...defaultMessage} isSent />
+  <ChatMessage {...defaultMessage} type="outbox" />
 );
 
 export const withSentMessageInStatusRecieved = (): React.ReactNode => (
-  <ChatMessage {...defaultMessage} isSent status="receivedByServer" />
+  <ChatMessage {...defaultMessage} type="outbox" status="receivedByServer" />
 );
 
 const yesterday = new Date(Date.now() - 60 * 60 * 24 * 1000);

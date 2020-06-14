@@ -8,7 +8,7 @@ interface ChatPageProps {
   chatMessages: {
     id: string;
     text: string;
-    isSent: boolean;
+    type: "inbox" | "outbox";
     username: string;
     createdAt: Date;
     status: "none" | "receivedByServer";
