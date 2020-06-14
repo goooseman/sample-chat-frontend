@@ -30,10 +30,8 @@ it("should call set settings method when username field is changed", () => {
 });
 
 it("should change language when language dropdown is changed", () => {
-  const changeLocaleSpy = jest.fn();
-  const { getByLabelText } = render(
-    <Container changeLocale={changeLocaleSpy} />
-  );
+  const setSettingsSpy = jest.fn();
+  const { getByLabelText } = render(<Container setSettings={setSettingsSpy} />);
 
   const select = getByLabelText("Language");
   fireEvent.change(select, {
@@ -42,14 +40,5 @@ it("should change language when language dropdown is changed", () => {
     },
   });
 
-  expect(changeLocaleSpy).toBeCalledWith("ru");
-});
-
-it("should change language to English when 'Reset to defaults' is clicked", () => {
-  const changeLocaleSpy = jest.fn();
-  const { getByText } = render(<Container changeLocale={changeLocaleSpy} />);
-  const button = getByText(resetDefaultsButtonText);
-  fireEvent.click(button);
-
-  expect(changeLocaleSpy).toBeCalledWith("en-GB");
+  expect(setSettingsSpy).toBeCalledWith({ lang: "ru" });
 });

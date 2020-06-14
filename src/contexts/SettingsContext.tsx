@@ -1,9 +1,12 @@
 import React from "react";
 import createContextHOC from "./createContextHOC";
 import { defaultThemeName, ThemeName } from "src/config/themes";
+import { Locale, locales } from "src/config/locales";
+import { getBrowserLocale } from "src/utils/locales";
 
 interface SettingsContextProviderState {
   username?: string;
+  lang: Locale;
   theme: ThemeName;
   is12hours: boolean;
   isCtrlEnterToSend: boolean;
@@ -18,6 +21,10 @@ const defaults: SettingsContextProviderState = {
   theme: defaultThemeName,
   is12hours: false,
   isCtrlEnterToSend: true,
+  lang: getBrowserLocale(
+    locales.map((l) => l.key),
+    locales[0].key
+  ),
 };
 
 const { Provider, Consumer } = React.createContext<WithSettings>({

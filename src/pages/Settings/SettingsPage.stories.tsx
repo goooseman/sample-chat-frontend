@@ -13,5 +13,7 @@ export const withDefaultView = (): React.ReactNode => (
     onResetDefaultClick={handleResetDefaultClick}
     onUsernameChange={handleUsernameChange}
     onLocaleChange={handleLocaleChange}
+    locale="en-GB"
+    username=""
   />
 );
