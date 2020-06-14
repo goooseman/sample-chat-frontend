@@ -12,10 +12,6 @@ msgstr ""
 "Last-Translator: \n"
 "Language: en\n"
 
-#: src/pages/HomePage/HomePage.tsx:
-msgid "Hello world"
-msgstr "Hello world"
-
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Ooops... Page not found..."
 msgstr "Ooops... Page not found..."
