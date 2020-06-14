@@ -6,7 +6,8 @@ interface ChatPageContainerProps extends RouteComponentProps {}
 
 class ChatPageContainer extends PureComponent<ChatPageContainerProps> {
   render(): React.ReactNode {
-    return <ChatPage chatMessages={[]} />;
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    return <ChatPage chatMessages={[]} onSubmit={() => {}} />;
   }
 }
 

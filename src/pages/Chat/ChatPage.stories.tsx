@@ -1,5 +1,6 @@
 import React from "react";
 import ChatPage from "./ChatPage";
+import { action } from "@storybook/addon-actions";
 
 export default { title: "pages/Chat", component: ChatPage };
 
@@ -62,6 +63,8 @@ const chatMessages = [
   },
 ];
 
+const handleSubmit = action("onSubmit");
+
 export const withDefaultChat = (): React.ReactNode => (
-  <ChatPage chatMessages={chatMessages} />
+  <ChatPage onSubmit={handleSubmit} chatMessages={chatMessages} />
 );

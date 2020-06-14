@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import classes from "./ChatPage.css";
 import cn from "clsx";
 import ChatMessage from "./components/ChatMessage";
+import ChatInput from "./components/ChatInput";
 
 interface ChatPageProps {
   chatMessages: {
@@ -12,20 +13,22 @@ interface ChatPageProps {
     createdAt: Date;
     status: "none" | "receivedByServer";
   }[];
+  onSubmit: (message: string) => void;
 }
 
 class ChatPage extends PureComponent<ChatPageProps> {
   render(): React.ReactNode {
-    const { chatMessages } = this.props;
+    const { chatMessages, onSubmit } = this.props;
 
     return (
-      <div className={cn(classes.container)}>
-        <div>
+      <main className={cn(classes.container)}>
+        <div className={cn(classes.messagesContainer)}>
           {chatMessages.map((c) => (
             <ChatMessage key={c.id} {...c} />
           ))}
         </div>
-      </div>
+        <ChatInput onSubmit={onSubmit} />
+      </main>
     );
   }
 }
