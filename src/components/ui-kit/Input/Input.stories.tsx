@@ -23,6 +23,10 @@ export const withLabelledInput = (): React.ReactNode => (
   <Input {...defaultProps} labelledWith="A label" />
 );
 
+export const withInputAndPlaceholder = (): React.ReactNode => (
+  <Input {...defaultProps} placeholder="A label" />
+);
+
 const defaultTextAreaProps = {
   id: "story",
   type: "textarea",
