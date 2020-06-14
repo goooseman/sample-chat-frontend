@@ -4,7 +4,8 @@ import cn from "clsx";
 
 interface TypographyProps {
   variant: "p" | "h1" | "h2" | "h3"; // Inlined to be displayed in Storybook Docs
-  color: "normal" | "contrast" | "danger";
+  gutterBottom: boolean;
+  color: "normal" | "muted" | "contrast" | "danger";
   children: React.ReactChild;
   className?: string;
   style?: React.CSSProperties;
@@ -15,6 +16,7 @@ class Typography extends PureComponent<TypographyProps> {
   public static defaultProps = {
     variant: "p",
     color: "normal",
+    gutterBottom: true,
   };
 
   render(): React.ReactNode {
@@ -29,7 +31,7 @@ class Typography extends PureComponent<TypographyProps> {
   }
 
   private getClassName = (): string => {
-    const { variant, className, color } = this.props;
+    const { variant, className, color, gutterBottom } = this.props;
     return cn({
       [classes.common]: true,
       [classes.p]: variant === "p",
@@ -37,8 +39,10 @@ class Typography extends PureComponent<TypographyProps> {
       [classes.h2]: variant === "h2",
       [classes.h3]: variant === "h3",
       [className || ""]: true,
+      [classes.colorMuted]: color === "muted",
       [classes.colorContrast]: color === "contrast",
       [classes.colorDanger]: color === "danger",
+      [classes.gutterBottom]: gutterBottom,
     });
   };
 }
