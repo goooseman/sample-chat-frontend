@@ -9,8 +9,8 @@ import translationsJson from "src/i18n/translations.json";
 
 const localeParams = locales.map((l, i) => {
   return {
-    name: l,
-    props: { locale: l, translations: translationsJson },
+    name: l.internationalName,
+    props: { locale: l.key, translations: translationsJson },
     default: i === 0,
   };
 });

@@ -4,10 +4,12 @@ import cn from "clsx";
 import Button from "src/components/ui-kit/Button";
 import Input from "src/components/ui-kit/Input";
 import { T } from "react-targem";
+import { Locale, locales } from "src/config/locales";
 
 interface SettingsPageProps {
   onResetDefaultClick: () => void;
   onUsernameChange: (username: string) => void;
+  onLocaleChange: (locale: Locale) => void;
 }
 
 class SettingsPage extends PureComponent<SettingsPageProps> {
@@ -23,6 +25,22 @@ class SettingsPage extends PureComponent<SettingsPageProps> {
             inputType="text"
             onChange={this.handleUsernameChange}
           />
+          <Input
+            className={cn(classes.input)}
+            labelledWith={<T message="Language" />}
+            id="language"
+            type="select"
+            onChange={this.handleLocaleChange}
+          >
+            {locales.map((l) => (
+              <option key={l.key} value={l.key}>
+                {l.localName}
+                {l.internationalName !== l.localName
+                  ? ` / ${l.internationalName}`
+                  : null}
+              </option>
+            ))}
+          </Input>
         </div>
         <Button size="lg" onClick={this.props.onResetDefaultClick}>
           <T message="Reset to defaults" />
@@ -35,6 +53,12 @@ class SettingsPage extends PureComponent<SettingsPageProps> {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     this.props.onUsernameChange(event.target.value);
+  };
+
+  private handleLocaleChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    this.props.onLocaleChange(event.target.value as Locale);
   };
 }
 

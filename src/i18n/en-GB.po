@@ -45,5 +45,9 @@ msgid "Username"
 msgstr "Username"
 
 #: src/pages/Settings/SettingsPage.tsx:
+msgid "Language"
+msgstr "Language"
+
+#: src/pages/Settings/SettingsPage.tsx:
 msgid "Reset to defaults"
 msgstr "Reset to defaults"
