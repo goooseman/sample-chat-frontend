@@ -5,6 +5,7 @@ import createContextHOC from "./createContextHOC";
 export interface WithTheme {
   activeTheme: ThemeName;
   setActiveTheme(theme: ThemeName): void;
+  resetActiveTheme(): void;
 }
 
 interface ThemeContextProviderState extends Pick<WithTheme, "activeTheme"> {}
@@ -13,6 +14,8 @@ const { Provider, Consumer } = React.createContext<WithTheme>({
   activeTheme: defaultThemeName,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   setActiveTheme: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  resetActiveTheme: () => {},
 });
 
 export class ThemeContextProvider extends React.PureComponent<
@@ -32,6 +35,7 @@ export class ThemeContextProvider extends React.PureComponent<
     const providerValue = {
       activeTheme: props.activeTheme || state.activeTheme,
       setActiveTheme: this.setActiveTheme,
+      resetActiveTheme: this.resetActiveTheme,
     };
 
     return <Provider value={providerValue}>{props.children}</Provider>;
@@ -40,6 +44,12 @@ export class ThemeContextProvider extends React.PureComponent<
   private setActiveTheme = (theme: ThemeName) => {
     this.setState({
       activeTheme: theme,
+    });
+  };
+
+  private resetActiveTheme = () => {
+    this.setState({
+      activeTheme: defaultThemeName,
     });
   };
 }
