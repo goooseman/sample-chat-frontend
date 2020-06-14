@@ -26,6 +26,7 @@ class ChatMessage extends PureComponent<ChatMessageProps> {
         <Typography
           color="muted"
           gutterBottom={false}
+          size="small"
           className={cn({
             [classes.username]: true,
           })}
@@ -46,6 +47,7 @@ class ChatMessage extends PureComponent<ChatMessageProps> {
             color="muted"
             className={cn(classes.date)}
             gutterBottom={false}
+            size="small"
           >
             <TimeDisplay date={createdAt} />
           </Typography>

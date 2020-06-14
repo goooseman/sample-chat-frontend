@@ -5,6 +5,7 @@ import cn from "clsx";
 interface TypographyProps {
   variant: "p" | "h1" | "h2" | "h3"; // Inlined to be displayed in Storybook Docs
   gutterBottom: boolean;
+  size: "small" | "normal";
   color: "normal" | "muted" | "contrast" | "danger";
   children: React.ReactChild;
   className?: string;
@@ -17,15 +18,16 @@ class Typography extends PureComponent<TypographyProps> {
     variant: "p",
     color: "normal",
     gutterBottom: true,
+    size: "normal",
   };
 
   render(): React.ReactNode {
-    const { variant, children, style } = this.props;
+    const { variant, children, style, size } = this.props;
     const Component = variant;
 
     return (
       <Component style={style} className={this.getClassName()}>
-        {children}
+        {size === "small" ? <small>{children}</small> : children}
       </Component>
     );
   }

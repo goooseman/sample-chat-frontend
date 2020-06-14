@@ -12,6 +12,10 @@ export const withPWithoutGutterBottom = (): React.ReactNode => (
   <Typography gutterBottom={false}>Hello, world!</Typography>
 );
 
+export const withSmallSize = (): React.ReactNode => (
+  <Typography size="small">Hello, world!</Typography>
+);
+
 export const withH1 = (): React.ReactNode => (
   <Typography variant="h1">Hello, world!</Typography>
 );
