@@ -13,6 +13,18 @@ msgstr ""
 "Last-Translator: \n"
 "Language: ru\n"
 
+#: src/pages/Chat/components/ChatInput/ChatInput.tsx:
+msgid "Message contents"
+msgstr ""
+
+#: src/pages/Chat/components/ChatInput/ChatInput.tsx:
+msgid "Type a message..."
+msgstr ""
+
+#: src/pages/Chat/components/ChatInput/ChatInput.tsx:
+msgid "Send!"
+msgstr ""
+
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Ooops... Page not found..."
 msgstr "Уууупс… Страница не найдена..."
