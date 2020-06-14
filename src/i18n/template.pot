@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sample-chat-frontend 0.0.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
-"POT-Creation-Date: Sun Jun 14 2020 12:16:55 GMT+0300 (Israel Daylight Time)\n"
+"POT-Creation-Date: Sun Jun 14 2020 15:25:08 GMT+0300 (Israel Daylight Time)\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
@@ -30,4 +30,12 @@ msgstr ""
 
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Go home"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Username"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Reset to defaults"
 msgstr ""

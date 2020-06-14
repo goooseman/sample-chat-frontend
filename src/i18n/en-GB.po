@@ -39,3 +39,11 @@ msgstr ""
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Go home"
 msgstr "Go home"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Username"
+msgstr "Username"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Reset to defaults"
+msgstr "Reset to defaults"

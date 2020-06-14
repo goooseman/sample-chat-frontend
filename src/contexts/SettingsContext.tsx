@@ -9,6 +9,7 @@ interface SettingsContextProviderState {
 
 export interface WithSettings extends SettingsContextProviderState {
   setSettings: (state: Partial<SettingsContextProviderState>) => void;
+  resetSettings: () => void;
 }
 
 const defaults: SettingsContextProviderState = {
@@ -20,6 +21,8 @@ const { Provider, Consumer } = React.createContext<WithSettings>({
   ...defaults,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   setSettings: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  resetSettings: () => {},
 });
 
 export class SettingsContextProvider extends React.PureComponent<
@@ -38,6 +41,7 @@ export class SettingsContextProvider extends React.PureComponent<
       ...state,
       ...props,
       setSettings: this.setSettings,
+      resetSettings: this.resetSettings,
     };
 
     return <Provider value={providerValue}>{props.children}</Provider>;
@@ -48,6 +52,10 @@ export class SettingsContextProvider extends React.PureComponent<
       ...state,
       ...settings,
     }));
+  };
+
+  private resetSettings = () => {
+    this.setState(defaults);
   };
 }
 

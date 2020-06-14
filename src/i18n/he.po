@@ -38,3 +38,11 @@ msgstr "ייתכן שהדף שאתה מחפש הוסר, אם שמו השתנה �
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Go home"
 msgstr "עבור לאינדקס"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Username"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Reset to defaults"
+msgstr ""
