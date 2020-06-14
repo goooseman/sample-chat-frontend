@@ -12,8 +12,12 @@ interface SettingsPageContainerProps
 
 class SettingsPageContainer extends PureComponent<SettingsPageContainerProps> {
   render(): React.ReactNode {
+    const { username, locale } = this.props;
+
     return (
       <SettingsPage
+        username={username}
+        locale={locale as Locale}
         onUsernameChange={this.handleUsernameChange}
         onResetDefaultClick={this.handleResetDefaultClick}
         onLocaleChange={this.handleLocaleChange}

@@ -7,6 +7,8 @@ import { T } from "react-targem";
 import { Locale, locales } from "src/config/locales";
 
 interface SettingsPageProps {
+  username?: string;
+  locale: Locale;
   onResetDefaultClick: () => void;
   onUsernameChange: (username: string) => void;
   onLocaleChange: (locale: Locale) => void;
@@ -14,6 +16,8 @@ interface SettingsPageProps {
 
 class SettingsPage extends PureComponent<SettingsPageProps> {
   render(): React.ReactNode {
+    const { username, locale } = this.props;
+
     return (
       <main className={cn(classes.container)}>
         <div className={cn(classes.fields)}>
@@ -24,6 +28,7 @@ class SettingsPage extends PureComponent<SettingsPageProps> {
             type="input"
             inputType="text"
             onChange={this.handleUsernameChange}
+            value={username}
           />
           <Input
             className={cn(classes.input)}
@@ -31,6 +36,7 @@ class SettingsPage extends PureComponent<SettingsPageProps> {
             id="language"
             type="select"
             onChange={this.handleLocaleChange}
+            value={locale}
           >
             {locales.map((l) => (
               <option key={l.key} value={l.key}>
