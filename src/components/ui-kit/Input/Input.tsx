@@ -28,7 +28,17 @@ interface InputPropsInput
   type: "input";
 }
 
-type InputProps = InputPropsTextarea | InputPropsInput;
+interface InputPropsSelect
+  extends CommonInputProps,
+    React.DetailedHTMLProps<
+      React.SelectHTMLAttributes<HTMLSelectElement>,
+      HTMLSelectElement
+    > {
+  id: string;
+  type: "select";
+}
+
+type InputProps = InputPropsTextarea | InputPropsInput | InputPropsSelect;
 
 class Input extends PureComponent<InputProps> {
   render(): React.ReactNode {
@@ -54,6 +64,18 @@ class Input extends PureComponent<InputProps> {
           {...otherProps}
           className={cn({ [classes.common]: true, [className || ""]: true })}
           type={inputType}
+        />
+      );
+    }
+
+    if (this.props.type === "select") {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { className, labelledWith, ...otherProps } = this.props;
+
+      element = (
+        <select
+          {...otherProps}
+          className={cn({ [classes.common]: true, [className || ""]: true })}
         />
       );
     }

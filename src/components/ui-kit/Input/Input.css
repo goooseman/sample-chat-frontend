@@ -16,3 +16,7 @@
   line-height: var(--line-height-base);
   outline-color: var(--color-primary);
 }
+
+select.common {
+  appearance: none;
+}

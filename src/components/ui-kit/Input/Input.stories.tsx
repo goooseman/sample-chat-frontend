@@ -40,3 +40,23 @@ export const withLabelledTextarea = (): React.ReactNode => (
 export const withTextareaAndPlaceholder = (): React.ReactNode => (
   <Input {...defaultTextAreaProps} placeholder="Type something..." />
 );
+
+const defaultSelectProps = {
+  id: "story",
+  type: "select",
+  onChange: handleChange,
+} as const;
+
+export const withSelect = (): React.ReactNode => (
+  <Input {...defaultSelectProps}>
+    <option>Option one</option>
+    <option>Option two</option>
+  </Input>
+);
+
+export const withLabelledSelect = (): React.ReactNode => (
+  <Input {...defaultSelectProps} labelledWith="A label">
+    <option>Option one</option>
+    <option>Option two</option>
+  </Input>
+);
