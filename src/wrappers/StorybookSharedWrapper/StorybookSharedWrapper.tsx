@@ -2,10 +2,10 @@ import React, { PureComponent } from "react";
 import { WithSettings, withSettings } from "src/contexts/SettingsContext";
 import cn from "clsx";
 import "src/styles/global.css";
-import { withLocale, WithLocaleStateful } from "react-targem";
+import { withLocale, WithLocale } from "react-targem";
 import { BrowserRouter } from "react-router-dom";
 
-interface StorybookSharedWrapperProps extends WithSettings, WithLocaleStateful {
+interface StorybookSharedWrapperProps extends WithSettings, WithLocale {
   children: React.ReactChild;
 }
 
