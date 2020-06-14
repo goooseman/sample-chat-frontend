@@ -3,12 +3,15 @@ import classes from "./ChatMessage.css";
 import cn from "clsx";
 import Typography from "src/components/ui-kit/Typography";
 import TimeDisplay from "src/components/TimeDisplay";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 interface ChatMessageProps {
   text: string;
   isSent: boolean;
   username: string;
   createdAt: Date;
+  status: "none" | "receivedByServer";
 }
 
 class ChatMessage extends PureComponent<ChatMessageProps> {
@@ -49,12 +52,22 @@ class ChatMessage extends PureComponent<ChatMessageProps> {
             gutterBottom={false}
             size="small"
           >
-            <TimeDisplay date={createdAt} />
+            <>
+              {this.getStatusIcon()} <TimeDisplay date={createdAt} />
+            </>
           </Typography>
         </div>
       </div>
     );
   }
+
+  private getStatusIcon = () => {
+    const { status } = this.props;
+    if (status === "receivedByServer") {
+      return <FontAwesomeIcon icon={faCheck} />;
+    }
+    return null;
+  };
 }
 
 export default ChatMessage;
