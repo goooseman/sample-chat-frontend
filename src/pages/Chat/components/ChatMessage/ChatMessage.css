@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 0.4rem 0.8rem;
+
+  --triangle-size: 14px;
+}
+
+.bubble-container {
+  display: flex;
+  width: 100%;
+}
+
+.received .bubble-container {
+  flex-direction: row;
+}
+
+.sent .bubble-container {
+  flex-direction: row-reverse;
+}
+
+.username {
+  padding: 0.2rem var(--triangle-size);
+}
+
+.sent .username {
+  align-self: flex-end;
+}
+
+.bubble {
+  max-width: 60%;
+  padding: 0.8rem 1.6rem;
+  background-color: var(--color-primary-lighter);
+  word-break: break-word;
+}
+
+.triangle {
+  border-top: var(--triangle-size) solid var(--color-primary-lighter);
+}
+
+[dir="ltr"] .received .bubble,
+[dir="rtl"] .sent .bubble {
+  border-radius: 0 var(--border-radius) var(--border-radius)
+    var(--border-radius);
+}
+
+[dir="ltr"] .sent .bubble,
+[dir="rtl"] .received .bubble {
+  border-radius: var(--border-radius) 0 var(--border-radius)
+    var(--border-radius);
+}
+
+[dir="ltr"] .received .triangle,
+[dir="rtl"] .sent .triangle {
+  border-left: 10px solid transparent;
+  border-top-left-radius: 2px;
+}
+
+[dir="ltr"] .sent .triangle,
+[dir="rtl"] .received .triangle {
+  border-right: 10px solid transparent;
+  border-top-right-radius: 2px;
+}
+
+.date {
+  align-self: flex-end;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
