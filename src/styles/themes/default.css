@@ -25,6 +25,7 @@
 
   /* sizes */
   --border-width-regular: 0.1rem;
+  --border-radius: 4px;
 
   /* z-indexes */
   --z-index-0: 0;

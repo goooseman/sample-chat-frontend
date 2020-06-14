@@ -3,7 +3,7 @@
   padding: 0.5rem 1rem;
   border: 0;
   background-color: var(--color-primary);
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   color: var(--color-text-contrast);
   cursor: pointer;
   outline: 0;
