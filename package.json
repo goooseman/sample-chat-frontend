@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config config/webpack/config.webpack.development.js",
+    "start:local": "cross-env DOTENV=.env.local webpack-dev-server --config config/webpack/config.webpack.development.js",
     "storybook": "start-storybook",
     "build:dev": "webpack --config config/webpack/config.webpack.development.js",
     "build:prod": "webpack --config config/webpack/config.webpack.production.js && es-check es5 './dist/**/*.js'",
@@ -53,6 +54,7 @@
     "copy-webpack-plugin": "^6.0.2",
     "css-loader": "^3.5.3",
     "cssnano": "^4.1.10",
+    "dotenv-webpack": "^1.8.0",
     "es-check": "^5.1.0",
     "file-loader": "^6.0.0",
     "gettext-utils": "^2.2.0",
@@ -96,6 +98,7 @@
     "@typescript-eslint/eslint-plugin": "^3.2.0",
     "@typescript-eslint/parser": "^3.2.0",
     "canvas": "^2.6.1",
+    "cross-env": "^7.0.2",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-jest-dom": "^2.1.0",
