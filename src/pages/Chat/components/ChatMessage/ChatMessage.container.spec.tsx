@@ -98,6 +98,31 @@ describe("Images", () => {
     );
   });
 
+  it("should follow redirects to find an image", async () => {
+    nock("https://source.unsplash.com")
+      .get("/600x300?girl")
+      .reply(302, undefined, {
+        Location: "https://images.unsplash.com/photo-1542692810-396766644d8c",
+      });
+
+    nock("https://images.unsplash.com")
+      .head("/photo-1542692810-396766644d8c")
+      .reply(200, {}, { "Content-type": "image/jpeg" });
+
+    const textWithLink =
+      "Here is a picture of a beautiful car: https://source.unsplash.com/600x300?girl";
+    const { findByAltText } = render(
+      <ChatMessageContainer {...defaultMessage} text={textWithLink} />
+    );
+    expect(
+      await findByAltText("Image from the message", {}, { timeout: 5 * 1000 })
+    ).toBeInTheDocument();
+    expect(await findByAltText("Image from the message")).toHaveAttribute(
+      "src",
+      "https://source.unsplash.com/600x300?girl"
+    );
+  });
+
   it("should find second image in the text automatically", async () => {
     nock("https://google.com")
       .head("/")

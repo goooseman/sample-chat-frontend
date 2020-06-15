@@ -79,6 +79,16 @@ class ChatMessageContainer extends PureComponent<
       const headResponse: Response = await window.fetch(link, {
         method: "HEAD",
       });
+      if (headResponse.status === 301 || headResponse.status === 302) {
+        const location = headResponse.headers.get("Location");
+        if (location) {
+          const result = await this.isImageLink(location);
+          this.isImageLinkCache[link] = result;
+          return result;
+        }
+        return false;
+      }
+
       const contentType = headResponse.headers.get("Content-Type");
       const result = imageContentTypeRegexp.test(contentType || "");
 
