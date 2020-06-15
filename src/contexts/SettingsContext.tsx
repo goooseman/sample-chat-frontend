@@ -19,7 +19,7 @@ export interface WithSettings extends SettingsContextProviderState {
   resetSettings: () => void;
 }
 
-const defaults: SettingsContextProviderState = {
+const getInitialValues = (): SettingsContextProviderState => ({
   theme: defaultThemeName,
   is12hours: false,
   isCtrlEnterToSend: true,
@@ -28,10 +28,11 @@ const defaults: SettingsContextProviderState = {
     locales[0].key
   ),
   userId: uuidv4(),
-};
+  username: "",
+});
 
 const { Provider, Consumer } = React.createContext<WithSettings>({
-  ...defaults,
+  ...getInitialValues(),
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   setSettings: () => {},
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -44,7 +45,7 @@ export class SettingsContextProvider extends React.PureComponent<
 > {
   constructor(props: Partial<WithSettings>) {
     super(props);
-    this.state = defaults;
+    this.state = getInitialValues();
   }
 
   public render(): React.ReactNode {
@@ -68,7 +69,7 @@ export class SettingsContextProvider extends React.PureComponent<
   };
 
   private resetSettings = () => {
-    this.setState(defaults);
+    this.setState(getInitialValues());
   };
 }
 
