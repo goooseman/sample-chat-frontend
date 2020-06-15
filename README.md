@@ -22,7 +22,10 @@ There are several settings in the application: **username**, **theme** and etc. 
 
 ### Features
 
-- [x] Multi-language (including **left-to-right** and **right-to-left** support) (default locale is taken from your browser's language)
+- [x] Multi-language
+  - [x] **left-to-right** and **right-to-left** support (e.g. Arabic or Hebrew)
+  - [x] **pluralization** (for different languages with difficult pluralization rules, like Russian and Hebrew)
+  - [x] Default locale is taken from your browser's language (if application supports it) or fallbacks to English
 - [x] Two themes (**light** and **dark**)
 - [x] Clock settings (**12 hours** or **24 hours**)
 - [x] Sending messages by CTRL+ENTER
