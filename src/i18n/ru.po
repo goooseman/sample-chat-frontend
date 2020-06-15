@@ -16,32 +16,33 @@ msgstr ""
 #: src/contexts/ChatContext/ChatContext.tsx:
 msgid "New message is received!"
 msgid_plural "{{ count }} new messages are received!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Получено новое сообщение!"
+msgstr[1] "Получено {{ count }} новых сообщения!"
+msgstr[2] "Получено {{ count }} новых сообщений!"
 
 #: src/pages/Chat/components/ChatInput/ChatInput.tsx:
 msgid "Message contents"
-msgstr ""
+msgstr "Тело письма"
 
 #: src/pages/Chat/components/ChatInput/ChatInput.tsx:
 msgid "Type a message..."
-msgstr ""
+msgstr "Введите сообщениe…"
 
 #: src/pages/Chat/components/ChatInput/ChatInput.tsx:
 msgid "Send!"
-msgstr ""
+msgstr "Отправить!"
 
 #: src/pages/Chat/components/ChatMessage/ChatMessage.tsx:
 msgid "Open image in a new tab"
-msgstr ""
+msgstr "Открыть изображение в новой вкладке"
 
 #: src/pages/Chat/components/ChatMessage/ChatMessage.tsx:
 msgid "Image from the message"
-msgstr ""
+msgstr "Изображение из сообщения"
 
 #: src/pages/Chat/components/ChatMessage/ChatMessage.tsx:
 msgid "Youtube player"
-msgstr ""
+msgstr "Плеер Youtube"
 
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Ooops... Page not found..."
@@ -61,57 +62,59 @@ msgstr "Вернуться домой"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Username"
-msgstr ""
+msgstr "Имя пользователя"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Theme"
-msgstr ""
+msgstr "Тема"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Light"
-msgstr ""
+msgstr "Светлая"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Dark"
-msgstr ""
+msgstr "Тёмная"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Clock display"
-msgstr ""
+msgstr "Отображение времени"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "12 hours"
-msgstr ""
+msgstr "12 часов"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "24 hours"
-msgstr ""
+msgstr "24 часа"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid ""
 "Just for educational purposes. In a real-world application time format should "
 "be taken from the browser's locale."
 msgstr ""
+"Только в образовательных целях. В настоящем приложении часовой формат должен "
+"быть взять автоматически из региона браузера."
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Send messages on CTRL + ENTER"
-msgstr ""
+msgstr "Отправить сообщения по CTRL + ENTER"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "On"
-msgstr ""
+msgstr "Вкл"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Off"
-msgstr ""
+msgstr "Выкл"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Language"
-msgstr ""
+msgstr "Язык"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Reset to defaults"
-msgstr ""
+msgstr "Сбросить настройки"
 
 #: src/wrappers/BodyWrapper/BodyWrapper.tsx:
 msgid "Chat"
