@@ -11,6 +11,7 @@ interface TypographyProps {
   className?: string;
   style?: React.CSSProperties;
   htmlFor?: string;
+  id?: string;
 }
 
 /** A component to be used as a drop-in replacement for `<p />`, `<h1 />`, `<h2 />`, `<h3 />` */
