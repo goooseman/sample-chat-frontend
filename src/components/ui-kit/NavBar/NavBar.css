@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  width: 100%;
+  background-color: var(--color-primary);
+}
+
+.item {
+  min-width: 100px;
+  padding: 1rem 0.6rem;
+  color: var(--color-text-contrast);
+  opacity: 0.8;
+  text-align: center;
+  text-decoration: none;
+}
+
+.item-active {
+  border-bottom: 4px solid var(--color-primary-darker);
+  opacity: 1;
+}
