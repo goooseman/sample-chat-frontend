@@ -3,6 +3,7 @@ import createContextHOC from "./createContextHOC";
 import { defaultThemeName, ThemeName } from "src/config/themes";
 import { Locale, locales } from "src/config/locales";
 import { getBrowserLocale } from "src/utils/locales";
+import { v4 as uuidv4 } from "uuid";
 
 interface SettingsContextProviderState {
   username?: string;
@@ -10,6 +11,7 @@ interface SettingsContextProviderState {
   theme: ThemeName;
   is12hours: boolean;
   isCtrlEnterToSend: boolean;
+  userId: string;
 }
 
 export interface WithSettings extends SettingsContextProviderState {
@@ -25,6 +27,7 @@ const defaults: SettingsContextProviderState = {
     locales.map((l) => l.key),
     locales[0].key
   ),
+  userId: uuidv4(),
 };
 
 const { Provider, Consumer } = React.createContext<WithSettings>({
