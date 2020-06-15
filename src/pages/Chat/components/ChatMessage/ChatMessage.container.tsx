@@ -25,6 +25,13 @@ class ChatMessageContainer extends PureComponent<
   public isImageLinkLock: AwaitLock = new AwaitLock();
   public isUnmounted = false;
 
+  public componentDidMount(): void {
+    const links = this.getLinks(this.props.text);
+
+    void this.checkLinksForImages(links);
+    void this.checkLinksForYoutubeVideos(links);
+  }
+
   public componentWillUnmount(): void {
     this.isUnmounted = true;
   }
@@ -53,10 +60,19 @@ class ChatMessageContainer extends PureComponent<
         </a>
       );
     }
-    void this.checkLinksForImages(links);
-    void this.checkLinksForYoutubeVideos(links);
 
     return parts;
+  };
+
+  private getLinks = (text: string): string[] => {
+    const links: string[] = [];
+    // https://stackoverflow.com/a/33238464
+    const parts: (string | JSX.Element)[] = text.split(linkRegexp);
+    for (let i = 1; i < parts.length; i += 2) {
+      links.push(parts[i] as string);
+    }
+
+    return links;
   };
 
   private checkLinksForYoutubeVideos = (links: string[]): void => {
