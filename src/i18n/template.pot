@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sample-chat-frontend 0.0.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
-"POT-Creation-Date: Mon Jun 15 2020 06:55:34 GMT+0300 (Israel Daylight Time)\n"
+"POT-Creation-Date: Mon Jun 15 2020 07:23:11 GMT+0300 (Israel Daylight Time)\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
@@ -58,6 +58,24 @@ msgstr ""
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "24 hours"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid ""
+"Just for educational purposes. In a real-world application time format should "
+"be taken from the browser's locale."
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Send messages on CTRL + ENTER"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "On"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Off"
 msgstr ""
 
 #: src/pages/Settings/SettingsPage.tsx:

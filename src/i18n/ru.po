@@ -70,6 +70,24 @@ msgid "24 hours"
 msgstr ""
 
 #: src/pages/Settings/SettingsPage.tsx:
+msgid ""
+"Just for educational purposes. In a real-world application time format should "
+"be taken from the browser's locale."
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Send messages on CTRL + ENTER"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "On"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Off"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
 msgid "Language"
 msgstr ""
 

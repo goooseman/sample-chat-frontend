@@ -2,8 +2,6 @@ import { RouteComponentProps } from "react-router-dom";
 import React, { PureComponent } from "react";
 import SettingsPage from "./SettingsPage";
 import { withSettings, WithSettings } from "src/contexts/SettingsContext";
-import { Locale } from "src/config/locales";
-import { ThemeName } from "src/config/themes";
 
 interface SettingsPageContainerProps
   extends RouteComponentProps,
@@ -11,35 +9,31 @@ interface SettingsPageContainerProps
 
 class SettingsPageContainer extends PureComponent<SettingsPageContainerProps> {
   render(): React.ReactNode {
-    const { username, lang, theme } = this.props;
+    const { is12hours, isCtrlEnterToSend, username, lang, theme } = this.props;
 
     return (
       <SettingsPage
         username={username}
         locale={lang}
         theme={theme}
-        onUsernameChange={this.handleUsernameChange}
+        is12hours={is12hours}
+        isCtrlEnterToSend={isCtrlEnterToSend}
         onResetDefaultClick={this.handleResetDefaultClick}
-        onLocaleChange={this.handleLocaleChange}
-        onThemeChange={this.handleThemeChange}
+        onUsernameChange={this.handleFieldChange("username")}
+        onLocaleChange={this.handleFieldChange("lang")}
+        onThemeChange={this.handleFieldChange("theme")}
+        onIs12hoursChange={this.handleFieldChange("is12hours")}
+        onIsCtrlEnterToSend={this.handleFieldChange("isCtrlEnterToSend")}
       />
     );
   }
 
-  private handleUsernameChange = (username: string): void => {
-    this.props.setSettings({ username });
+  private handleFieldChange = (field: string) => (value: unknown) => {
+    this.props.setSettings({ [field]: value });
   };
 
   private handleResetDefaultClick = () => {
     this.props.resetSettings();
-  };
-
-  private handleLocaleChange = (lang: Locale) => {
-    this.props.setSettings({ lang });
-  };
-
-  private handleThemeChange = (theme: ThemeName) => {
-    this.props.setSettings({ theme });
   };
 }
 

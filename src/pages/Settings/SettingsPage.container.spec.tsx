@@ -42,3 +42,23 @@ it("should change language when language dropdown is changed", () => {
 
   expect(setSettingsSpy).toBeCalledWith({ lang: "ru" });
 });
+
+it("should change theme when theme radio is changed", () => {
+  const setSettingsSpy = jest.fn();
+  const { getByLabelText } = render(<Container setSettings={setSettingsSpy} />);
+
+  const radio = getByLabelText("Dark");
+  fireEvent.click(radio);
+
+  expect(setSettingsSpy).toBeCalledWith({ theme: "dark" });
+});
+
+it("should change clock settings when clock settings radio is changed", () => {
+  const setSettingsSpy = jest.fn();
+  const { getByLabelText } = render(<Container setSettings={setSettingsSpy} />);
+
+  const radio = getByLabelText("12 hours");
+  fireEvent.click(radio);
+
+  expect(setSettingsSpy).toBeCalledWith({ is12hours: true });
+});
