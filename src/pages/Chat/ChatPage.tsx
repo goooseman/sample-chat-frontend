@@ -3,16 +3,10 @@ import classes from "./ChatPage.css";
 import cn from "clsx";
 import ChatMessage from "./components/ChatMessage";
 import ChatInput from "./components/ChatInput";
+import { ChatMessage as ChatMessageType } from "src/services/ChatService";
 
 interface ChatPageProps {
-  chatMessages: {
-    id: string;
-    text: string;
-    type: "inbox" | "outbox";
-    username: string;
-    createdAt: Date;
-    status: "none" | "receivedByServer";
-  }[];
+  chatMessages: ChatMessageType[];
   onSubmit: (message: string) => void;
 }
 
