@@ -5,13 +5,17 @@ import Button from "src/components/ui-kit/Button";
 import Input from "src/components/ui-kit/Input";
 import { T } from "react-targem";
 import { Locale, locales } from "src/config/locales";
+import RadioGroup from "src/components/ui-kit/RadioGroup";
+import { ThemeName } from "src/config/themes";
 
 interface SettingsPageProps {
   username?: string;
   locale: Locale;
+  theme: ThemeName;
   onResetDefaultClick: () => void;
   onUsernameChange: (username: string) => void;
   onLocaleChange: (locale: Locale) => void;
+  onThemeChange: (theme: ThemeName) => void;
 }
 
 class SettingsPage extends PureComponent<SettingsPageProps> {
@@ -29,6 +33,23 @@ class SettingsPage extends PureComponent<SettingsPageProps> {
             inputType="text"
             onChange={this.handleUsernameChange}
             value={username}
+          />
+          <RadioGroup
+            className={cn(classes.input)}
+            id="theme"
+            labelledWith={<T message="Theme" />}
+            onChange={this.props.onThemeChange}
+            value={this.props.theme}
+            options={[
+              {
+                text: <T message="Light" />,
+                value: "default",
+              },
+              {
+                text: <T message="Dark" />,
+                value: "dark",
+              },
+            ]}
           />
           <Input
             className={cn(classes.input)}
