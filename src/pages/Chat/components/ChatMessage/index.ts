@@ -1,2 +1,2 @@
-import ChatMessage from "./ChatMessage";
-export default ChatMessage;
+import ChatMessageContainer from "./ChatMessage.container";
+export default ChatMessageContainer;
