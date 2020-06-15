@@ -4,7 +4,7 @@ import cn from "clsx";
 import { NavBar, NavBarItem } from "src/components/ui-kit/NavBar";
 import { T } from "react-targem";
 import { routes } from "src/config/routes";
-import { ChatContextProvider } from "src/contexts/ChatContext/ChatContext";
+import { ChatContextProvider } from "src/contexts/ChatContext";
 import { withSettings, WithSettings } from "src/contexts/SettingsContext";
 
 interface BodyWrapperProps extends WithSettings {

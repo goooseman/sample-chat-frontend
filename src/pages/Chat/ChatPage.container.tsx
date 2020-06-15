@@ -3,7 +3,7 @@ import { RouteComponentProps, Redirect } from "react-router-dom";
 import ChatPage from "./ChatPage";
 import { WithSettings, withSettings } from "src/contexts/SettingsContext";
 import { Route } from "src/config/routes";
-import { WithChat, withChat } from "src/contexts/ChatContext/ChatContext";
+import { WithChat, withChat } from "src/contexts/ChatContext";
 
 interface ChatPageContainerProps
   extends RouteComponentProps,
