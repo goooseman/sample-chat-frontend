@@ -49,6 +49,7 @@ class RadioGroup<P extends StringLike> extends PureComponent<
             <RadioGroupItem
               key={o.value.toString()}
               onChange={onChange}
+              id={`${id}-${o.value.toString()}`}
               value={o.value}
               text={o.text}
               activeValue={value}
@@ -65,18 +66,19 @@ interface RadioGroupItemProps<P> {
   text: React.ReactNode;
   activeValue: P;
   onChange: (value: P) => void;
+  id: string;
 }
 
 class RadioGroupItem<P extends StringLike> extends PureComponent<
   RadioGroupItemProps<P>
 > {
   render(): React.ReactNode {
-    const { activeValue, value, text } = this.props;
+    const { activeValue, id, value, text } = this.props;
 
     return (
       <Input
         key={value.toString()}
-        id={value.toString()}
+        id={id}
         type="input"
         inputType="radio"
         labelledWith={text}
