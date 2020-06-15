@@ -1,13 +1,13 @@
 :global .theme-dark {
   /* colors */
-  --color-primary-lighter: #90caf9; /* 200 */
-  --color-primary: #2196f3; /* 500 */
-  --color-primary-darker: #1565c0; /* 800 */
+  --color-primary-lighter: #9fa8da; /* 200 */
+  --color-primary: #3f51b5; /* 500 */
+  --color-primary-darker: #283593; /* 800 */
   --color-text: #fff;
   --color-text-muted: #adadad;
   --color-text-contrast: #fff;
-  --color-text-link: #42a5f5;
-  --color-text-link-visited: #ba68c8;
+  --color-text-link: #0277bd;
+  --color-text-link-visited: #6a1b9a;
   --color-text-link-active: #e57373;
   --color-border: #fff;
   --color-background: #000;
