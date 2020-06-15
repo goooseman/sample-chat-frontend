@@ -119,7 +119,7 @@ it("should have an optimistic UI update", async () => {
   const onMessageSpy = jest.fn();
   adapter.onMessage(onMessageSpy);
 
-  await adapter.emitMessage({
+  adapter.emitMessage({
     text: "foo",
     username: "bar",
   });

@@ -5,6 +5,7 @@
 ### Specification
 
 - Each message contains a randomly generated `userId`
+- If there is no internet connection, sent messages are displayed (without a checkmark) and sent after the connection is reinitialized.
 - User is able to change the username, but old messages will not be updated
 - Chat has optimistic UI updates
 - `userId` can only be changed by resetting the settings or cleaning local storage

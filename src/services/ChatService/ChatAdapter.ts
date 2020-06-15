@@ -62,13 +62,14 @@ class ChatAdapter {
       status: "none",
       id: uuidv4(),
     } as const;
-    await this.emitAsync<ChatAdapterMessage>("message", messageToSend);
+
     this.onMessageCb &&
       this.onMessageCb({
         ...messageToSend,
         type: "outbox",
         createdAt: new Date(),
       });
+    await this.emitAsync<ChatAdapterMessage>("message", messageToSend);
     return;
   }
 
