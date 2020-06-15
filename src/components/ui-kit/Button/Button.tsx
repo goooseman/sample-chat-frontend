@@ -23,9 +23,7 @@ class Button extends PureComponent<ButtonProps> {
 
     return (
       <button
-        className={cn({
-          [classes.button]: true,
-          [className || ""]: true,
+        className={cn(className, classes.button, {
           [classes.buttonLg]: size === "lg",
         })}
         {...otherProps}

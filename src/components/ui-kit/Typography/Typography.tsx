@@ -44,13 +44,11 @@ class Typography extends PureComponent<TypographyProps> {
 
   private getClassName = (): string => {
     const { variant, className, color, gutterBottom } = this.props;
-    return cn({
-      [classes.common]: true,
+    return cn(className, classes.common, {
       [classes.p]: variant === "p",
       [classes.h1]: variant === "h1",
       [classes.h2]: variant === "h2",
       [classes.h3]: variant === "h3",
-      [className || ""]: true,
       [classes.colorMuted]: color === "muted",
       [classes.colorContrast]: color === "contrast",
       [classes.colorDanger]: color === "danger",

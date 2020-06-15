@@ -20,8 +20,7 @@ class ChatMessage extends PureComponent<ChatMessageProps> {
 
     return (
       <div
-        className={cn({
-          [classes.container]: true,
+        className={cn(classes.container, {
           [classes.inbox]: type === "inbox",
           [classes.outbox]: type === "outbox",
         })}
@@ -30,17 +29,11 @@ class ChatMessage extends PureComponent<ChatMessageProps> {
           color="muted"
           gutterBottom={false}
           size="small"
-          className={cn({
-            [classes.username]: true,
-          })}
+          className={cn(classes.username)}
         >
           {username}
         </Typography>
-        <div
-          className={cn({
-            [classes.bubbleContainer]: true,
-          })}
-        >
+        <div className={cn(classes.bubbleContainer)}>
           <div className={cn(classes.triangle)} />
           <div className={cn(classes.bubble)}>
             <Typography gutterBottom={false}>{text}</Typography>
