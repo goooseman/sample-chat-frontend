@@ -4,7 +4,6 @@ import { ChatContextProvider } from "./ChatContext";
 // @ts-ignore
 import { getChatService, mockedService } from "src/services/ChatService";
 import { render, fireEvent } from "__utils__/render";
-import { faDice } from "@fortawesome/free-solid-svg-icons";
 
 jest.mock("src/services/ChatService");
 
