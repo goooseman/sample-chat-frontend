@@ -17,31 +17,33 @@ msgstr ""
 msgid "New message is received!"
 msgid_plural "{{ count }} new messages are received!"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "שתי הודעות מתקבלות"
+msgstr[2] "מתקבלות {{ count }} הודעות"
+msgstr[3] "‫מתקבלות {{ count }} הודעו"
 
 #: src/pages/Chat/components/ChatInput/ChatInput.tsx:
 msgid "Message contents"
-msgstr ""
+msgstr "תוכן ההודעה"
 
 #: src/pages/Chat/components/ChatInput/ChatInput.tsx:
 msgid "Type a message..."
-msgstr ""
+msgstr "הקלד הודעה…"
 
 #: src/pages/Chat/components/ChatInput/ChatInput.tsx:
 msgid "Send!"
-msgstr ""
+msgstr "שלח!"
 
 #: src/pages/Chat/components/ChatMessage/ChatMessage.tsx:
 msgid "Open image in a new tab"
-msgstr ""
+msgstr "פתח תמונה בכרטיסייה חדשה"
 
 #: src/pages/Chat/components/ChatMessage/ChatMessage.tsx:
 msgid "Image from the message"
-msgstr ""
+msgstr "תמונה מההודעה"
 
 #: src/pages/Chat/components/ChatMessage/ChatMessage.tsx:
 msgid "Youtube player"
-msgstr ""
+msgstr "נגן YouTube"
 
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Ooops... Page not found..."
@@ -59,62 +61,62 @@ msgstr "עבור לאינדקס"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Username"
-msgstr ""
+msgstr "שם משתמש"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Theme"
-msgstr ""
+msgstr "נושא"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Light"
-msgstr ""
+msgstr "קל"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Dark"
-msgstr ""
+msgstr "אפל"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Clock display"
-msgstr ""
+msgstr "תצוגת שעון"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "12 hours"
-msgstr ""
+msgstr "12 שעות"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "24 hours"
-msgstr ""
+msgstr "24 שעות"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid ""
 "Just for educational purposes. In a real-world application time format should "
 "be taken from the browser's locale."
-msgstr ""
+msgstr "רק למטרות חינוכיות. במתכונת זמן יישום בעולם האמיתי יש לקחת ממקום הדפדפן."
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Send messages on CTRL + ENTER"
-msgstr ""
+msgstr "שלח הודעות ב- CTRL + ENTER"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "On"
-msgstr ""
+msgstr "על"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Off"
-msgstr ""
+msgstr "כבוי"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Language"
-msgstr ""
+msgstr "שפה"
 
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Reset to defaults"
-msgstr ""
+msgstr "איפוס לברירות מחדל"
 
 #: src/wrappers/BodyWrapper/BodyWrapper.tsx:
 msgid "Chat"
-msgstr ""
+msgstr "צ’אט"
 
 #: src/wrappers/BodyWrapper/BodyWrapper.tsx:
 msgid "Settings"
-msgstr ""
+msgstr "הגדרות"
