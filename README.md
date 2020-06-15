@@ -8,14 +8,6 @@
   <img src="./public/android-chrome-192x192.png" alt="Logo" />
 </p>
 
-### TODO
-
-- Link parser (videos/images/links)
-- Translate
-- Store messages in sqlite
-- Blinking tab bar (tests)
-- Error notification
-
 ### Quick start
 
 - `npm start` to start the project in development mode
