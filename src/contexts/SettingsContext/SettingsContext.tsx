@@ -1,5 +1,5 @@
 import React from "react";
-import createContextHOC from "./createContextHOC";
+import createContextHOC from "../createContextHOC";
 import { defaultThemeName, ThemeName } from "src/config/themes";
 import { Locale, locales } from "src/config/locales";
 import { getBrowserLocale } from "src/utils/locales";
