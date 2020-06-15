@@ -36,6 +36,13 @@ it("should disconnect", async () => {
   expect(fakeAdapter.disconnect).toBeCalledTimes(1);
 });
 
+it("should send chat message", async () => {
+  const message = { text: "foo", username: "bar" };
+  await service.sendMessage(message);
+  expect(fakeAdapter.onMessage).toBeCalledTimes(1);
+  expect(fakeAdapter.emitMessage).toBeCalledWith(message);
+});
+
 it("should call cb after new message is recieved", () => {
   emitMessage(fakeTransformedMessage);
 

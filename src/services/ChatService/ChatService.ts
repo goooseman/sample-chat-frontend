@@ -33,6 +33,13 @@ class ChatService {
     return this.adapter.disconnect();
   }
 
+  public async sendMessage(message: {
+    text: string;
+    username: string;
+  }): Promise<void> {
+    await this.adapter.emitMessage(message);
+  }
+
   public onMessagesListChange(cb: MessagesList["onChangeCb"]): void {
     this.messagesList.onChangeCb = cb;
   }
