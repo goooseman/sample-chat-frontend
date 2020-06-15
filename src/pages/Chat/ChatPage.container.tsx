@@ -3,8 +3,12 @@ import { RouteComponentProps, Redirect } from "react-router-dom";
 import ChatPage from "./ChatPage";
 import { WithSettings, withSettings } from "src/contexts/SettingsContext";
 import { Route } from "src/config/routes";
+import { WithChat, withChat } from "src/contexts/ChatContext/ChatContext";
 
-interface ChatPageContainerProps extends RouteComponentProps, WithSettings {}
+interface ChatPageContainerProps
+  extends RouteComponentProps,
+    WithSettings,
+    WithChat {}
 
 interface ChatPageContainerState {
   redirectTo?: Route;
@@ -28,8 +32,12 @@ class ChatPageContainer extends PureComponent<
     if (this.state.redirectTo) {
       return <Redirect to={this.state.redirectTo} />;
     }
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    return <ChatPage chatMessages={[]} onSubmit={() => {}} />;
+    return (
+      <ChatPage
+        chatMessages={this.props.chatMessages}
+        onSubmit={this.props.sendMessage}
+      />
+    );
   }
 
   private setRedirectIfUsernameIsEmpty() {
@@ -39,4 +47,4 @@ class ChatPageContainer extends PureComponent<
   }
 }
 
-export default withSettings(ChatPageContainer);
+export default withChat(withSettings(ChatPageContainer));
