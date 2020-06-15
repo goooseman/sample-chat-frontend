@@ -26,7 +26,8 @@ module.exports = {
         use: ["file-loader"],
       },
       {
-        test: /\.tsx?$/,
+        test: /\.(j|t)sx?$/,
+        include: [/src/, /node_modules\/debug/],
         use: [
           {
             loader: "ts-loader",
