@@ -44,6 +44,18 @@ msgid "Username"
 msgstr ""
 
 #: src/pages/Settings/SettingsPage.tsx:
+msgid "Theme"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Light"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Dark"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
 msgid "Language"
 msgstr ""
 

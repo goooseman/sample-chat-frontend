@@ -26,3 +26,21 @@
 select.common {
   appearance: none;
 }
+
+.container-inline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container-inline .common {
+  width: auto;
+  order: 0;
+  margin-right: 0.4rem;
+  margin-left: 0.4rem;
+}
+
+.container-inline label.label {
+  order: 1;
+  margin-bottom: 0;
+}

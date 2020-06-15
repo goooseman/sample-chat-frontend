@@ -19,6 +19,14 @@ export const withInputNumber = (): React.ReactNode => (
   <Input {...defaultProps} inputType="number" />
 );
 
+export const withInputRadio = (): React.ReactNode => (
+  <Input {...defaultProps} inputType="radio" labelledWith="Foo" />
+);
+
+export const withInputCheckbox = (): React.ReactNode => (
+  <Input {...defaultProps} inputType="checkbox" labelledWith="Foo" />
+);
+
 export const withLabelledInput = (): React.ReactNode => (
   <Input {...defaultProps} labelledWith="A label" />
 );

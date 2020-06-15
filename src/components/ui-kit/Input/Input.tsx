@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import classes from "./Input.css";
 import cn from "clsx";
-import Typography from "../Typography";
+import Typography from "src/components/ui-kit/Typography";
 
 interface CommonInputProps {
   labelledWith?: React.ReactNode;
@@ -48,10 +48,7 @@ class Input extends PureComponent<InputProps> {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { className, labelledWith, type, ...otherProps } = this.props;
       element = (
-        <textarea
-          {...otherProps}
-          className={cn({ [classes.common]: true, [className || ""]: true })}
-        />
+        <textarea {...otherProps} className={cn(className, classes.common)} />
       );
     }
 
@@ -62,7 +59,7 @@ class Input extends PureComponent<InputProps> {
       element = (
         <input
           {...otherProps}
-          className={cn({ [classes.common]: true, [className || ""]: true })}
+          className={cn(className, classes.common)}
           type={inputType}
         />
       );
@@ -73,17 +70,22 @@ class Input extends PureComponent<InputProps> {
       const { className, labelledWith, ...otherProps } = this.props;
 
       element = (
-        <select
-          {...otherProps}
-          className={cn({ [classes.common]: true, [className || ""]: true })}
-        />
+        <select {...otherProps} className={cn(className, classes.common)} />
       );
     }
 
     return (
-      <div className={cn(classes.container)}>
+      <div
+        className={cn(classes.container, {
+          [classes.containerInline]: this.isInline(),
+        })}
+      >
         {this.props.labelledWith ? (
-          <Typography variant="label" htmlFor={this.props.id}>
+          <Typography
+            className={cn(classes.label)}
+            variant="label"
+            htmlFor={this.props.id}
+          >
             {this.props.labelledWith}
           </Typography>
         ) : null}
@@ -91,6 +93,13 @@ class Input extends PureComponent<InputProps> {
       </div>
     );
   }
+
+  private isInline = (): boolean => {
+    return (
+      this.props.type === "input" &&
+      (this.props.inputType === "radio" || this.props.inputType === "checkbox")
+    );
+  };
 }
 
 export default Input;
