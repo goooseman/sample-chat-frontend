@@ -4,6 +4,7 @@ import {
   withSettings,
   WithSettings,
 } from "src/contexts/SettingsContext";
+import { ChatContextProvider } from "src/contexts/ChatContext";
 import StorybookSharedWrapper from "src/wrappers/StorybookSharedWrapper";
 import { TargemProvider } from "react-targem";
 
@@ -20,16 +21,18 @@ interface AppWrapperInternalProps extends WithSettings, AppWrapperProps {}
 
 class AppWrapperInternal extends React.PureComponent<AppWrapperInternalProps> {
   render(): React.ReactNode {
-    const { lang } = this.props;
+    const { lang, username, userId } = this.props;
 
     return (
-      <TargemProvider
-        translations={translationsJson}
-        locale={lang}
-        detectLocale={false}
-      >
-        <StorybookSharedWrapper>{this.props.children}</StorybookSharedWrapper>
-      </TargemProvider>
+      <ChatContextProvider username={username} userId={userId}>
+        <TargemProvider
+          translations={translationsJson}
+          locale={lang}
+          detectLocale={false}
+        >
+          <StorybookSharedWrapper>{this.props.children}</StorybookSharedWrapper>
+        </TargemProvider>
+      </ChatContextProvider>
     );
   }
 }

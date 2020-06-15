@@ -22,10 +22,14 @@ class ChatPageContainer extends PureComponent<
 
   public componentDidMount() {
     this.setRedirectIfUsernameIsEmpty();
+    this.props.markAllAsRead();
   }
 
   public componentDidUpdate() {
     this.setRedirectIfUsernameIsEmpty();
+    if (this.props.chatMessagesUnreadCount > 0) {
+      this.props.markAllAsRead();
+    }
   }
 
   public render(): React.ReactNode {

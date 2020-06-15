@@ -4,29 +4,29 @@ import cn from "clsx";
 import { NavBar, NavBarItem } from "src/components/ui-kit/NavBar";
 import { T } from "react-targem";
 import { routes } from "src/config/routes";
-import { ChatContextProvider } from "src/contexts/ChatContext";
-import { withSettings, WithSettings } from "src/contexts/SettingsContext";
+import { withChat, WithChat } from "src/contexts/ChatContext";
 
-interface BodyWrapperProps extends WithSettings {
+interface BodyWrapperProps extends WithChat {
   children: React.ReactNode;
 }
 
 class BodyWrapper extends PureComponent<BodyWrapperProps> {
   render(): React.ReactNode {
-    const { username, userId } = this.props;
-
+    const { chatMessagesUnreadCount } = this.props;
     return (
-      <ChatContextProvider username={username} userId={userId}>
-        <div className={cn(classes.container)}>
-          <NavBar>
-            <NavBarItem text={<T message="Chat" />} to={routes.home} />
-            <NavBarItem text={<T message="Settings" />} to={routes.settings} />
-          </NavBar>
-          {this.props.children}
-        </div>
-      </ChatContextProvider>
+      <div className={cn(classes.container)}>
+        <NavBar>
+          <NavBarItem
+            text={<T message="Chat" />}
+            to={routes.home}
+            badge={chatMessagesUnreadCount}
+          />
+          <NavBarItem text={<T message="Settings" />} to={routes.settings} />
+        </NavBar>
+        {this.props.children}
+      </div>
     );
   }
 }
 
-export default withSettings(BodyWrapper);
+export default withChat(BodyWrapper);

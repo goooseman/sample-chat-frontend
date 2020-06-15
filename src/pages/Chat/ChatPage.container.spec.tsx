@@ -19,3 +19,9 @@ it("should redirect to /settings if username is empty", () => {
   const { history } = render(<Container username="" />);
   expect(history.location.pathname).toBe("/settings");
 });
+
+it("should call markAllAdRead when mounted", () => {
+  const markAllAsReadSpy = jest.fn();
+  render(<Container username="foo" markAllAsRead={markAllAsReadSpy} />);
+  expect(markAllAsReadSpy).toBeCalledTimes(1);
+});
