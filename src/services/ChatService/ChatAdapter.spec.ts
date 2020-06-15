@@ -10,10 +10,12 @@ import ChatAdapter from "./ChatAdapter";
 
 interface FakeSocketOptions {
   isOffline: boolean;
+  emitResponse: Object;
 }
 
 const defaultFakeSocketOptions = {
   isOffline: false,
+  emitResponse: {},
 };
 
 class FakeSocket extends EventEmitter {
@@ -30,7 +32,9 @@ class FakeSocket extends EventEmitter {
   public close() {}
   public emit(eventName: string, ...args: unknown[]) {
     const cb = args.splice(-1)[0] as (response?: Object) => void;
-    cb({});
+    cb({
+      res: this.options.emitResponse,
+    });
     if (this.options.isOffline) {
       return true;
     }
@@ -129,4 +133,16 @@ it("should have an optimistic UI update", async () => {
     userId,
     status: "none",
   });
+});
+
+it("should listMessages and transform them", async () => {
+  const { adapter } = await createFakeAdapter({
+    emitResponse: {
+      items: [fakeIncomingMessage],
+    },
+  });
+
+  const messages = await adapter.emitListMessages();
+
+  expect(messages.items).toEqual([fakeTransformedMessage]);
 });

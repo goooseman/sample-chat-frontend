@@ -11,7 +11,7 @@ export interface ChatAdapterMessage {
   status: "none" | "receivedByServer";
 }
 
-type ChatEmitNames = "message";
+type ChatEmitNames = "message" | "listMessages";
 
 type SocketResponse<R> =
   | {
@@ -70,6 +70,19 @@ class ChatAdapter {
         createdAt: new Date(),
       });
     return;
+  }
+
+  public async emitListMessages(): Promise<{
+    items: ChatMessage[];
+  }> {
+    const response = await this.emitAsync<{
+      items: ChatAdapterMessage[];
+    }>("listMessages");
+
+    return {
+      ...response,
+      items: response.items.map(this.transformChatAdapterMessage).reverse(),
+    };
   }
 
   private emitAsync<R>(

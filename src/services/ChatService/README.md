@@ -34,20 +34,35 @@ const content: {
   createdAt: string; // ISO 8601
   status: "none";
 } = { ... };
-await chatIO.emit("message", content);
+await chatIO.emit("message", content, cb);
 ```
 
-##### Recieve message
+##### List messages
 
 ```typescript
-chatIO.on("message", (data: {
+const Content: {
   id: string;
   userId: string;
   text: string;
   username: string;
   createdAt: string; // ISO 8601
-  status: "receivedByServer";
-}) => { ... });
+  status: "none";
+} = { ... };
+await chatIO.emit("listMessages", (err?: Error, data: { items: Content[]} ) => { ... });
+```
+
+##### Recieve message
+
+```typescript
+const Content: {
+  id: string;
+  userId: string;
+  text: string;
+  username: string;
+  createdAt: string; // ISO 8601
+  status: "none";
+} = { ... };
+chatIO.on("message", (data: Content) => { ... });
 ```
 
 ### TODO
