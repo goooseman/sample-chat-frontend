@@ -23,14 +23,21 @@ type SocketResponse<R> =
       res: R;
     };
 
+type OnMessageCb = (data: ChatMessage) => void;
+
 class ChatAdapter {
   private socket: typeof Socket;
   private userId: string;
+  private onMessageCb?: OnMessageCb;
 
   constructor(socket: typeof Socket, userId: string) {
     this.socket = socket;
     this.userId = userId;
     this.socket.on("disconnect", this.handleDisconnected);
+    this.socket.on("message", (message: ChatAdapterMessage) => {
+      this.onMessageCb &&
+        this.onMessageCb(this.transformChatAdapterMessage(message));
+    });
   }
 
   public connect(): void {
@@ -42,21 +49,26 @@ class ChatAdapter {
   }
 
   public onMessage(cb: (data: ChatMessage) => void): void {
-    this.socket.on("message", (message: ChatAdapterMessage) => {
-      cb(this.transformChatAdapterMessage(message));
-    });
+    this.onMessageCb = cb;
   }
 
   public async emitMessage(message: {
     text: string;
     username: string;
   }): Promise<void> {
-    await this.emitAsync<ChatAdapterMessage>("message", {
+    const messageToSend = {
       ...message,
       userId: this.userId,
       status: "none",
       id: uuidv4(),
-    });
+    } as const;
+    await this.emitAsync<ChatAdapterMessage>("message", messageToSend);
+    this.onMessageCb &&
+      this.onMessageCb({
+        ...messageToSend,
+        type: "outbox",
+        createdAt: new Date(),
+      });
     return;
   }
 

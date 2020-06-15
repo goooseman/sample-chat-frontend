@@ -8,21 +8,39 @@ import {
 } from "./__fixtures__";
 import ChatAdapter from "./ChatAdapter";
 
+interface FakeSocketOptions {
+  isOffline: boolean;
+}
+
+const defaultFakeSocketOptions = {
+  isOffline: false,
+};
+
 class FakeSocket extends EventEmitter {
+  private options: FakeSocketOptions;
+
+  public constructor(options: Partial<FakeSocketOptions> = {}) {
+    super();
+    this.options = { ...defaultFakeSocketOptions, ...options };
+  }
+
   public connect() {}
   public disconnect() {}
   public open() {}
   public close() {}
   public emit(eventName: string, ...args: unknown[]) {
     const cb = args.splice(-1)[0] as (response?: Object) => void;
-    super.emit(eventName, ...args);
     cb({});
+    if (this.options.isOffline) {
+      return true;
+    }
+    super.emit(eventName, ...args);
     return true;
   }
 }
 
-const createFakeAdapter = async () => {
-  const socketServer = (new FakeSocket() as unknown) as typeof Socket;
+const createFakeAdapter = async (options?: Partial<FakeSocketOptions>) => {
+  const socketServer = (new FakeSocket(options) as unknown) as typeof Socket;
   const adapter = new ChatAdapter(socketServer, userId);
   await adapter.connect();
   return { socketServer, adapter };
@@ -90,4 +108,25 @@ it("should send two messages with different ids", async () => {
       id: expect.not.stringMatching(onServerMessageSpy.mock.calls[0][0].id),
     })
   );
+});
+
+it("should have an optimistic UI update", async () => {
+  const { adapter } = await createFakeAdapter({ isOffline: true });
+  const onMessageSpy = jest.fn();
+  adapter.onMessage(onMessageSpy);
+
+  await adapter.emitMessage({
+    text: "foo",
+    username: "bar",
+  });
+  expect(onMessageSpy).toBeCalledTimes(1);
+  expect(onMessageSpy).toBeCalledWith({
+    id: expect.any(String),
+    createdAt: expect.any(Date),
+    type: "outbox",
+    text: "foo",
+    username: "bar",
+    userId,
+    status: "none",
+  });
 });
