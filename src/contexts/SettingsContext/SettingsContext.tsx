@@ -39,6 +39,8 @@ const { Provider, Consumer } = React.createContext<WithSettings>({
   resetSettings: () => {},
 });
 
+const localStorageKey = "sample-chat:settings";
+
 export class SettingsContextProvider extends React.PureComponent<
   Partial<SettingsContextProviderState>,
   SettingsContextProviderState
@@ -62,10 +64,14 @@ export class SettingsContextProvider extends React.PureComponent<
   }
 
   private setSettings = (settings: Partial<SettingsContextProviderState>) => {
-    this.setState((state: SettingsContextProviderState) => ({
-      ...state,
-      ...settings,
-    }));
+    this.setState((state: SettingsContextProviderState) => {
+      const newSettings = {
+        ...state,
+        ...settings,
+      };
+      window.localStorage.setItem(localStorageKey, JSON.stringify(newSettings));
+      return newSettings;
+    });
   };
 
   private resetSettings = () => {

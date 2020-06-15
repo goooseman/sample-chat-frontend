@@ -37,6 +37,26 @@ class WithSettingsTester extends React.PureComponent<WithSettings> {
 const WithSettingsTesterHocd = withSettings(WithSettingsTester);
 
 describe("withSettings", () => {
+  let originalLocalStorage: Storage;
+
+  beforeEach(() => {
+    originalLocalStorage = window.localStorage;
+    Object.defineProperty(window, "localStorage", {
+      value: {
+        getItem: jest.fn(),
+        setItem: jest.fn(),
+      },
+      writable: true,
+    });
+  });
+
+  afterEach(() => {
+    Object.defineProperty(window, "localStorage", {
+      value: originalLocalStorage,
+      writable: true,
+    });
+  });
+
   const TestContainer = (
     <SettingsContextProvider>
       <WithSettingsTesterHocd />
@@ -46,6 +66,15 @@ describe("withSettings", () => {
     const { getByText } = render(TestContainer);
     fireEvent.click(getByText("Change username!"));
     expect(getByText("Username: foo")).toBeInTheDocument();
+  });
+
+  it("should save settings to localstorage", () => {
+    const { getByText } = render(TestContainer);
+    fireEvent.click(getByText("Change username!"));
+    expect(window.localStorage.setItem).toHaveBeenCalledWith(
+      "sample-chat:settings",
+      expect.stringContaining('"username":"foo"')
+    );
   });
 
   it("should generate new User ID if settings are reset", () => {
