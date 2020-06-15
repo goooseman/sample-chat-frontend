@@ -9,11 +9,13 @@ export interface ChatMessage {
   status: "none" | "receivedByServer";
 }
 
+interface MessagesStore {
+  [id: string]: ChatMessage;
+}
+
 interface MessagesList {
   /** Store in an object to have O(1) time complexity to find a message */
-  messages: {
-    [id: string]: ChatMessage;
-  };
+  messages: MessagesStore;
   onChangeCb?: (messages: ChatMessage[]) => void;
 }
 
@@ -26,7 +28,16 @@ class ChatService {
   }
 
   public async connect(): Promise<void> {
-    return this.adapter.connect();
+    this.adapter.connect();
+    const messagesList = await this.adapter.emitListMessages();
+    this.messagesList.messages = messagesList.items.reduce(
+      (obj: MessagesStore, m: ChatMessage) => {
+        obj[m.id] = m;
+        return obj;
+      },
+      {}
+    );
+    this.handleMessagesUpdate();
   }
 
   public async disconnect(): Promise<void> {
@@ -45,10 +56,13 @@ class ChatService {
   }
 
   private handleMessage = (message: ChatMessage) => {
-    const { messagesList } = this;
-    messagesList.messages[message.id] = message;
-    messagesList.onChangeCb &&
-      messagesList.onChangeCb(Object.values(messagesList.messages));
+    this.messagesList.messages[message.id] = message;
+    this.handleMessagesUpdate();
+  };
+
+  private handleMessagesUpdate = () => {
+    this.messagesList.onChangeCb &&
+      this.messagesList.onChangeCb(Object.values(this.messagesList.messages));
   };
 
   private messagesList: MessagesList = initialMessagesList;

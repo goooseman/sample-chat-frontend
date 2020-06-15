@@ -3,53 +3,79 @@ import ChatService, { ChatMessage } from "./ChatService";
 import ChatAdapter from "./ChatAdapter";
 import { fakeTransformedMessage } from "./__fixtures__";
 
-let fakeAdapter: ChatAdapter;
-let service: ChatService;
-let emitMessage: (message: ChatMessage) => void;
-let onMessagesListChangeSpy: jest.Mock;
+const setupService = (
+  options: {
+    emitListMessagesRes?: unknown;
+  } = {}
+) => {
+  const onMessagesListChangeSpy = jest.fn();
 
-beforeEach(() => {
-  onMessagesListChangeSpy = jest.fn();
   // @ts-ignore
-  fakeAdapter = {
+  const fakeAdapter: ChatAdapter = {
     connect: jest.fn(),
     disconnect: jest.fn(),
     onMessage: jest.fn(),
     emitMessage: jest.fn(),
-    emitListMessages: jest.fn(),
+    emitListMessages: jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        items: options.emitListMessagesRes || [],
+      });
+    }),
   };
-  service = new ChatService(fakeAdapter);
-  service.onMessagesListChange(onMessagesListChangeSpy);
+  const chatService = new ChatService(fakeAdapter);
+  chatService.onMessagesListChange(onMessagesListChangeSpy);
   // @ts-ignore
-  emitMessage = fakeAdapter.onMessage.mock.calls[0][0] as (
+  const emitMessage = fakeAdapter.onMessage.mock.calls[0][0] as (
     message: ChatMessage
   ) => void;
-});
+
+  return { chatService, emitMessage, fakeAdapter, onMessagesListChangeSpy };
+};
 
 it("should connect", async () => {
-  await service.connect();
+  const { chatService, fakeAdapter } = setupService();
+  await chatService.connect();
   expect(fakeAdapter.connect).toBeCalledTimes(1);
+  expect(fakeAdapter.emitListMessages).toBeCalledTimes(1);
 });
 
 it("should disconnect", async () => {
-  await service.disconnect();
+  const { chatService, fakeAdapter } = setupService();
+  await chatService.disconnect();
   expect(fakeAdapter.disconnect).toBeCalledTimes(1);
 });
 
+it("should proceed initial messages", async () => {
+  const { chatService, onMessagesListChangeSpy } = setupService({
+    emitListMessagesRes: [fakeTransformedMessage],
+  });
+  await chatService.connect();
+
+  expect(onMessagesListChangeSpy).toBeCalledTimes(1);
+  expect(onMessagesListChangeSpy).toHaveBeenLastCalledWith([
+    fakeTransformedMessage,
+  ]);
+});
+
 it("should send chat message", async () => {
+  const { chatService, fakeAdapter } = setupService();
   const message = { text: "foo", username: "bar" };
-  await service.sendMessage(message);
+  await chatService.sendMessage(message);
   expect(fakeAdapter.onMessage).toBeCalledTimes(1);
   expect(fakeAdapter.emitMessage).toBeCalledWith(message);
 });
 
 it("should call cb after new message is recieved", () => {
+  const { onMessagesListChangeSpy, emitMessage } = setupService();
+
   emitMessage(fakeTransformedMessage);
 
   expect(onMessagesListChangeSpy).toBeCalledWith([fakeTransformedMessage]);
 });
 
 it("should not add two messages twice (usually used for Optimistic UI updates)", () => {
+  const { emitMessage, onMessagesListChangeSpy } = setupService();
+
   emitMessage({ ...fakeTransformedMessage, status: "none" });
   emitMessage(fakeTransformedMessage);
 
@@ -60,6 +86,8 @@ it("should not add two messages twice (usually used for Optimistic UI updates)",
 });
 
 it("should return a new array every time (not to mutate original one)", () => {
+  const { onMessagesListChangeSpy, emitMessage } = setupService();
+
   emitMessage(fakeTransformedMessage);
 
   const array1 = onMessagesListChangeSpy.mock.calls[0][0];
