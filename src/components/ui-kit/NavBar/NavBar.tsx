@@ -18,18 +18,60 @@ interface NavBarItemProps {
   text: React.ReactNode;
   to: string;
   badge?: number;
+  isBlinking: boolean;
 }
 
-export class NavBarItem extends PureComponent<NavBarItemProps> {
+interface NavBarItemState {
+  isDark: boolean;
+}
+
+export class NavBarItem extends PureComponent<
+  NavBarItemProps,
+  NavBarItemState
+> {
+  static defaultProps: Partial<NavBarItemProps> = {
+    isBlinking: false,
+  };
+
+  public blinkingInverval?: NodeJS.Timeout;
+
+  public state: NavBarItemState = {
+    isDark: false,
+  };
+
+  public componentDidMount(): void {
+    if (this.props.isBlinking) {
+      this.startBlinking();
+    }
+  }
+
+  public componentDidUpdate(prevProps: NavBarItemProps): void {
+    if (prevProps.isBlinking === this.props.isBlinking) {
+      return;
+    }
+    if (this.props.isBlinking) {
+      this.startBlinking();
+      return;
+    }
+    this.stopBlinking();
+  }
+
+  public componentWillUnmount(): void {
+    this.stopBlinking();
+  }
+
   render(): React.ReactNode {
     const { badge, text, to } = this.props;
+    const { isDark } = this.state;
 
     return (
       <NavLink
         activeClassName={cn(classes.itemActive)}
         to={to}
         exact
-        className={cn(classes.item)}
+        className={cn(classes.item, {
+          [classes.itemDark]: isDark,
+        })}
       >
         <span className={cn(classes.text)}>{text}</span>
         {badge ? (
@@ -41,4 +83,18 @@ export class NavBarItem extends PureComponent<NavBarItemProps> {
       </NavLink>
     );
   }
+
+  private startBlinking = () => {
+    this.blinkingInverval = setInterval(() => {
+      this.setState((state: NavBarItemState) => ({
+        isDark: !state.isDark,
+      }));
+    }, 1000);
+  };
+
+  private stopBlinking = () => {
+    if (this.blinkingInverval) {
+      clearInterval(this.blinkingInverval);
+    }
+  };
 }

@@ -23,3 +23,10 @@ export const withBigNumberBadge = (): React.ReactNode => (
     <NavBarItem text="Settings" to="/settings" />
   </NavBar>
 );
+
+export const withBlinking = (): React.ReactNode => (
+  <NavBar>
+    <NavBarItem text="Chat" to="/" badge={3000} isBlinking />
+    <NavBarItem text="Settings" to="/settings" />
+  </NavBar>
+);

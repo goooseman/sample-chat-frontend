@@ -20,6 +20,7 @@ class BodyWrapper extends PureComponent<BodyWrapperProps> {
             text={<T message="Chat" />}
             to={routes.home}
             badge={chatMessagesUnreadCount}
+            isBlinking={chatMessagesUnreadCount > 0}
           />
           <NavBarItem text={<T message="Settings" />} to={routes.settings} />
         </NavBar>

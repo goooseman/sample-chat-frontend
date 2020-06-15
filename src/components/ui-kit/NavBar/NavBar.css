@@ -11,10 +11,15 @@
   color: var(--color-text-contrast);
   text-align: center;
   text-decoration: none;
+  transition: background-color 0.5s ease;
 }
 
 .item .text {
   opacity: 0.8;
+}
+
+.item-dark {
+  background-color: var(--color-primary-darker);
 }
 
 .item-active {
