@@ -12,9 +12,23 @@ msgstr ""
 "Last-Translator: \n"
 "Language: en\n"
 
-#: src/pages/HomePage/HomePage.tsx:
-msgid "Hello world"
-msgstr "Hello world"
+#: src/contexts/ChatContext/ChatContext.tsx:
+msgid "New message is received!"
+msgid_plural "{{ count }} new messages are received!"
+msgstr[0] "New message is received!"
+msgstr[1] "{{ count }} new messages are received!"
+
+#: src/pages/Chat/components/ChatInput/ChatInput.tsx:
+msgid "Message contents"
+msgstr "Message contents"
+
+#: src/pages/Chat/components/ChatInput/ChatInput.tsx:
+msgid "Type a message..."
+msgstr "Type a message..."
+
+#: src/pages/Chat/components/ChatInput/ChatInput.tsx:
+msgid "Send!"
+msgstr "Send!"
 
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Ooops... Page not found..."
@@ -31,3 +45,67 @@ msgstr ""
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Go home"
 msgstr "Go home"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Username"
+msgstr "Username"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Theme"
+msgstr "Theme"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Light"
+msgstr "Light"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Dark"
+msgstr "Dark"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Clock display"
+msgstr "Clock display"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "12 hours"
+msgstr "12 hours"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "24 hours"
+msgstr "24 hours"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid ""
+"Just for educational purposes. In a real-world application time format should "
+"be taken from the browser's locale."
+msgstr ""
+"Just for educational purposes. In a real-world application time format should "
+"be taken from the browser's locale."
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Send messages on CTRL + ENTER"
+msgstr "Send messages on CTRL + ENTER"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "On"
+msgstr "On"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Off"
+msgstr "Off"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Language"
+msgstr "Language"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Reset to defaults"
+msgstr "Reset to defaults"
+
+#: src/wrappers/BodyWrapper/BodyWrapper.tsx:
+msgid "Chat"
+msgstr "Chat"
+
+#: src/wrappers/BodyWrapper/BodyWrapper.tsx:
+msgid "Settings"
+msgstr "Settings"

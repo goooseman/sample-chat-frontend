@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const path = require("path");
 const WebpackShellPluginNext = require("webpack-shell-plugin-next");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry: path.resolve(__dirname, "../..", "src", "index.tsx"),
@@ -25,7 +26,8 @@ module.exports = {
         use: ["file-loader"],
       },
       {
-        test: /\.tsx?$/,
+        test: /\.(j|t)sx?$/,
+        include: [/src/, /node_modules\/debug/],
         use: [
           {
             loader: "ts-loader",
@@ -76,6 +78,9 @@ module.exports = {
         blocking: true,
         parallel: false,
       },
+    }),
+    new Dotenv({
+      path: process.env.DOTENV || "./.env",
     }),
   ],
   resolve: {

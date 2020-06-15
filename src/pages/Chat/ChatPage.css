@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  width: 100%;
+
+  /* A hardcoded NavBar height, can be exported as variable, but better to be fixed in a different way */
+  height: calc(100vh - 3.4rem);
+  flex-direction: column;
+}
+
+.messages-container {
+  flex-grow: 1;
+  overflow-y: auto;
+}

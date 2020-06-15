@@ -10,7 +10,7 @@ interface RenderWithRouterReturn extends RenderResult {
 const renderWithRouter = (
   ui: React.ReactElement,
   routerOptions: {
-    route?: string;
+    route: string;
   } = {
     route: "/",
   },

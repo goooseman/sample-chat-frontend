@@ -13,9 +13,23 @@ msgstr ""
 "Last-Translator: \n"
 "Language: ru\n"
 
-#: src/pages/HomePage/HomePage.tsx:
-msgid "Hello world"
-msgstr "Привет мир"
+#: src/contexts/ChatContext/ChatContext.tsx:
+msgid "New message is received!"
+msgid_plural "{{ count }} new messages are received!"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/pages/Chat/components/ChatInput/ChatInput.tsx:
+msgid "Message contents"
+msgstr ""
+
+#: src/pages/Chat/components/ChatInput/ChatInput.tsx:
+msgid "Type a message..."
+msgstr ""
+
+#: src/pages/Chat/components/ChatInput/ChatInput.tsx:
+msgid "Send!"
+msgstr ""
 
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Ooops... Page not found..."
@@ -32,3 +46,65 @@ msgstr ""
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Go home"
 msgstr "Вернуться домой"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Username"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Theme"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Light"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Dark"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Clock display"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "12 hours"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "24 hours"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid ""
+"Just for educational purposes. In a real-world application time format should "
+"be taken from the browser's locale."
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Send messages on CTRL + ENTER"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "On"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Off"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Language"
+msgstr ""
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "Reset to defaults"
+msgstr ""
+
+#: src/wrappers/BodyWrapper/BodyWrapper.tsx:
+msgid "Chat"
+msgstr ""
+
+#: src/wrappers/BodyWrapper/BodyWrapper.tsx:
+msgid "Settings"
+msgstr ""

@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.container > main {
+  flex-grow: 1;
+}

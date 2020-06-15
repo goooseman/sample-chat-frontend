@@ -1,11 +1,11 @@
 import React, { PureComponent } from "react";
-import { WithTheme, withTheme } from "src/contexts/ThemeContext";
+import { WithSettings, withSettings } from "src/contexts/SettingsContext";
 import cn from "clsx";
 import "src/styles/global.css";
-import { withLocale, WithLocaleStateful } from "react-targem";
+import { withLocale, WithLocale } from "react-targem";
 import { BrowserRouter } from "react-router-dom";
 
-interface StorybookSharedWrapperProps extends WithTheme, WithLocaleStateful {
+interface StorybookSharedWrapperProps extends WithSettings, WithLocale {
   children: React.ReactChild;
 }
 
@@ -13,12 +13,12 @@ class StorybookSharedWrapper extends PureComponent<
   StorybookSharedWrapperProps
 > {
   render() {
-    const { direction, activeTheme, children } = this.props;
+    const { direction, theme, children } = this.props;
 
     return (
       <BrowserRouter>
         <React.StrictMode>
-          <div className={cn(`theme-${activeTheme}`)} dir={direction}>
+          <div className={cn(`theme-${theme}`)} dir={direction}>
             {children}
           </div>
         </React.StrictMode>
@@ -27,4 +27,4 @@ class StorybookSharedWrapper extends PureComponent<
   }
 }
 
-export default withLocale(withTheme(StorybookSharedWrapper));
+export default withLocale(withSettings(StorybookSharedWrapper));

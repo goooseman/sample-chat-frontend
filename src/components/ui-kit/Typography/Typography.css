@@ -1,8 +1,13 @@
 .common {
   margin-top: 0;
+  margin-bottom: 0;
   color: var(--color-text);
   letter-spacing: var(--letter-spacing-base);
   line-height: var(--line-height-base);
+}
+
+.common.gutter-bottom {
+  margin-bottom: 0.7rem;
 }
 
 .common a {
@@ -15,6 +20,10 @@
 
 .common a:active {
   color: var(--color-text-link-active);
+}
+
+.color-muted {
+  color: var(--color-text-muted);
 }
 
 .color-contrast {

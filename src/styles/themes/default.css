@@ -5,9 +5,11 @@
 /* This vars will be taken by postcss-custom-properties to create fallback css properties */
 :root {
   /* colors */
-  --color-primary: #ff9800;
-  --color-primary-darker: #e65100;
+  --color-primary-lighter: #ffe0b2; /* 100 */
+  --color-primary: #ff9800; /* 500 */
+  --color-primary-darker: #d84315; /* 800 */
   --color-text: #000;
+  --color-text-muted: #808080;
   --color-text-contrast: #fff;
   --color-text-link: #00e;
   --color-text-link-visited: #551a8b;
@@ -25,6 +27,7 @@
 
   /* sizes */
   --border-width-regular: 0.1rem;
+  --border-radius: 4px;
 
   /* z-indexes */
   --z-index-0: 0;
