@@ -1,10 +1,15 @@
-import ChatService from "./ChatService";
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import ChatService, { ChatMessage } from "./ChatService";
 import ChatAdapter from "./ChatAdapter";
+import { fakeTransformedMessage } from "./__fixtures__";
 
 let fakeAdapter: ChatAdapter;
+let service: ChatService;
+let emitMessage: (message: ChatMessage) => void;
+let onMessagesListChangeSpy: jest.Mock;
 
 beforeEach(() => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  onMessagesListChangeSpy = jest.fn();
   // @ts-ignore
   fakeAdapter = {
     connect: jest.fn(),
@@ -13,16 +18,25 @@ beforeEach(() => {
     emitMessage: jest.fn(),
     emitListMessages: jest.fn(),
   };
+  service = new ChatService(fakeAdapter);
+  service.onMessagesListChange(onMessagesListChangeSpy);
+  emitMessage = fakeAdapter.onMessage.mock.calls[0][0] as (
+    message: ChatMessage
+  ) => void;
 });
 
 it("should connect", async () => {
-  const service = new ChatService(fakeAdapter);
   await service.connect();
   expect(fakeAdapter.connect).toBeCalledTimes(1);
 });
 
 it("should disconnect", async () => {
-  const service = new ChatService(fakeAdapter);
-  await service.connect();
-  expect(fakeAdapter.connect).toBeCalledTimes(1);
+  await service.disconnect();
+  expect(fakeAdapter.disconnect).toBeCalledTimes(1);
+});
+
+it("should call cb after new message is recieved", async () => {
+  emitMessage(fakeTransformedMessage);
+
+  expect(onMessagesListChangeSpy).toBeCalledWith([fakeTransformedMessage]);
 });
