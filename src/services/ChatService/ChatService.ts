@@ -13,15 +13,24 @@ interface MessagesStore {
   [id: string]: ChatMessage;
 }
 
-interface MessagesList {
+interface MessagesListInternal {
   /** Store in an object to have O(1) time complexity to find a message */
   messages: MessagesStore;
-  onChangeCb?: (messages: ChatMessage[]) => void;
+  count: number;
+  unreadCount: number;
 }
 
-const initialMessagesList = { messages: {} };
+interface MessagesList {
+  messages: ChatMessage[];
+  count: number;
+  unreadCount: number;
+}
+
+const initialMessagesList = { messages: {}, count: 0, unreadCount: 0 };
 
 class ChatService {
+  private onMessagesListChangeCb?: (messagesList: MessagesList) => void;
+
   constructor(chatAdapter: ChatAdapter) {
     this.adapter = chatAdapter;
     this.adapter.onMessage(this.handleMessage);
@@ -37,6 +46,8 @@ class ChatService {
       },
       {}
     );
+    this.messagesList.count = messagesList.items.length;
+    this.messagesList.unreadCount = 0;
     this.handleMessagesUpdate();
   }
 
@@ -51,21 +62,31 @@ class ChatService {
     await this.adapter.emitMessage(message);
   }
 
-  public onMessagesListChange(cb: MessagesList["onChangeCb"]): void {
-    this.messagesList.onChangeCb = cb;
+  public onMessagesListChange(cb: (messagesList: MessagesList) => void): void {
+    this.onMessagesListChangeCb = cb;
   }
 
   private handleMessage = (message: ChatMessage) => {
+    if (!this.messagesList.messages[message.id]) {
+      this.messagesList.unreadCount += 1;
+    }
     this.messagesList.messages[message.id] = message;
+    // In a real chat should come from server
+    this.messagesList.count = Object.keys(this.messagesList.messages).length;
+
     this.handleMessagesUpdate();
   };
 
   private handleMessagesUpdate = () => {
-    this.messagesList.onChangeCb &&
-      this.messagesList.onChangeCb(Object.values(this.messagesList.messages));
+    this.onMessagesListChangeCb &&
+      this.onMessagesListChangeCb({
+        messages: Object.values(this.messagesList.messages),
+        count: this.messagesList.count,
+        unreadCount: this.messagesList.unreadCount,
+      });
   };
 
-  private messagesList: MessagesList = initialMessagesList;
+  private messagesList: MessagesListInternal = initialMessagesList;
   private adapter: ChatAdapter;
 }
 

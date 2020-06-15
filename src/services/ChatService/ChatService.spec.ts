@@ -52,9 +52,11 @@ it("should proceed initial messages", async () => {
   await chatService.connect();
 
   expect(onMessagesListChangeSpy).toBeCalledTimes(1);
-  expect(onMessagesListChangeSpy).toHaveBeenLastCalledWith([
-    fakeTransformedMessage,
-  ]);
+  expect(onMessagesListChangeSpy).toHaveBeenLastCalledWith({
+    messages: [fakeTransformedMessage],
+    count: 1,
+    unreadCount: 0,
+  });
 });
 
 it("should send chat message", async () => {
@@ -70,7 +72,12 @@ it("should call cb after new message is recieved", () => {
 
   emitMessage(fakeTransformedMessage);
 
-  expect(onMessagesListChangeSpy).toBeCalledWith([fakeTransformedMessage]);
+  expect(onMessagesListChangeSpy).toBeCalledWith(
+    expect.objectContaining({
+      messages: [fakeTransformedMessage],
+      count: 1,
+    })
+  );
 });
 
 it("should not add two messages twice (usually used for Optimistic UI updates)", () => {
@@ -80,9 +87,12 @@ it("should not add two messages twice (usually used for Optimistic UI updates)",
   emitMessage(fakeTransformedMessage);
 
   expect(onMessagesListChangeSpy).toBeCalledTimes(2);
-  expect(onMessagesListChangeSpy).toHaveBeenLastCalledWith([
-    fakeTransformedMessage,
-  ]);
+  expect(onMessagesListChangeSpy).toHaveBeenLastCalledWith(
+    expect.objectContaining({
+      messages: [fakeTransformedMessage],
+      count: 1,
+    })
+  );
 });
 
 it("should return a new array every time (not to mutate original one)", () => {
