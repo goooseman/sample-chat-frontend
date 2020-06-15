@@ -79,3 +79,18 @@ const yesterday = new Date(Date.now() - 60 * 60 * 24 * 1000);
 export const withRecievedYesterdayMessage = (): React.ReactNode => (
   <ChatMessage {...defaultMessage} createdAt={yesterday} />
 );
+
+export const withYoutubeVideo = (): React.ReactNode => (
+  <ChatMessage
+    {...defaultMessage}
+    text={
+      <>
+        Check out this video:{" "}
+        <a href="https://www.youtube.com/watch?v=BMUiFMZr7vk">
+          https://www.youtube.com/watch?v=BMUiFMZr7vk
+        </a>
+      </>
+    }
+    youtubeId="BMUiFMZr7vk"
+  />
+);

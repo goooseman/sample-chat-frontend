@@ -6,6 +6,7 @@ import TimeDisplay from "src/components/TimeDisplay";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { WithLocale, withLocale } from "react-targem";
+import YouTube from "react-youtube";
 
 export interface ChatMessageProps {
   text: React.ReactNode;
@@ -14,12 +15,22 @@ export interface ChatMessageProps {
   createdAt: Date;
   status: "none" | "receivedByServer";
   imageSrc?: string;
+  youtubeId?: string;
   onLoad: () => void;
 }
 
 class ChatMessage extends PureComponent<ChatMessageProps & WithLocale> {
   render(): React.ReactNode {
-    const { createdAt, type, username, text, imageSrc, t, onLoad } = this.props;
+    const {
+      createdAt,
+      type,
+      username,
+      text,
+      imageSrc,
+      t,
+      onLoad,
+      youtubeId,
+    } = this.props;
 
     return (
       <div
@@ -60,6 +71,7 @@ class ChatMessage extends PureComponent<ChatMessageProps & WithLocale> {
                 />
               </a>
             ) : null}
+            {youtubeId ? <YouTube videoId={youtubeId} /> : null}
           </div>
 
           <Typography
