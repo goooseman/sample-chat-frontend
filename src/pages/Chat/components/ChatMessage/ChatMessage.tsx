@@ -25,14 +25,17 @@ class ChatMessage extends PureComponent<ChatMessageProps> {
           [classes.outbox]: type === "outbox",
         })}
       >
-        <Typography
-          color="muted"
-          gutterBottom={false}
-          size="small"
-          className={cn(classes.username)}
-        >
-          {username}
-        </Typography>
+        {type === "inbox" ? (
+          <Typography
+            color="muted"
+            gutterBottom={false}
+            size="small"
+            className={cn(classes.username)}
+          >
+            {username}
+          </Typography>
+        ) : null}
+
         <div className={cn(classes.bubbleContainer)}>
           <div className={cn(classes.triangle)} />
           <div className={cn(classes.bubble)}>
