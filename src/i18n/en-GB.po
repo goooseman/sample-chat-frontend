@@ -57,6 +57,18 @@ msgid "Dark"
 msgstr "Dark"
 
 #: src/pages/Settings/SettingsPage.tsx:
+msgid "Clock display"
+msgstr "Clock display"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "12 hours"
+msgstr "12 hours"
+
+#: src/pages/Settings/SettingsPage.tsx:
+msgid "24 hours"
+msgstr "24 hours"
+
+#: src/pages/Settings/SettingsPage.tsx:
 msgid "Language"
 msgstr "Language"
 

@@ -49,3 +49,18 @@ const fourOptions = [
 export const withFourOptions = (): React.ReactNode => (
   <RadioGroup {...defaultProps} options={fourOptions} />
 );
+
+const booleanOptions = [
+  {
+    value: false,
+    text: "False",
+  },
+  {
+    value: true,
+    text: "True",
+  },
+];
+
+export const withBooleanOptions = (): React.ReactNode => (
+  <RadioGroup {...defaultProps} value={true} options={booleanOptions} />
+);

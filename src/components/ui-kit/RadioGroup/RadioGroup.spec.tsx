@@ -30,3 +30,21 @@ it("should fire onChange after option being clicked", () => {
   expect(onChangeSpy).toBeCalledTimes(1);
   expect(onChangeSpy).toBeCalledWith("bar");
 });
+
+it("should work with boolean values", () => {
+  const onChangeSpy = jest.fn();
+  const { getByLabelText } = render(
+    <RadioGroup
+      {...defaultProps}
+      options={[{ text: "Foo", value: true }]}
+      value={false}
+      onChange={onChangeSpy}
+    />
+  );
+  const radioButton = getByLabelText("Foo");
+
+  fireEvent.click(radioButton);
+
+  expect(onChangeSpy).toBeCalledTimes(1);
+  expect(onChangeSpy).toBeCalledWith(true);
+});

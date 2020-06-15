@@ -16,11 +16,24 @@ interface RadioGroupProps<P> {
   className?: string;
 }
 
-class RadioGroup<P extends string> extends PureComponent<RadioGroupProps<P>> {
-  render(): React.ReactNode {
-    const { className, id, labelledWith, options, value } = this.props;
+interface StringLike {
+  toString: () => string;
+}
 
-    const titleId = `${id}-title`;
+class RadioGroup<P extends StringLike> extends PureComponent<
+  RadioGroupProps<P>
+> {
+  render(): React.ReactNode {
+    const {
+      className,
+      id,
+      labelledWith,
+      options,
+      onChange,
+      value,
+    } = this.props;
+
+    const titleId = `${id.toString()}-title`;
 
     return (
       <div
@@ -33,24 +46,49 @@ class RadioGroup<P extends string> extends PureComponent<RadioGroupProps<P>> {
         ) : null}
         <div className={cn(classes.radiosContainer)}>
           {options.map((o) => (
-            <Input
-              key={o.value}
-              id={o.value}
-              type="input"
-              inputType="radio"
-              labelledWith={o.text}
+            <RadioGroupItem
+              key={o.value.toString()}
+              onChange={onChange}
               value={o.value}
-              checked={o.value === value}
-              onChange={this.handleChange}
+              text={o.text}
+              activeValue={value}
             />
           ))}
         </div>
       </div>
     );
   }
+}
 
-  private handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    this.props.onChange(event.target.value as P);
+interface RadioGroupItemProps<P> {
+  value: P;
+  text: React.ReactNode;
+  activeValue: P;
+  onChange: (value: P) => void;
+}
+
+class RadioGroupItem<P extends StringLike> extends PureComponent<
+  RadioGroupItemProps<P>
+> {
+  render(): React.ReactNode {
+    const { activeValue, value, text } = this.props;
+
+    return (
+      <Input
+        key={value.toString()}
+        id={value.toString()}
+        type="input"
+        inputType="radio"
+        labelledWith={text}
+        value={value.toString()}
+        checked={activeValue === value}
+        onChange={this.handleChange}
+      />
+    );
+  }
+
+  private handleChange = (): void => {
+    this.props.onChange(this.props.value);
   };
 }
 
