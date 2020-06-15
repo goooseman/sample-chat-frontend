@@ -111,7 +111,11 @@ class SettingsPage extends PureComponent<SettingsPageProps> {
             ))}
           </Input>
         </div>
-        <Button size="lg" onClick={this.props.onResetDefaultClick}>
+        <Button
+          size="lg"
+          hasBorderRadius={false}
+          onClick={this.props.onResetDefaultClick}
+        >
           <T message="Reset to defaults" />
         </Button>
       </main>
