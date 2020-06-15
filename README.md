@@ -11,6 +11,8 @@
 ### Quick start
 
 - `npm start` to start the project in development mode
+- `npm run start:local` to start the project in development mode and use `localhost:8090` as a backend url. Use it, if you have an instance of [sample-chat-backend](https://github.com/goooseman/sample-chat-backend) running on your machine.
+- `docker-compose up` to start the project locally and start [sample-chat-backend](https://github.com/goooseman/sample-chat-backend) automatically. Use it to preview the project without internet access.
 - `npm run storybook` to start [storybook](#storybook-) in development mode
 - `npm run build:prod` to build the project in production mode to the `/dist` folder. Use `npm run serve:app` to serve this folder locally with HTTPS support.
 - `npm run build:storybook` to build the storybook in production mode to the `/storybook-static` folder. Use `npm run serve:storybook` to serve this folder locally with HTTPS support.

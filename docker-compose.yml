@@ -1,0 +1,12 @@
+version: "3.4" # for 'target'
+services:
+  backend:
+    image: goooseman/sample-chat-backend:latest
+    ports:
+      - "8090:8090"
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    ports:
+      - "8080:8080"
