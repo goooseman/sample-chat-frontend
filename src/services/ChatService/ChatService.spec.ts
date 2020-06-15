@@ -40,3 +40,14 @@ it("should call cb after new message is recieved", async () => {
 
   expect(onMessagesListChangeSpy).toBeCalledWith([fakeTransformedMessage]);
 });
+
+it("should return a new array every time (not to mutate original one)", async () => {
+  emitMessage(fakeTransformedMessage);
+
+  const array1 = onMessagesListChangeSpy.mock.calls[0][0];
+
+  emitMessage({ ...fakeTransformedMessage, id: "other" });
+
+  expect(onMessagesListChangeSpy).toBeCalledTimes(2);
+  expect(onMessagesListChangeSpy.mock.calls[1][0]).not.toBe(array1);
+});

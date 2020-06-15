@@ -35,7 +35,7 @@ class ChatService {
   }
 
   private handleMessage = (message: ChatMessage) => {
-    this.messagesList.messages.push(message);
+    this.messagesList.messages = [...this.messagesList.messages, message];
     this.messagesList.onChangeCb &&
       this.messagesList.onChangeCb(this.messagesList.messages);
   };
