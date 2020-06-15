@@ -71,7 +71,11 @@ class ChatMessage extends PureComponent<ChatMessageProps & WithLocale> {
                 />
               </a>
             ) : null}
-            {youtubeId ? <YouTube videoId={youtubeId} /> : null}
+            {youtubeId ? (
+              <div aria-label={t("Youtube player")}>
+                <YouTube videoId={youtubeId} />
+              </div>
+            ) : null}
           </div>
 
           <Typography

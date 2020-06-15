@@ -12,6 +12,8 @@ const defaultMessage = {
   onLoad: jest.fn(),
 } as const;
 
+jest.setTimeout(10 * 1000);
+
 it("should find links automatically", () => {
   const textWithLink = "Find it out on Google: https://google.com!";
   const { getByText } = render(
@@ -116,7 +118,7 @@ describe("Images", () => {
       <ChatMessageContainer {...defaultMessage} text={textWithLink} />
     );
     expect(
-      await findByAltText("Image from the message", {}, { timeout: 5 * 1000 })
+      await findByAltText("Image from the message", {}, { timeout: 10 * 1000 })
     ).toBeInTheDocument();
     expect(await findByAltText("Image from the message")).toHaveAttribute(
       "src",
@@ -138,11 +140,22 @@ describe("Images", () => {
       <ChatMessageContainer {...defaultMessage} text={textWithLink} />
     );
     expect(
-      await findByAltText("Image from the message", {}, { timeout: 5 * 1000 })
+      await findByAltText("Image from the message", {}, { timeout: 10 * 1000 })
     ).toBeInTheDocument();
     expect(await findByAltText("Image from the message")).toHaveAttribute(
       "src",
       "https://images.unsplash.com/photo-1542692810-396766644d8c"
     );
+  });
+});
+
+describe("Youtube", () => {
+  it("should show youtube player for https://www.youtube.com/watch?v=BMUiFMZr7vk", async () => {
+    const textWithYoutube =
+      "Watch it: https://www.youtube.com/watch?v=BMUiFMZr7vk!";
+    const { findByLabelText } = render(
+      <ChatMessageContainer {...defaultMessage} text={textWithYoutube} />
+    );
+    expect(await findByLabelText("Youtube player")).toBeInTheDocument();
   });
 });

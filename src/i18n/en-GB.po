@@ -38,6 +38,10 @@ msgstr "Open image in a new tab"
 msgid "Image from the message"
 msgstr "Image from the message"
 
+#: src/pages/Chat/components/ChatMessage/ChatMessage.tsx:
+msgid "Youtube player"
+msgstr "Youtube player"
+
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Ooops... Page not found..."
 msgstr "Ooops... Page not found..."

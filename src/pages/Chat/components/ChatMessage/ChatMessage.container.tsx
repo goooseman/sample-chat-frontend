@@ -8,10 +8,13 @@ interface ChatMessageContainerProps extends ChatMessageProps {
 
 interface ChatMessageContainerState {
   imageSrc?: string;
+  youtubeId?: string;
 }
 
 const linkRegexp = /(https?:\/\/[\w-\.\/\:\?\=\&]+)/gi;
 const imageContentTypeRegexp = /^image\//;
+// https://gist.github.com/afeld/1254889
+const youtubeIdRegexp = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/g;
 
 class ChatMessageContainer extends PureComponent<
   ChatMessageContainerProps,
@@ -31,6 +34,7 @@ class ChatMessageContainer extends PureComponent<
       <ChatMessage
         {...this.props}
         text={this.getText()}
+        youtubeId={this.state.youtubeId}
         imageSrc={this.state.imageSrc}
       />
     );
@@ -50,8 +54,29 @@ class ChatMessageContainer extends PureComponent<
       );
     }
     void this.checkLinksForImages(links);
+    void this.checkLinksForYoutubeVideos(links);
 
     return parts;
+  };
+
+  private checkLinksForYoutubeVideos = (links: string[]): void => {
+    for (const link of links) {
+      if (this.isUnmounted) {
+        return;
+      }
+      const youtubeId = this.getYoutubeId(link);
+      if (youtubeId) {
+        this.setState({
+          youtubeId: youtubeId,
+        });
+        return;
+      }
+    }
+  };
+
+  private getYoutubeId = (link: string): string | undefined => {
+    const match = youtubeIdRegexp.exec(link);
+    return match ? match[5] : undefined;
   };
 
   private checkLinksForImages = async (links: string[]): Promise<void> => {
