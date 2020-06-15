@@ -13,6 +13,12 @@ msgstr ""
 "Last-Translator: \n"
 "Language: he\n"
 
+#: src/contexts/ChatContext/ChatContext.tsx:
+msgid "New message is received!"
+msgid_plural "{{ count }} new messages are received!"
+msgstr[0] ""
+msgstr[1] ""
+
 #: src/pages/Chat/components/ChatInput/ChatInput.tsx:
 msgid "Message contents"
 msgstr ""

@@ -24,15 +24,15 @@ class AppWrapperInternal extends React.PureComponent<AppWrapperInternalProps> {
     const { lang, username, userId } = this.props;
 
     return (
-      <ChatContextProvider username={username} userId={userId}>
-        <TargemProvider
-          translations={translationsJson}
-          locale={lang}
-          detectLocale={false}
-        >
+      <TargemProvider
+        translations={translationsJson}
+        locale={lang}
+        detectLocale={false}
+      >
+        <ChatContextProvider username={username} userId={userId}>
           <StorybookSharedWrapper>{this.props.children}</StorybookSharedWrapper>
-        </TargemProvider>
-      </ChatContextProvider>
+        </ChatContextProvider>
+      </TargemProvider>
     );
   }
 }

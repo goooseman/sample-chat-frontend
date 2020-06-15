@@ -5,6 +5,7 @@ import {
   ChatService,
 } from "src/services/ChatService";
 import createContextHOC from "../createContextHOC";
+import { WithLocale, withLocale } from "react-targem";
 
 interface ChatContextProviderState {
   chatMessages: ChatMessage[];
@@ -12,7 +13,7 @@ interface ChatContextProviderState {
   chatMessagesUnreadCount: number;
 }
 
-interface ChatContextProviderProps {
+interface ChatContextProviderProps extends WithLocale {
   username?: string;
   userId: string;
 }
@@ -36,11 +37,12 @@ const { Provider, Consumer } = React.createContext<WithChat>({
   markAllAsRead: () => {},
 });
 
-export class ChatContextProvider extends React.PureComponent<
+class ChatContextProviderPure extends React.PureComponent<
   ChatContextProviderProps,
   ChatContextProviderState
 > {
   private chatService?: ChatService;
+  private originalHtmlTitle?: string;
 
   constructor(props: ChatContextProviderProps) {
     super(props);
@@ -84,6 +86,23 @@ export class ChatContextProvider extends React.PureComponent<
       chatMessagesCount: messagesList.count,
       chatMessagesUnreadCount: messagesList.unreadCount,
     });
+
+    if (messagesList.unreadCount > 0) {
+      if (!this.originalHtmlTitle) {
+        this.originalHtmlTitle = document.title;
+      }
+      document.title = this.props.tn(
+        "New message is received!",
+        "{{ count }} new messages are received!",
+        messagesList.unreadCount
+      );
+      return;
+    }
+
+    if (this.originalHtmlTitle) {
+      document.title = this.originalHtmlTitle;
+      this.originalHtmlTitle = undefined;
+    }
   };
 
   private sendMessage = (text: string) => {
@@ -107,5 +126,7 @@ export class ChatContextProvider extends React.PureComponent<
     this.chatService.onMessagesListChange(this.handleMessagesListChange);
   };
 }
+
+export const ChatContextProvider = withLocale(ChatContextProviderPure);
 
 export const withChat = createContextHOC(Consumer);

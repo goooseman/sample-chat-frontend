@@ -4,6 +4,7 @@ import { ChatContextProvider } from "./ChatContext";
 // @ts-ignore
 import { getChatService, mockedService } from "src/services/ChatService";
 import { render, fireEvent } from "__utils__/render";
+import { faDice } from "@fortawesome/free-solid-svg-icons";
 
 jest.mock("src/services/ChatService");
 
@@ -61,5 +62,56 @@ describe("ChatContextProvider", () => {
     unmount();
 
     expect(mockedService.disconnect).toBeCalledTimes(1);
+  });
+
+  it("should change browser's title if there is an unread message", () => {
+    render(<ChatContextTester />);
+    const changeMessageList = (mockedService.onMessagesListChange as jest.Mock)
+      .mock.calls[0][0];
+
+    changeMessageList({
+      messages: 0,
+      count: 0,
+      unreadCount: 1,
+    });
+
+    expect(document.title).toBe("New message is received!");
+  });
+
+  it("should pluralize title correctly", () => {
+    render(<ChatContextTester />);
+    const changeMessageList = (mockedService.onMessagesListChange as jest.Mock)
+      .mock.calls[0][0];
+
+    changeMessageList({
+      messages: 0,
+      count: 0,
+      unreadCount: 2,
+    });
+
+    expect(document.title).toBe("2 new messages are received!");
+  });
+
+  it("should rollback original title if no unread messages are left", () => {
+    document.title = "some-title";
+    render(<ChatContextTester />);
+    const changeMessageList = (mockedService.onMessagesListChange as jest.Mock)
+      .mock.calls[0][0];
+
+    changeMessageList({
+      messages: 0,
+      count: 0,
+      unreadCount: 1,
+    });
+
+    expect(document.title).toBe("New message is received!");
+
+    changeMessageList({
+      messages: 0,
+      count: 0,
+      unreadCount: 0,
+    });
+
+    expect(document.title).toBe("some-title");
   });
 });
