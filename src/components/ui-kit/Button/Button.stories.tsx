@@ -10,6 +10,12 @@ export const withText = (): React.ReactNode => (
   <Button onClick={handleClick}>Hello Button</Button>
 );
 
+export const withoutBorderRadius = (): React.ReactNode => (
+  <Button onClick={handleClick} hasBorderRadius={false}>
+    Hello Button
+  </Button>
+);
+
 export const withEmoji = (): React.ReactNode => (
   <Button onClick={handleClick}>
     <span role="img" aria-label="so cool">

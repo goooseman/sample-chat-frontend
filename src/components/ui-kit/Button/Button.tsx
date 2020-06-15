@@ -8,6 +8,7 @@ interface ButtonProps
     HTMLButtonElement
   > {
   size: "md" | "lg";
+  hasBorderRadius: boolean;
 }
 
 /**
@@ -16,15 +17,23 @@ interface ButtonProps
 class Button extends PureComponent<ButtonProps> {
   public static defaultProps = {
     size: "md",
+    hasBorderRadius: true,
   };
 
   render(): React.ReactNode {
-    const { children, className, size, ...otherProps } = this.props;
+    const {
+      children,
+      className,
+      size,
+      hasBorderRadius,
+      ...otherProps
+    } = this.props;
 
     return (
       <button
         className={cn(className, classes.button, {
           [classes.buttonLg]: size === "lg",
+          [classes.borderRadius]: hasBorderRadius,
         })}
         {...otherProps}
       >
