@@ -26,6 +26,10 @@ export const withSentMessageInStatusRecieved = (): React.ReactNode => (
   <ChatMessage {...defaultMessage} type="outbox" status="receivedByServer" />
 );
 
+export const withRecievedMessageInStatusRecieved = (): React.ReactNode => (
+  <ChatMessage {...defaultMessage} status="receivedByServer" />
+);
+
 const yesterday = new Date(Date.now() - 60 * 60 * 24 * 1000);
 
 export const withRecievedYesterdayMessage = (): React.ReactNode => (

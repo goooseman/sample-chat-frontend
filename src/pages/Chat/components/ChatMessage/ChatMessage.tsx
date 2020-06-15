@@ -55,8 +55,8 @@ class ChatMessage extends PureComponent<ChatMessageProps> {
   }
 
   private getStatusIcon = () => {
-    const { status } = this.props;
-    if (status === "receivedByServer") {
+    const { status, type } = this.props;
+    if (status === "receivedByServer" && type === "outbox") {
       return <FontAwesomeIcon icon={faCheck} />;
     }
     return null;
