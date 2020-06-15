@@ -19,6 +19,7 @@ interface ChatContextProviderProps {
 
 export interface WithChat extends ChatContextProviderState {
   sendMessage: (text: string) => void;
+  markAllAsRead: () => void;
 }
 
 const defaults: ChatContextProviderState = {
@@ -31,6 +32,8 @@ const { Provider, Consumer } = React.createContext<WithChat>({
   ...defaults,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   sendMessage: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  markAllAsRead: () => {},
 });
 
 export class ChatContextProvider extends React.PureComponent<
@@ -65,6 +68,7 @@ export class ChatContextProvider extends React.PureComponent<
     const providerValue = {
       ...state,
       sendMessage: this.sendMessage,
+      markAllAsRead: this.markAllAsRead,
     };
 
     return <Provider value={providerValue}>{props.children}</Provider>;
@@ -91,6 +95,10 @@ export class ChatContextProvider extends React.PureComponent<
       throw new Error("Chat Service is not initialized");
     }
     this.chatService.sendMessage({ text, username });
+  };
+
+  private markAllAsRead = () => {
+    this.chatService?.markAllAsRead();
   };
 
   private initChatService = () => {

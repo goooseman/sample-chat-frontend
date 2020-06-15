@@ -66,6 +66,11 @@ class ChatService {
     this.onMessagesListChangeCb = cb;
   }
 
+  public markAllAsRead(): void {
+    this.messagesList.unreadCount = 0;
+    this.handleMessagesUpdate();
+  }
+
   private handleMessage = (message: ChatMessage) => {
     if (!this.messagesList.messages[message.id]) {
       this.messagesList.unreadCount += 1;

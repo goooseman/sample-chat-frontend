@@ -107,3 +107,16 @@ it("should return a new array every time (not to mutate original one)", () => {
   expect(onMessagesListChangeSpy).toBeCalledTimes(2);
   expect(onMessagesListChangeSpy.mock.calls[1][0]).not.toBe(array1);
 });
+
+it("should clear unreadCount when markAllAsRead is used", () => {
+  const { onMessagesListChangeSpy, emitMessage, chatService } = setupService();
+
+  emitMessage(fakeTransformedMessage);
+  chatService.markAllAsRead();
+
+  expect(onMessagesListChangeSpy).toHaveBeenLastCalledWith(
+    expect.objectContaining({
+      unreadCount: 0,
+    })
+  );
+});
