@@ -12,4 +12,9 @@ module.exports = {
     "!src/**/*.stories.tsx",
     "!src/**/index.ts?(x)",
   ],
+  globals: {
+    "ts-jest": {
+      diagnostics: false,
+    },
+  },
 };
