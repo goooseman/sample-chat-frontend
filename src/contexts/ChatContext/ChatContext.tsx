@@ -8,6 +8,7 @@ import createContextHOC from "../createContextHOC";
 
 interface ChatContextProviderState {
   chatMessages: ChatMessage[];
+  chatMessagesCount: number;
 }
 
 interface ChatContextProviderProps {
@@ -21,6 +22,7 @@ export interface WithChat extends ChatContextProviderState {
 
 const defaults: ChatContextProviderState = {
   chatMessages: [],
+  chatMessagesCount: 0,
 };
 
 const { Provider, Consumer } = React.createContext<WithChat>({
@@ -69,6 +71,7 @@ export class ChatContextProvider extends React.PureComponent<
   private handleMessagesListChange = (messagesList: ChatMessage[]) => {
     this.setState({
       chatMessages: messagesList,
+      chatMessagesCount: messagesList.length,
     });
   };
 
