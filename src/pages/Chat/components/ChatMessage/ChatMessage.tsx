@@ -14,11 +14,12 @@ export interface ChatMessageProps {
   createdAt: Date;
   status: "none" | "receivedByServer";
   imageSrc?: string;
+  onLoad: () => void;
 }
 
 class ChatMessage extends PureComponent<ChatMessageProps & WithLocale> {
   render(): React.ReactNode {
-    const { createdAt, type, username, text, imageSrc, t } = this.props;
+    const { createdAt, type, username, text, imageSrc, t, onLoad } = this.props;
 
     return (
       <div
@@ -55,6 +56,7 @@ class ChatMessage extends PureComponent<ChatMessageProps & WithLocale> {
                   alt={t("Image from the message")}
                   src={imageSrc}
                   className={cn(classes.image)}
+                  onLoad={onLoad}
                 />
               </a>
             ) : null}

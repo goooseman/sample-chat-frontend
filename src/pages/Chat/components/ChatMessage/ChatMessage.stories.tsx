@@ -1,5 +1,6 @@
 import React from "react";
 import ChatMessage from "./ChatMessage";
+import { action } from "@storybook/addon-actions";
 
 export default {
   title: "pages/Chat/components/ChatMessage",
@@ -12,6 +13,7 @@ const defaultMessage = {
   username: "goooseman",
   createdAt: new Date(),
   status: "none",
+  onLoad: action("onLoad"),
 } as const;
 
 export const withRecievedMessage = (): React.ReactNode => (

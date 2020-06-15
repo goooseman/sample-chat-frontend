@@ -9,6 +9,7 @@ const defaultMessage = {
   username: "goooseman",
   createdAt: new Date(),
   status: "none",
+  onLoad: jest.fn(),
 } as const;
 
 it("should find links automatically", () => {
