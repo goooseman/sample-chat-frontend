@@ -68,13 +68,25 @@ describe("withSettings", () => {
     expect(getByText("Username: foo")).toBeInTheDocument();
   });
 
-  it("should save settings to localstorage", () => {
+  it("should save settings to localStorage", () => {
     const { getByText } = render(TestContainer);
     fireEvent.click(getByText("Change username!"));
     expect(window.localStorage.setItem).toHaveBeenCalledWith(
       "sample-chat:settings",
       expect.stringContaining('"username":"foo"')
     );
+  });
+
+  it("should read settings from localStorage", () => {
+    (window.localStorage.getItem as jest.Mock).mockImplementation(() => {
+      return '{"username": "bar-bar"}';
+    });
+    const { getByText } = render(TestContainer);
+
+    expect(window.localStorage.getItem).toHaveBeenCalledWith(
+      "sample-chat:settings"
+    );
+    expect(getByText("Username: bar-bar")).toBeInTheDocument();
   });
 
   it("should generate new User ID if settings are reset", () => {

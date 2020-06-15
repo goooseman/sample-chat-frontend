@@ -47,7 +47,10 @@ export class SettingsContextProvider extends React.PureComponent<
 > {
   constructor(props: Partial<WithSettings>) {
     super(props);
-    this.state = getInitialValues();
+    this.state = {
+      ...getInitialValues(),
+      ...this.getSettingsFromLocalStorage(),
+    };
   }
 
   public render(): React.ReactNode {
@@ -72,6 +75,18 @@ export class SettingsContextProvider extends React.PureComponent<
       window.localStorage.setItem(localStorageKey, JSON.stringify(newSettings));
       return newSettings;
     });
+  };
+
+  private getSettingsFromLocalStorage = (): Partial<
+    SettingsContextProviderState
+  > => {
+    const json = window.localStorage.getItem(localStorageKey);
+
+    if (!json) {
+      return {};
+    }
+
+    return JSON.parse(json);
   };
 
   private resetSettings = () => {
