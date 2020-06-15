@@ -5,7 +5,7 @@ interface ChatMessageContainerProps extends ChatMessageProps {
   text: string;
 }
 
-const linkRegexp = /(https?:\/\/[\w-]+\.[\w-]+\.?:?\d{0,4})/gi;
+const linkRegexp = /(https?:\/\/[\w-\.\/\:\?\=\&]+)/gi;
 
 class ChatMessageContainer extends PureComponent<ChatMessageContainerProps> {
   render(): React.ReactNode {

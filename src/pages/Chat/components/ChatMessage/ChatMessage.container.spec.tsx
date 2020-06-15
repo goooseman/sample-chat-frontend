@@ -21,6 +21,28 @@ it("should find links automatically", () => {
   );
 });
 
+it("should find links with three subdomains automatically", () => {
+  const textWithLink = "Find it out on Google: https://docs.google.com!";
+  const { getByText } = render(
+    <ChatMessageContainer {...defaultMessage} text={textWithLink} />
+  );
+  expect(getByText("https://docs.google.com")).toHaveAttribute(
+    "href",
+    "https://docs.google.com"
+  );
+});
+
+it("should find links with path automatically", () => {
+  const textWithLink =
+    "Find it out on Google: https://google.com/page?foo=bar&time=am!";
+  const { getByText } = render(
+    <ChatMessageContainer {...defaultMessage} text={textWithLink} />
+  );
+  expect(getByText("https://google.com/page?foo=bar&time=am")).toHaveAttribute(
+    "href",
+    "https://google.com/page?foo=bar&time=am"
+  );
+});
 it("should find links with port number automatically", () => {
   const textWithLink = "Find it out on Google: https://google.com:80!";
   const { getByText } = render(
