@@ -1,17 +1,45 @@
 # Sample React Chat
 
+> A real-time chat application based on React. Written from scratch without any boilerplates and has a minimum set of 3rd-party dependencies.
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3ad6d92e-0c62-4c1c-ab3f-241387186de0/deploy-status)](https://app.netlify.com/sites/sample-chat/deploys) [![Coverage Status](https://coveralls.io/repos/github/goooseman/sample-chat-frontend/badge.svg?branch=master)](https://coveralls.io/github/goooseman/sample-chat-frontend?branch=master) ![Tests status](https://github.com/goooseman/sample-chat-frontend/workflows/Tests/badge.svg) ![Linters status](https://github.com/goooseman/sample-chat-frontend/workflows/Linters/badge.svg) [![Dependencies status](https://david-dm.org/goooseman/sample-chat-frontend/status.svg)](https://david-dm.org/goooseman/sample-chat-frontend) [![Dev dependencies status](https://david-dm.org/goooseman/sample-chat-frontend/dev-status.svg)](https://david-dm.org/goooseman/sample-chat-frontend?type=dev)
 
-[Storybook Preview](https://sample-chat.storybooks.goooseman.ru/) | [Project Preview](https://sample-chat.goooseman.ru/)
+[Application link](https://sample-chat.goooseman.ru/) | [Storybook](https://sample-chat.storybooks.goooseman.ru/)
 
 <p align="center">
   <img src="./public/android-chrome-192x192.png" alt="Logo" />
 </p>
 
+### How does it work?
+
+This chat connects to a [sample-chat-backend](https://github.com/goooseman/sample-chat-backend) using a WebSocket (or long-polling as a fallback) connection as a transport. [API documentation](https://github.com/goooseman/sample-chat-backend#api).
+
+The server does not have authentication and the username can be changed at any moment, but we need a consistent way to check if a message is the current user's or not. For this purpose, a persistent `userId` is generated on the initial run of the application and saved to the `localStorage` of the browser. If you want to "register" yourself as a new user, just use the "Reset settings" button in the settings.
+
+There are several settings in the application: **username**, **theme** and etc. All those settings are stored in the `localStorage` and will not be lost on a browser refresh.
+
+**Warning** The application restricts you to see the chat until you specify the username.
+
+### Features
+
+- [x] Multi-language (including **left-to-right** and **right-to-left** support) (default locale is taken from your browser's language)
+- [x] Two themes (**light** and **dark**)
+- [x] Clock settings (**12 hours** or **24 hours**)
+- [x] Sending messages by CTRL+ENTER
+- [x] Settings persistence using `localStorage`
+- [x] Unread count in the NavBar
+- [x] Title is changed, when there are unread messages
+- [x] NavBar blinks, when there are unread messages
+- [x] If a link is sent, it becomes clickable
+- [x] If an image link is sent, the image is shown (try to paste the following message: `Check this out: https://source.unsplash.com/600x300?girl`)
+- [x] If a youtube link is sent, the youtube video is shown (try to paste the following message: `Check this out: https://www.youtube.com/watch?v=BMUiFMZr7vk`)
+
 ### Quick start
 
+> To view the project just open the [application link](https://sample-chat.goooseman.ru/) in your browser!
+
 - `npm start` to start the project in development mode
-- `npm run start:local` to start the project in development mode and use `localhost:8090` as a backend url. Use it, if you have an instance of [sample-chat-backend](https://github.com/goooseman/sample-chat-backend) running on your machine.
+- `npm run start:local` to start the project in development mode and use `localhost:8090` as a backend URL. Use it, if you have an instance of [sample-chat-backend](https://github.com/goooseman/sample-chat-backend) running on your machine.
 - `docker-compose up` to start the project locally and start [sample-chat-backend](https://github.com/goooseman/sample-chat-backend) automatically. Use it to preview the project without internet access.
 - `npm run storybook` to start [storybook](#storybook-) in development mode
 - `npm run build:prod` to build the project in production mode to the `/dist` folder. Use `npm run serve:app` to serve this folder locally with HTTPS support.
