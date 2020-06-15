@@ -18,6 +18,48 @@ export const withRecievedMessage = (): React.ReactNode => (
   <ChatMessage {...defaultMessage} />
 );
 
+export const withALink = (): React.ReactNode => (
+  <ChatMessage
+    {...defaultMessage}
+    text={
+      <>
+        Hi! How are you doing?{" "}
+        <a href="https://example.com">https://example.com</a>
+      </>
+    }
+  />
+);
+
+export const withHorizontalImage = (): React.ReactNode => (
+  <ChatMessage
+    {...defaultMessage}
+    text={
+      <>
+        Hi! How are you doing?{" "}
+        <a href="https://source.unsplash.com/600x300?girl">
+          https://source.unsplash.com/600x300?girl
+        </a>
+      </>
+    }
+    imageSrc="https://source.unsplash.com/600x300?girl"
+  />
+);
+
+export const withVerticalImage = (): React.ReactNode => (
+  <ChatMessage
+    {...defaultMessage}
+    text={
+      <>
+        Hi! How are you doing?{" "}
+        <a href="https://source.unsplash.com/400x800?girl">
+          https://source.unsplash.com/400x800?girl
+        </a>
+      </>
+    }
+    imageSrc="https://source.unsplash.com/400x800?girl"
+  />
+);
+
 export const withSentMessage = (): React.ReactNode => (
   <ChatMessage {...defaultMessage} type="outbox" />
 );

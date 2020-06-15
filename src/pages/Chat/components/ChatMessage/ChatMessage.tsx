@@ -5,18 +5,20 @@ import Typography from "src/components/ui-kit/Typography";
 import TimeDisplay from "src/components/TimeDisplay";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { WithLocale, withLocale } from "react-targem";
 
-interface ChatMessageProps {
-  text: string;
+export interface ChatMessageProps {
+  text: React.ReactNode;
   type: "inbox" | "outbox";
   username: string;
   createdAt: Date;
   status: "none" | "receivedByServer";
+  imageSrc?: string;
 }
 
-class ChatMessage extends PureComponent<ChatMessageProps> {
+class ChatMessage extends PureComponent<ChatMessageProps & WithLocale> {
   render(): React.ReactNode {
-    const { createdAt, type, username, text } = this.props;
+    const { createdAt, type, username, text, imageSrc, t } = this.props;
 
     return (
       <div
@@ -39,7 +41,23 @@ class ChatMessage extends PureComponent<ChatMessageProps> {
         <div className={cn(classes.bubbleContainer)}>
           <div className={cn(classes.triangle)} />
           <div className={cn(classes.bubble)}>
-            <Typography gutterBottom={false}>{text}</Typography>
+            <div className={cn(classes.bubbleContent)}>
+              <Typography gutterBottom={false}>{text}</Typography>
+            </div>
+            {imageSrc ? (
+              <a
+                href={imageSrc}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={t("Open image in a new tab")}
+              >
+                <img
+                  alt={t("Image from the message")}
+                  src={imageSrc}
+                  className={cn(classes.image)}
+                />
+              </a>
+            ) : null}
           </div>
 
           <Typography
@@ -66,4 +84,4 @@ class ChatMessage extends PureComponent<ChatMessageProps> {
   };
 }
 
-export default ChatMessage;
+export default withLocale(ChatMessage);
