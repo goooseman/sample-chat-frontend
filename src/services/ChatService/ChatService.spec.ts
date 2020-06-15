@@ -20,6 +20,7 @@ beforeEach(() => {
   };
   service = new ChatService(fakeAdapter);
   service.onMessagesListChange(onMessagesListChangeSpy);
+  // @ts-ignore
   emitMessage = fakeAdapter.onMessage.mock.calls[0][0] as (
     message: ChatMessage
   ) => void;
@@ -35,13 +36,23 @@ it("should disconnect", async () => {
   expect(fakeAdapter.disconnect).toBeCalledTimes(1);
 });
 
-it("should call cb after new message is recieved", async () => {
+it("should call cb after new message is recieved", () => {
   emitMessage(fakeTransformedMessage);
 
   expect(onMessagesListChangeSpy).toBeCalledWith([fakeTransformedMessage]);
 });
 
-it("should return a new array every time (not to mutate original one)", async () => {
+it("should not add two messages twice (usually used for Optimistic UI updates)", () => {
+  emitMessage({ ...fakeTransformedMessage, status: "none" });
+  emitMessage(fakeTransformedMessage);
+
+  expect(onMessagesListChangeSpy).toBeCalledTimes(2);
+  expect(onMessagesListChangeSpy).toHaveBeenLastCalledWith([
+    fakeTransformedMessage,
+  ]);
+});
+
+it("should return a new array every time (not to mutate original one)", () => {
   emitMessage(fakeTransformedMessage);
 
   const array1 = onMessagesListChangeSpy.mock.calls[0][0];

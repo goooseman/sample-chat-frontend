@@ -10,11 +10,14 @@ export interface ChatMessage {
 }
 
 interface MessagesList {
-  messages: ChatMessage[];
+  /** Store in an object to have O(1) time complexity to find a message */
+  messages: {
+    [id: string]: ChatMessage;
+  };
   onChangeCb?: (messages: ChatMessage[]) => void;
 }
 
-const initialMessagesList = { messages: [] };
+const initialMessagesList = { messages: {} };
 
 class ChatService {
   constructor(chatAdapter: ChatAdapter) {
@@ -35,9 +38,10 @@ class ChatService {
   }
 
   private handleMessage = (message: ChatMessage) => {
-    this.messagesList.messages = [...this.messagesList.messages, message];
-    this.messagesList.onChangeCb &&
-      this.messagesList.onChangeCb(this.messagesList.messages);
+    const { messagesList } = this;
+    messagesList.messages[message.id] = message;
+    messagesList.onChangeCb &&
+      messagesList.onChangeCb(Object.values(messagesList.messages));
   };
 
   private messagesList: MessagesList = initialMessagesList;
