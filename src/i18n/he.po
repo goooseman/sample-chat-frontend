@@ -92,3 +92,11 @@ msgstr ""
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Reset to defaults"
 msgstr ""
+
+#: src/wrappers/BodyWrapper/BodyWrapper.tsx:
+msgid "Chat"
+msgstr ""
+
+#: src/wrappers/BodyWrapper/BodyWrapper.tsx:
+msgid "Settings"
+msgstr ""

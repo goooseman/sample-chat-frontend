@@ -95,3 +95,11 @@ msgstr "Language"
 #: src/pages/Settings/SettingsPage.tsx:
 msgid "Reset to defaults"
 msgstr "Reset to defaults"
+
+#: src/wrappers/BodyWrapper/BodyWrapper.tsx:
+msgid "Chat"
+msgstr "Chat"
+
+#: src/wrappers/BodyWrapper/BodyWrapper.tsx:
+msgid "Settings"
+msgstr "Settings"

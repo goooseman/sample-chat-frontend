@@ -2,9 +2,9 @@
   display: flex;
   width: 100%;
   flex-direction: column;
+  align-self: stretch;
 }
 
-.messages-container {
+.container > main {
   flex-grow: 1;
-  overflow-y: auto;
 }
