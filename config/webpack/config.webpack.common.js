@@ -27,7 +27,12 @@ module.exports = {
       },
       {
         test: /\.(j|t)sx?$/,
-        include: [/src/, /node_modules\/debug/],
+        include: [
+          /src/,
+          /node_modules\/debug/,
+          /node_modules\/react-youtube/,
+          /node_modules\/await-lock/,
+        ],
         use: [
           {
             loader: "ts-loader",

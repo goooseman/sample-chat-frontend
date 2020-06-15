@@ -31,13 +31,20 @@ class ChatPage extends PureComponent<ChatPageProps> {
       <main className={cn(classes.container)}>
         <div className={cn(classes.messagesContainer)} ref={this.chatRef}>
           {chatMessages.map((c) => (
-            <ChatMessage key={c.id} {...c} />
+            <ChatMessage onLoad={this.handleImageLoad} key={c.id} {...c} />
           ))}
         </div>
         <ChatInput onSubmit={onSubmit} />
       </main>
     );
   }
+
+  private handleImageLoad = () => {
+    const chat = this.chatRef.current;
+    if (chat && chat.scrollHeight - chat.scrollTop !== chat.clientHeight) {
+      this.scrollChatToBottom();
+    }
+  };
 
   private scrollChatToBottom() {
     const chat = this.chatRef.current;

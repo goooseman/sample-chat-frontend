@@ -31,6 +31,18 @@ msgstr ""
 msgid "Send!"
 msgstr ""
 
+#: src/pages/Chat/components/ChatMessage/ChatMessage.tsx:
+msgid "Open image in a new tab"
+msgstr ""
+
+#: src/pages/Chat/components/ChatMessage/ChatMessage.tsx:
+msgid "Image from the message"
+msgstr ""
+
+#: src/pages/Chat/components/ChatMessage/ChatMessage.tsx:
+msgid "Youtube player"
+msgstr ""
+
 #: src/pages/NotFound/NotFound.tsx:
 msgid "Ooops... Page not found..."
 msgstr "אופס… הדף לא נמצא…"
