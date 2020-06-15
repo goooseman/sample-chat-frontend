@@ -94,6 +94,11 @@ class ChatMessageContainer extends PureComponent<
 
       this.isImageLinkCache[link] = result;
       return result;
+    } catch {
+      // Ideally we need to analyze the exception and in some cases (e.g. Network) we should not cache it
+      // And in some cases (e.g. CORS error) we should cache it
+      this.isImageLinkCache[link] = false;
+      return false;
     } finally {
       this.isImageLinkLock.release();
     }
