@@ -9,3 +9,17 @@ export const withDefaultView = (): React.ReactNode => (
     <NavBarItem text="Settings" to="/settings" />
   </NavBar>
 );
+
+export const withBadge = (): React.ReactNode => (
+  <NavBar>
+    <NavBarItem text="Chat" to="/" badge={3} />
+    <NavBarItem text="Settings" to="/settings" />
+  </NavBar>
+);
+
+export const withBigNumberBadge = (): React.ReactNode => (
+  <NavBar>
+    <NavBarItem text="Chat" to="/" badge={3000} />
+    <NavBarItem text="Settings" to="/settings" />
+  </NavBar>
+);

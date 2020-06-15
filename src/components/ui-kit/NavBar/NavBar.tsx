@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import classes from "./NavBar.css";
 import cn from "clsx";
 import { NavLink } from "react-router-dom";
+import Typography from "../Typography";
 
 interface NavBarProps {
   children: React.ReactNode;
@@ -16,11 +17,12 @@ export class NavBar extends PureComponent<NavBarProps> {
 interface NavBarItemProps {
   text: React.ReactNode;
   to: string;
+  badge?: number;
 }
 
 export class NavBarItem extends PureComponent<NavBarItemProps> {
   render(): React.ReactNode {
-    const { text, to } = this.props;
+    const { badge, text, to } = this.props;
 
     return (
       <NavLink
@@ -29,7 +31,13 @@ export class NavBarItem extends PureComponent<NavBarItemProps> {
         exact
         className={cn(classes.item)}
       >
-        {text}
+        <span className={cn(classes.text)}>{text}</span>
+        {badge ? (
+          <Typography gutterBottom={false} className={cn(classes.badge)}>
+            {" "}
+            {badge}
+          </Typography>
+        ) : null}
       </NavLink>
     );
   }
