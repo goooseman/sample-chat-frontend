@@ -1,6 +1,6 @@
 {
   "name": "sample-chat-frontend",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A sample real-time chat built on React",
   "private": true,
   "engines": {
