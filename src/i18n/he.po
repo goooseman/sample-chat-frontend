@@ -16,14 +16,14 @@ msgstr ""
 #: src/contexts/ChatContext/ChatContext.tsx:
 msgid "New message is received!"
 msgid_plural "{{ count }} new messages are received!"
-msgstr[0] ""
-msgstr[1] "שתי הודעות מתקבלות"
-msgstr[2] "מתקבלות {{ count }} הודעות"
-msgstr[3] "‫מתקבלות {{ count }} הודעו"
+msgstr[0] "הודעה חדשה מתקבלת!"
+msgstr[1] "שתי הודעות מתקבלות!"
+msgstr[2] "מתקבלות {{ count }} הודעות!"
+msgstr[3] "‫מתקבלות {{ count }} הודעו!"
 
 #: src/pages/Chat/ChatPage.container.tsx:
 msgid "Please, specify username to use chat"
-msgstr ""
+msgstr "אנא, ציין את שם המשתמש לשימוש בצ’אט"
 
 #: src/pages/Chat/components/ChatInput/ChatInput.tsx:
 msgid "Message contents"

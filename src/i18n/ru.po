@@ -22,7 +22,7 @@ msgstr[2] "Получено {{ count }} новых сообщений!"
 
 #: src/pages/Chat/ChatPage.container.tsx:
 msgid "Please, specify username to use chat"
-msgstr ""
+msgstr "Пожалуйста, укажите имя пользователя, чтобы пользоваться чатом"
 
 #: src/pages/Chat/components/ChatInput/ChatInput.tsx:
 msgid "Message contents"
