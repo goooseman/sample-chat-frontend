@@ -158,4 +158,16 @@ describe("Youtube", () => {
     );
     expect(await findByLabelText("Youtube player")).toBeInTheDocument();
   });
+
+  it("should show youtube video for two messages in a row", async () => {
+    const textWithYoutube =
+      "Watch it: https://www.youtube.com/watch?v=BMUiFMZr7vk!";
+    const { findAllByLabelText } = render(
+      <>
+        <ChatMessageContainer {...defaultMessage} text={textWithYoutube} />
+        <ChatMessageContainer {...defaultMessage} text={textWithYoutube} />
+      </>
+    );
+    expect(await findAllByLabelText("Youtube player")).toHaveLength(2);
+  });
 });

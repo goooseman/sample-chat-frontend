@@ -14,7 +14,7 @@ interface ChatMessageContainerState {
 const linkRegexp = /(https?:\/\/[\w-\.\/\:\?\=\&]+)/gi;
 const imageContentTypeRegexp = /^image\//;
 // https://gist.github.com/afeld/1254889
-const youtubeIdRegexp = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/g;
+const youtubeIdRegexp = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/;
 
 class ChatMessageContainer extends PureComponent<
   ChatMessageContainerProps,
@@ -91,7 +91,7 @@ class ChatMessageContainer extends PureComponent<
   };
 
   private getYoutubeId = (link: string): string | undefined => {
-    const match = youtubeIdRegexp.exec(link);
+    const match = link.match(youtubeIdRegexp);
     return match ? match[5] : undefined;
   };
 
