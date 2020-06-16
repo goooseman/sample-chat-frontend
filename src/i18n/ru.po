@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: sample-chat-frontend 0.0.0\n"
+"Project-Id-Version: sample-chat-frontend 1.0.4\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "POT-Creation-Date: Wed Jun 10 2020 08:42:40 GMT+0300 (Israel Daylight Time)\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,6 +19,10 @@ msgid_plural "{{ count }} new messages are received!"
 msgstr[0] "Получено новое сообщение!"
 msgstr[1] "Получено {{ count }} новых сообщения!"
 msgstr[2] "Получено {{ count }} новых сообщений!"
+
+#: src/pages/Chat/ChatPage.container.tsx:
+msgid "Please, specify username to use chat"
+msgstr ""
 
 #: src/pages/Chat/components/ChatInput/ChatInput.tsx:
 msgid "Message contents"

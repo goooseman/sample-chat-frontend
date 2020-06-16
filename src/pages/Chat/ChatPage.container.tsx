@@ -4,11 +4,13 @@ import ChatPage from "./ChatPage";
 import { WithSettings, withSettings } from "src/contexts/SettingsContext";
 import { Route } from "src/config/routes";
 import { WithChat, withChat } from "src/contexts/ChatContext";
+import { withLocale, WithLocale } from "react-targem";
 
 interface ChatPageContainerProps
   extends RouteComponentProps,
     WithSettings,
-    WithChat {}
+    WithChat,
+    WithLocale {}
 
 interface ChatPageContainerState {
   redirectTo?: Route;
@@ -25,8 +27,11 @@ class ChatPageContainer extends PureComponent<
     this.props.markAllAsRead();
   }
 
-  public componentDidUpdate() {
-    this.setRedirectIfUsernameIsEmpty();
+  public componentDidUpdate(prevProps: ChatPageContainerProps) {
+    if (this.props.username !== prevProps.username) {
+      this.setRedirectIfUsernameIsEmpty();
+    }
+
     if (this.props.chatMessagesUnreadCount > 0) {
       this.props.markAllAsRead();
     }
@@ -45,10 +50,12 @@ class ChatPageContainer extends PureComponent<
   }
 
   private setRedirectIfUsernameIsEmpty() {
-    if (!this.props.username || this.props.username === "") {
+    const { username, t } = this.props;
+    if (!username || username === "") {
+      window.alert(t("Please, specify username to use chat"));
       this.setState({ redirectTo: "/settings" });
     }
   }
 }
 
-export default withChat(withSettings(ChatPageContainer));
+export default withLocale(withChat(withSettings(ChatPageContainer)));
