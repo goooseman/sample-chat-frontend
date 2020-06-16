@@ -1,7 +1,7 @@
 import { createMemoryHistory, MemoryHistory } from "history";
 import React from "react";
 import { Router } from "react-router-dom";
-import { render, RenderResult, RenderOptions } from "./render";
+import { render, RenderResult, RenderOptions, BlankWrapper } from "./render";
 
 interface RenderWithRouterReturn extends RenderResult {
   history: MemoryHistory;
@@ -14,19 +14,27 @@ const renderWithRouter = (
   } = {
     route: "/",
   },
-  options?: Omit<RenderOptions, "wrapper">
+  options?: RenderOptions
 ): RenderWithRouterReturn => {
   const history = createMemoryHistory({
     initialEntries: [routerOptions.route],
   });
-  const RouterProvider = ({ children }: { children?: React.ReactNode }) => {
-    return <Router history={history}>{children}</Router>;
+  const RouterProvider = (Wrapper: React.ComponentType = BlankWrapper) => ({
+    children,
+  }: {
+    children?: React.ReactNode;
+  }) => {
+    return (
+      <Wrapper>
+        <Router history={history}>{children}</Router>
+      </Wrapper>
+    );
   };
 
   return {
     ...render(ui, {
-      wrapper: RouterProvider,
       ...options,
+      wrapper: RouterProvider(options?.wrapper),
     }),
     // adding `history` to the returned utilities to allow us
     // to reference it in our tests (just try to avoid using

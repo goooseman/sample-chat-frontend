@@ -3,7 +3,7 @@ import React from "react";
 import { TargemStatefulProvider } from "react-targem";
 import "@testing-library/jest-dom";
 
-const BlankWrapper: React.StatelessComponent<{}> = (props: {
+export const BlankWrapper: React.StatelessComponent<{}> = (props: {
   children?: React.ReactNode;
 }) => <>{props.children}</>;
 
@@ -26,7 +26,7 @@ const customRender = (
   ui: React.ReactElement,
   options?: RenderOptions
 ): RenderResult => {
-  return render(ui, { wrapper: AllTheProviders(options?.wrapper), ...options });
+  return render(ui, { ...options, wrapper: AllTheProviders(options?.wrapper) });
 };
 
 // re-export everything
