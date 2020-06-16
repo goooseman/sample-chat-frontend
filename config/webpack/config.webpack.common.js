@@ -26,6 +26,15 @@ module.exports = {
         use: ["file-loader"],
       },
       {
+        test: /\.js$/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
+      {
         test: /\.tsx?$/,
         use: [
           {

@@ -190,12 +190,6 @@ On the other hand, there are "true" `development` dependencies, like `storybook`
 
 So the solution is pretty straightforward - to list everything, which is required to build the project as production dependencies. To have an ability to install only those ones on the CD server and save some time.
 
-#### No babel? 🗼
-
-This project does not use babel to transpile typescript code, because [certain constructs don’t currently compile in Babel 7](https://devblogs.microsoft.com/typescript/typescript-and-babel-7/).
-
-But there are some **npm warnings** because it is a peer dependency of [Storybook](https://storybook.js.org/). In this project storybook's loaders are rewritten in a custom config, so babel is not needed. Peer dependency warnings are bad, no doubt. But an extra unnecessary dependency is worse.
-
 #### No HMR? ♻️
 
 The project does not contain HMR in dev mode (`npm start`). HMR is mostly useful for component design development, which should be done in [Storybook](https://storybook.js.org/), which supports HMR out-of-the-box. But if you miss it, feel free to open a PR!
