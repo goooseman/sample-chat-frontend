@@ -27,6 +27,16 @@ module.exports = {
       },
       {
         test: /\.js$/,
+        // Transpiling node_modules is bad for the perfomance reasons
+        // But some libraries can contain non-es5 code
+        // So es5-check is used after production build to make sure no new libraries contain non-es5 code
+        exclude: [
+          new RegExp(
+            "node_modules\\" +
+              path.sep +
+              "(?!await-lock|react-youtube|socket.io-client)"
+          ),
+        ],
         use: {
           loader: "babel-loader",
           options: {
@@ -95,6 +105,7 @@ module.exports = {
     extensions: [".js", ".ts", ".tsx", ".json"],
     alias: {
       src: path.resolve(__dirname, "../../src/"),
+      debug: "debug-es5",
     },
   },
 };
