@@ -46,7 +46,7 @@ class ChatInput extends PureComponent<ChatInputProps, ChatInputState> {
       <div className={cn(classes.container)}>
         <Input
           id="message"
-          type="textarea"
+          component="textarea"
           aria-label={t("Message contents")}
           value={message}
           onChange={this.handleInputChange}

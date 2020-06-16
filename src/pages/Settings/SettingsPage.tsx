@@ -34,8 +34,8 @@ class SettingsPage extends PureComponent<SettingsPageProps> {
             className={cn(classes.input)}
             labelledWith={<T message="Username" />}
             id="username"
-            type="input"
-            inputType="text"
+            component="input"
+            type="text"
             onChange={this.handleUsernameChange}
             value={username}
           />
@@ -97,7 +97,7 @@ class SettingsPage extends PureComponent<SettingsPageProps> {
             className={cn(classes.input)}
             labelledWith={<T message="Language" />}
             id="language"
-            type="select"
+            component="select"
             onChange={this.handleLocaleChange}
             value={locale}
           >

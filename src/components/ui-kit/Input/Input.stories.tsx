@@ -8,23 +8,23 @@ const handleChange = action("onClick");
 
 const defaultProps = {
   id: "story",
-  inputType: "text",
-  type: "input",
+  type: "text",
+  component: "input",
   onChange: handleChange,
 } as const;
 
 export const withInput = (): React.ReactNode => <Input {...defaultProps} />;
 
 export const withInputNumber = (): React.ReactNode => (
-  <Input {...defaultProps} inputType="number" />
+  <Input {...defaultProps} type="number" />
 );
 
 export const withInputRadio = (): React.ReactNode => (
-  <Input {...defaultProps} inputType="radio" labelledWith="Foo" />
+  <Input {...defaultProps} type="radio" labelledWith="Foo" />
 );
 
 export const withInputCheckbox = (): React.ReactNode => (
-  <Input {...defaultProps} inputType="checkbox" labelledWith="Foo" />
+  <Input {...defaultProps} type="checkbox" labelledWith="Foo" />
 );
 
 export const withLabelledInput = (): React.ReactNode => (
@@ -37,7 +37,7 @@ export const withInputAndPlaceholder = (): React.ReactNode => (
 
 const defaultTextAreaProps = {
   id: "story",
-  type: "textarea",
+  component: "textarea",
   onChange: handleChange,
 } as const;
 
@@ -55,7 +55,7 @@ export const withTextareaAndPlaceholder = (): React.ReactNode => (
 
 const defaultSelectProps = {
   id: "story",
-  type: "select",
+  component: "select",
   onChange: handleChange,
 } as const;
 

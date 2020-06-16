@@ -79,8 +79,8 @@ class RadioGroupItem<P extends StringLike> extends PureComponent<
       <Input
         key={value.toString()}
         id={id}
-        type="input"
-        inputType="radio"
+        component="input"
+        type="radio"
         labelledWith={text}
         value={value.toString()}
         checked={activeValue === value}

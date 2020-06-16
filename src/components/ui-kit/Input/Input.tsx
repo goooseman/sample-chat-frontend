@@ -7,72 +7,41 @@ interface CommonInputProps {
   labelledWith?: React.ReactNode;
 }
 
-interface InputPropsTextarea
-  extends CommonInputProps,
-    React.DetailedHTMLProps<
-      React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-      HTMLTextAreaElement
-    > {
+interface TextAreaProps
+  extends React.DetailedHTMLProps<
+    React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+    HTMLTextAreaElement
+  > {
   id: string;
-  type: "textarea";
+  component: "textarea";
 }
 
-interface InputPropsInput
-  extends CommonInputProps,
-    React.DetailedHTMLProps<
-      React.InputHTMLAttributes<HTMLInputElement>,
-      HTMLInputElement
-    > {
+interface InpurProps
+  extends React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  > {
   id: string;
-  inputType: HTMLInputElement["type"];
-  type: "input";
+  component: "input";
 }
 
-interface InputPropsSelect
-  extends CommonInputProps,
-    React.DetailedHTMLProps<
-      React.SelectHTMLAttributes<HTMLSelectElement>,
-      HTMLSelectElement
-    > {
+interface SelectProps
+  extends React.DetailedHTMLProps<
+    React.SelectHTMLAttributes<HTMLSelectElement>,
+    HTMLSelectElement
+  > {
   id: string;
-  type: "select";
+  component: "select";
 }
 
-type InputProps = InputPropsTextarea | InputPropsInput | InputPropsSelect;
+export type InputElementProps = TextAreaProps | InpurProps | SelectProps;
 
-class Input extends PureComponent<InputProps> {
+/**
+ * Custom `Input` component to be used as a drop-in replacement for `<input />`, `<select />`, `<textarea />`.
+ */
+class Input extends PureComponent<InputElementProps & CommonInputProps> {
   render(): React.ReactNode {
-    let element: React.ReactNode;
-
-    if (this.props.type === "textarea") {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { className, labelledWith, type, ...otherProps } = this.props;
-      element = (
-        <textarea {...otherProps} className={cn(className, classes.common)} />
-      );
-    }
-
-    if (this.props.type === "input") {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { className, inputType, labelledWith, ...otherProps } = this.props;
-
-      element = (
-        <input
-          {...otherProps}
-          className={cn(className, classes.common)}
-          type={inputType}
-        />
-      );
-    }
-
-    if (this.props.type === "select") {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { className, labelledWith, ...otherProps } = this.props;
-
-      element = (
-        <select {...otherProps} className={cn(className, classes.common)} />
-      );
-    }
+    const { labelledWith } = this.props;
 
     return (
       <div
@@ -80,25 +49,57 @@ class Input extends PureComponent<InputProps> {
           [classes.containerInline]: this.isInline(),
         })}
       >
-        {this.props.labelledWith ? (
+        {labelledWith ? (
           <Typography
             className={cn(classes.label)}
             variant="label"
             htmlFor={this.props.id}
           >
-            {this.props.labelledWith}
+            {labelledWith}
           </Typography>
         ) : null}
-        {element}
+        {this.getInputElement()}
       </div>
     );
   }
 
   private isInline = (): boolean => {
     return (
-      this.props.type === "input" &&
-      (this.props.inputType === "radio" || this.props.inputType === "checkbox")
+      this.props.component === "input" &&
+      (this.props.type === "radio" || this.props.type === "checkbox")
     );
+  };
+
+  private getInputElement = (): React.ReactNode => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { component, className, labelledWith, ...inputProps } = this.props;
+
+    switch (component) {
+      case "textarea":
+        return (
+          <textarea
+            {...(inputProps as TextAreaProps)}
+            className={cn(className, classes.common)}
+          />
+        );
+
+      case "input":
+        return (
+          <input
+            {...(inputProps as InpurProps)}
+            className={cn(className, classes.common)}
+          />
+        );
+      case "select":
+        return (
+          <select
+            {...(inputProps as SelectProps)}
+            className={cn(className, classes.common)}
+          />
+        );
+      default:
+        return null;
+    }
   };
 }
 
