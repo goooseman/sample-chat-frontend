@@ -19,8 +19,15 @@ const renderWithRouter = (
   const history = createMemoryHistory({
     initialEntries: [routerOptions.route],
   });
+  const RouterProvider = ({ children }: { children?: React.ReactNode }) => {
+    return <Router history={history}>{children}</Router>;
+  };
+
   return {
-    ...render(<Router history={history}>{ui}</Router>, options),
+    ...render(ui, {
+      wrapper: RouterProvider,
+      ...options,
+    }),
     // adding `history` to the returned utilities to allow us
     // to reference it in our tests (just try to avoid using
     // this to test implementation details).

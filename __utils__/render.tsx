@@ -3,19 +3,31 @@ import React from "react";
 import { TargemStatefulProvider } from "react-targem";
 import "@testing-library/jest-dom";
 
-const AllTheProviders = ({ children }: { children?: React.ReactNode }) => {
+const BlankWrapper: React.StatelessComponent<{}> = (props: {
+  children?: React.ReactNode;
+}) => <>{props.children}</>;
+
+const AllTheProviders = (Wrapper: React.ComponentType = BlankWrapper) => ({
+  children,
+}: {
+  children?: React.ReactNode;
+}) => {
   return (
-    <TargemStatefulProvider translations={{}}>
-      {/** StrictMode is useful for `this.setState` functions to be called twice and to prevent side-effects */}
-      <React.StrictMode>{children}</React.StrictMode>
-    </TargemStatefulProvider>
+    <Wrapper>
+      <TargemStatefulProvider translations={{}}>
+        {/** StrictMode is useful for `this.setState` functions to be called twice and to prevent side-effects */}
+        <React.StrictMode>{children}</React.StrictMode>
+      </TargemStatefulProvider>
+    </Wrapper>
   );
 };
 
 const customRender = (
   ui: React.ReactElement,
-  options?: Omit<RenderOptions, "wrapper">
-): RenderResult => render(ui, { wrapper: AllTheProviders, ...options });
+  options?: RenderOptions
+): RenderResult => {
+  return render(ui, { wrapper: AllTheProviders(options?.wrapper), ...options });
+};
 
 // re-export everything
 export * from "@testing-library/react";

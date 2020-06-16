@@ -4,7 +4,7 @@ module.exports = {
   moduleNameMapper: {
     "\\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf)$":
       "<rootDir>/__mocks__/fileMock.js",
-    "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
+    "\\.(css|less)$": "identity-obj-proxy",
   },
   setupFiles: ["<rootDir>/__mocks__/fetch.js"],
   modulePaths: ["<rootDir>/"],

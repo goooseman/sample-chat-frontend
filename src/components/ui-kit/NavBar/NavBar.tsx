@@ -96,5 +96,8 @@ export class NavBarItem extends PureComponent<
     if (this.blinkingInverval) {
       clearInterval(this.blinkingInverval);
     }
+    this.setState({
+      isDark: false,
+    });
   };
 }
