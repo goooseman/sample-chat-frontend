@@ -19,14 +19,14 @@ export type MachineOptions<
 > = {
   [stateName in T]: {
     actions?: {
-      onEnter?: () => void;
-      onExit?: () => void;
+      onEnter?: (event: Ev) => void;
+      onExit?: (event: Ev) => void;
     };
     transitions: Partial<
       {
         [eventName in E]: {
           target: T;
-          action?: () => void;
+          action?: (event: Ev) => void;
         };
       }
     >;
@@ -52,9 +52,9 @@ export const createMachine = <
       }
       const destState = destTransition.target;
       machine.value = destState;
-      destTransition.action?.();
-      currStateDefinition.actions?.onExit?.();
-      definition[destState].actions?.onEnter?.();
+      destTransition.action?.(event);
+      currStateDefinition.actions?.onExit?.(event);
+      definition[destState].actions?.onEnter?.(event);
       return machine.value;
     },
   };

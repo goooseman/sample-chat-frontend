@@ -66,6 +66,7 @@ it("should fire action", () => {
   let state = machine.value;
   state = machine.transition(state, { type: "switch" });
   expect(transitionActionSpy).toBeCalledTimes(1);
+  expect(transitionActionSpy).toBeCalledWith({ type: "switch" });
   machine.transition(state, { type: "switch" });
   expect(transitionActionSpy).toBeCalledTimes(2);
 });
@@ -74,6 +75,7 @@ it("should fire onEnter", () => {
   let state = machine.value;
   state = machine.transition(state, { type: "switch" });
   expect(onEnterSpy).toBeCalledTimes(1);
+  expect(onEnterSpy).toBeCalledWith({ type: "switch" });
   machine.transition(state, { type: "switch" });
   expect(onEnterSpy).toBeCalledTimes(2);
 });
@@ -82,6 +84,7 @@ it("should fire onExit", () => {
   let state = machine.value;
   state = machine.transition(state, { type: "switch" });
   expect(onExitSpy).toBeCalledTimes(1);
+  expect(onExitSpy).toBeCalledWith({ type: "switch" });
   machine.transition(state, { type: "switch" });
   expect(onExitSpy).toBeCalledTimes(2);
 });
