@@ -159,9 +159,12 @@ class ChatPage extends PureComponent<ChatPageProps> {
         </Button>
         <div className={cn(classes.messagesContainer)} ref={this.chatRef}>
           {chatMessages.map((c) => {
-            const isCurrentSearch = searchResults
+            let isCurrentSearch = searchResults
               ? searchResults[currentSearchResult]?.id === c.id
               : false;
+            if (searchState === "chat") {
+              isCurrentSearch = false;
+            }
             return (
               <ChatMessage
                 messageRef={
