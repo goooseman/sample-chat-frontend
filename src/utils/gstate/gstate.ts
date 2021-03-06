@@ -3,7 +3,7 @@ export interface GMachine<T extends string[], E extends string[]> {
   transition: (currentState: T[number], event: E[number]) => T[number];
 }
 
-type MachineOptions<T extends string[], E extends string[]> = {
+export type MachineOptions<T extends string[], E extends string[]> = {
   [stateName in T[number]]: {
     actions?: {
       onEnter?: () => void;
