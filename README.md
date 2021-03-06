@@ -36,6 +36,7 @@ There are several settings in the application: **username**, **theme** and etc. 
 - [x] If a link is sent, it becomes clickable
 - [x] If an image link is sent, the image is shown (try to paste the following message: `Check this out: https://source.unsplash.com/600x300?girl`)
 - [x] If a youtube link is sent, the youtube video is shown (try to paste the following message: `Check this out: https://www.youtube.com/watch?v=BMUiFMZr7vk`)
+- [x] Searching the messages (implemented using a finite state machine, take a look at `src/pages/Chat/ChatPage.container.tsx`)
 
 ### Quick start
 
