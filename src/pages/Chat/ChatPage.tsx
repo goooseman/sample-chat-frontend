@@ -41,6 +41,7 @@ interface ChatPageProps extends WithLocale {
     direction: "prev" | "next"
   ) => (event: React.MouseEvent<HTMLButtonElement>) => void;
   onRetryButtonClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  style?: React.CSSProperties;
 }
 
 class ChatPage extends PureComponent<ChatPageProps> {
@@ -78,13 +79,15 @@ class ChatPage extends PureComponent<ChatPageProps> {
       searchResults,
       onChangeCurrentSearchClick,
       onRetryButtonClick,
+      style,
     } = this.props;
 
     return (
-      <main className={cn(classes.container)}>
-        <div className={cn(classes.searchContainer)}>
-          {searchState !== "chat" ? (
+      <main className={cn(classes.container)} style={style}>
+        {searchState !== "chat" ? (
+          <div className={cn(classes.searchContainer)}>
             <Input
+              className={cn(classes.searchInput)}
               value={searchQuery}
               id="search"
               onInput={onSearchInput}
@@ -92,59 +95,69 @@ class ChatPage extends PureComponent<ChatPageProps> {
               placeholder={t("Search...")}
               addonRight={searchState === "searchLoading" && <Loading />}
             />
-          ) : null}
-          {searchState === "searchNotFound" ? (
-            <div>
-              <Typography>
-                <T message="Ooops..." />
-              </Typography>
-              <Button onClick={onRetryButtonClick} aria-label={t("Retry")}>
-                <FontAwesomeIcon icon={faRedo} />
-              </Button>
-            </div>
-          ) : null}
-          {searchState === "searchFound" ? (
-            <>
-              <Button
-                onClick={onChangeCurrentSearchClick("prev")}
-                aria-label={t("Previous result")}
-                disabled={currentSearchResult === 0}
-              >
-                <FontAwesomeIcon icon={faChevronUp} />
-              </Button>
-              <Typography>
-                <T
-                  message="{{ from }} of {{ to }}"
-                  scope={{
-                    from: currentSearchResult + 1,
-                    to: searchResults?.length,
-                  }}
-                />
-              </Typography>
-              <Button
-                onClick={onChangeCurrentSearchClick("next")}
-                aria-label={t("Next result")}
-                disabled={
-                  currentSearchResult === (searchResults?.length || 0) - 1
-                }
-              >
-                <FontAwesomeIcon icon={faChevronDown} />
-              </Button>
-            </>
-          ) : null}
 
-          <Button
-            className={cn(classes.searchButton)}
-            onClick={onSearchButtonClick}
-          >
-            <FontAwesomeIcon
-              icon={searchState === "chat" ? faSearch : faTimes}
-              title={
-                searchState === "chat" ? t("Open search") : t("Close search")
-              }
-            />
-          </Button>
-        </div>
+            {searchState === "searchNotFound" ? (
+              <div>
+                <Typography>
+                  <T message="Ooops..." />
+                </Typography>
+                <Button
+                  size="sm"
+                  color="secondary"
+                  onClick={onRetryButtonClick}
+                  aria-label={t("Retry")}
+                >
+                  <FontAwesomeIcon fixedWidth icon={faRedo} />
+                </Button>
+              </div>
+            ) : null}
+            {searchState === "searchFound" ? (
+              <div className={cn(classes.searchNavigator)}>
+                <Button
+                  size="sm"
+                  onClick={onChangeCurrentSearchClick("prev")}
+                  aria-label={t("Previous result")}
+                  disabled={currentSearchResult === 0}
+                >
+                  <FontAwesomeIcon fixedWidth icon={faChevronUp} />
+                </Button>
+                <Typography gutterBottom={false} color="contrast">
+                  <T
+                    message="{{ from }} of {{ to }}"
+                    scope={{
+                      from: currentSearchResult + 1,
+                      to: searchResults?.length,
+                    }}
+                  />
+                </Typography>
+                <Button
+                  onClick={onChangeCurrentSearchClick("next")}
+                  aria-label={t("Next result")}
+                  size="sm"
+                  disabled={
+                    currentSearchResult === (searchResults?.length || 0) - 1
+                  }
+                >
+                  <FontAwesomeIcon fixedWidth icon={faChevronDown} />
+                </Button>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
+        <Button
+          className={cn(classes.searchButton)}
+          onClick={onSearchButtonClick}
+          color="secondary"
+          size="sm"
+        >
+          <FontAwesomeIcon
+            fixedWidth
+            icon={searchState === "chat" ? faSearch : faTimes}
+            title={
+              searchState === "chat" ? t("Open search") : t("Close search")
+            }
+          />
+        </Button>
         <div className={cn(classes.messagesContainer)} ref={this.chatRef}>
           {chatMessages.map((c) => {
             const isCurrentSearch = searchResults

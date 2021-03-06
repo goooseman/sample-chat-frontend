@@ -11,6 +11,7 @@ const Loading: React.FC<LoadingProps> = ({ label }: LoadingProps) => {
   const { t } = useLocale();
   return (
     <FontAwesomeIcon
+      fixedWidth
       aria-label={label || t("Loading")}
       spin
       icon={faSync}

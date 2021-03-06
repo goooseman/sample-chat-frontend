@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   display: flex;
   width: 100%;
 
@@ -14,10 +15,31 @@
 
 .search-container {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  background-color: var(--color-secondary-darker);
+}
+
+.search-input {
+  max-width: 40rem;
 }
 
 .search-button {
-  margin-left: auto;
+  position: absolute;
+  right: 2rem;
+  bottom: calc(100% + 0.8rem);
+}
+
+.search-navigator {
+  display: flex;
+  align-items: center;
+}
+
+.search-navigator p {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  white-space: nowrap;
 }
 
 [dir="rtl"] .search-button {

@@ -105,7 +105,7 @@ class ChatMessage extends PureComponent<ChatMessageProps & WithLocale> {
   private getStatusIcon = () => {
     const { status, type } = this.props;
     if (status === "receivedByServer" && type === "outbox") {
-      return <FontAwesomeIcon icon={faCheck} />;
+      return <FontAwesomeIcon fixedWidth icon={faCheck} />;
     }
     return null;
   };

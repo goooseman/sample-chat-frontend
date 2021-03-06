@@ -73,6 +73,9 @@ const commonProps: React.ComponentProps<typeof ChatPage> = {
   chatMessages: getChatMessages("1"),
   currentSearchResult: 0,
   searchQuery: "",
+  style: {
+    paddingTop: "60px",
+  },
 };
 
 export const withDefaultChat = (): React.ReactNode => (
