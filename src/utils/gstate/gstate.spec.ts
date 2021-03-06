@@ -1,6 +1,9 @@
 import { createMachine, GMachine } from "./gstate";
 
-let machine: GMachine<["off", "on"], ["switch"]>;
+type MachineStates = "off" | "on";
+type MachineEvents = "switch";
+
+let machine: GMachine<MachineStates, MachineEvents>;
 
 let transitionActionSpy: jest.Mock;
 let onEnterSpy: jest.Mock;
@@ -10,7 +13,7 @@ beforeEach(() => {
   transitionActionSpy = jest.fn();
   onEnterSpy = jest.fn();
   onExitSpy = jest.fn();
-  machine = createMachine({
+  machine = createMachine<MachineStates, MachineEvents>({
     off: {
       transitions: {
         switch: {
