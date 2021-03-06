@@ -63,15 +63,21 @@ const getChatMessages = (idPrefix: string) => [
   },
 ];
 
-const handleSubmit = action("onSubmit");
+const commonProps: React.ComponentProps<typeof ChatPage> = {
+  searchState: "chat",
+  onSubmit: action("onSubmit"),
+  onSearchButtonClick: action("onSearchButtonClick"),
+  onSearchInput: action("onSearchInput"),
+  chatMessages: getChatMessages("1"),
+};
 
 export const withDefaultChat = (): React.ReactNode => (
-  <ChatPage onSubmit={handleSubmit} chatMessages={getChatMessages("1")} />
+  <ChatPage {...commonProps} />
 );
 
 export const withTonsOfMessage = (): React.ReactNode => (
   <ChatPage
-    onSubmit={handleSubmit}
+    {...commonProps}
     chatMessages={[
       ...getChatMessages("1"),
       ...getChatMessages("2"),
@@ -79,4 +85,12 @@ export const withTonsOfMessage = (): React.ReactNode => (
       ...getChatMessages("4"),
     ]}
   />
+);
+
+export const withSearchOpened = (): React.ReactNode => (
+  <ChatPage {...commonProps} searchState="search" />
+);
+
+export const withSearchLoading = (): React.ReactNode => (
+  <ChatPage {...commonProps} searchState="searchLoading" />
 );

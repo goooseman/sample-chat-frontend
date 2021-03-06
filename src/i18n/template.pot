@@ -2,9 +2,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sample-chat-frontend 1.0.6\n"
 "Content-Type: text/plain; charset=utf-8\n"
-"POT-Creation-Date: Sat Mar 06 2021 18:39:10 GMT+0200 (Israel Standard Time)\n"
+"POT-Creation-Date: Sat Mar 06 2021 19:15:12 GMT+0200 (Israel Standard Time)\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/components/ui-kit/Loading/Loading.tsx:
+msgid "Loading"
+msgstr ""
 
 #: src/contexts/ChatContext/ChatContext.tsx:
 msgid "New message is received!"

@@ -5,6 +5,7 @@ import Typography from "src/components/ui-kit/Typography";
 
 interface CommonInputProps {
   labelledWith?: React.ReactNode;
+  addonRight?: React.ReactNode;
 }
 
 interface TextAreaProps
@@ -41,7 +42,7 @@ export type InputElementProps = TextAreaProps | InpurProps | SelectProps;
  */
 class Input extends PureComponent<InputElementProps & CommonInputProps> {
   render(): React.ReactNode {
-    const { labelledWith } = this.props;
+    const { labelledWith, addonRight } = this.props;
 
     return (
       <div
@@ -58,7 +59,10 @@ class Input extends PureComponent<InputElementProps & CommonInputProps> {
             {labelledWith}
           </Typography>
         ) : null}
-        {this.getInputElement()}
+        <div className={cn(classes.inputContainer)}>
+          {this.getInputElement()}
+          <div className={cn(classes.inputAddonRight)}>{addonRight}</div>
+        </div>
       </div>
     );
   }
@@ -71,8 +75,15 @@ class Input extends PureComponent<InputElementProps & CommonInputProps> {
   };
 
   private getInputElement = (): React.ReactNode => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { component, className, labelledWith, ...inputProps } = this.props;
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    const {
+      component,
+      className,
+      labelledWith,
+      addonRight,
+      ...inputProps
+    } = this.props;
+    /* eslint-enable @typescript-eslint/no-unused-vars */
 
     switch (component) {
       case "textarea":

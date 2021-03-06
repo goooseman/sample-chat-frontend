@@ -44,3 +44,21 @@ select.common {
   order: 1;
   margin-bottom: 0;
 }
+
+.input-container {
+  position: relative;
+}
+
+.input-addon-right {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  bottom: 0;
+  height: 20px;
+  margin: auto 0;
+}
+
+[dir="rtl"] .input-addon-right {
+  right: auto;
+  left: 1rem;
+}

@@ -11,3 +11,16 @@
   flex-grow: 1;
   overflow-y: auto;
 }
+
+.search-container {
+  display: flex;
+}
+
+.search-button {
+  margin-left: auto;
+}
+
+[dir="rtl"] .search-button {
+  margin-right: auto;
+  margin-left: 0;
+}

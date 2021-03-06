@@ -6,9 +6,10 @@ import ChatInput from "./components/ChatInput";
 import { ChatMessage as ChatMessageType } from "src/services/ChatService";
 import Button from "src/components/ui-kit/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { WithLocale, withLocale } from "react-targem";
 import Input from "src/components/ui-kit/Input";
+import Loading from "src/components/ui-kit/Loading";
 
 export type SearchState =
   | "chat"
@@ -22,6 +23,7 @@ interface ChatPageProps extends WithLocale {
   onSubmit: (message: string) => void;
   searchState: SearchState;
   onSearchButtonClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onSearchInput: (event: React.MouseEvent<HTMLInputElement>) => void;
 }
 
 class ChatPage extends PureComponent<ChatPageProps> {
@@ -45,18 +47,27 @@ class ChatPage extends PureComponent<ChatPageProps> {
       t,
       searchState,
       onSearchButtonClick,
+      onSearchInput,
     } = this.props;
 
     return (
       <main className={cn(classes.container)}>
-        <div>
+        <div className={cn(classes.searchContainer)}>
           {searchState !== "chat" ? (
-            <Input id="search" component="input" placeholder={t("Search...")} />
+            <Input
+              id="search"
+              onInput={onSearchInput}
+              component="input"
+              placeholder={t("Search...")}
+              addonRight={searchState === "searchLoading" && <Loading />}
+            />
           ) : null}
-
-          <Button onClick={onSearchButtonClick}>
+          <Button
+            className={cn(classes.searchButton)}
+            onClick={onSearchButtonClick}
+          >
             <FontAwesomeIcon
-              icon={faSearch}
+              icon={searchState === "chat" ? faSearch : faTimes}
               title={
                 searchState === "chat" ? t("Open search") : t("Close search")
               }

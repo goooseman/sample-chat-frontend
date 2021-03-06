@@ -15,6 +15,10 @@ const defaultProps = {
 
 export const withInput = (): React.ReactNode => <Input {...defaultProps} />;
 
+export const withInputAddonRight = (): React.ReactNode => (
+  <Input {...defaultProps} addonRight={<p>...</p>} />
+);
+
 export const withInputNumber = (): React.ReactNode => (
   <Input {...defaultProps} type="number" />
 );

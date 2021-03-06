@@ -1,7 +1,8 @@
 import React from "react";
 import ChatPageContainer from "./ChatPage.container";
-import { fireEvent, render, screen } from "__utils__/renderWithRouter";
+import { render, screen } from "__utils__/renderWithRouter";
 import { withRouter } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 
 const Container = withRouter(ChatPageContainer);
 
@@ -49,8 +50,15 @@ it("should show error alert if username is empty", () => {
 
 it("should open search when search icon is clicked", () => {
   render(<Container username="foo" />);
-  fireEvent.click(screen.getByLabelText("Open search"));
+  userEvent.click(screen.getByLabelText("Open search"));
   expect(screen.getByPlaceholderText("Search...")).toBeInTheDocument();
-  fireEvent.click(screen.getByLabelText("Close search"));
+  userEvent.click(screen.getByLabelText("Close search"));
   expect(screen.queryByPlaceholderText("Search...")).not.toBeInTheDocument();
+});
+
+it("should show loading indicator while searching", () => {
+  render(<Container username="foo" />);
+  userEvent.click(screen.getByLabelText("Open search"));
+  userEvent.type(screen.getByPlaceholderText("Search..."), "foo");
+  expect(screen.getByLabelText("Loading")).toBeInTheDocument();
 });
