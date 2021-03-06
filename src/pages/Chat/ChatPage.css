@@ -34,6 +34,7 @@
 .search-navigator {
   display: flex;
   align-items: center;
+  margin-left: 1rem;
 }
 
 .search-navigator p {
@@ -56,4 +57,9 @@
 [dir="rtl"] .search-button {
   right: auto;
   left: 1rem;
+}
+
+[dir="rtl"] .search-navigator {
+  margin-right: 1rem;
+  margin-left: 0;
 }
