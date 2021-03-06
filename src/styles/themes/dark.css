@@ -3,6 +3,9 @@
   --color-primary-lighter: #9fa8da; /* 200 */
   --color-primary: #3f51b5; /* 500 */
   --color-primary-darker: #283593; /* 800 */
+  --color-secondary-lighter: #e1bee7; /* 100 */
+  --color-secondary: #9c27b0; /* 500 */
+  --color-secondary-darker: #6a1b9a; /* 800 */
   --color-text: #fff;
   --color-text-muted: #adadad;
   --color-text-contrast: #fff;

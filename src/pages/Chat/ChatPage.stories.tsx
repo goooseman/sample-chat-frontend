@@ -105,8 +105,8 @@ export const withSearchResults = (): React.ReactNode => (
     searchState="searchFound"
     searchResults={[
       {
-        id: "1",
-        matches: ["foo"],
+        id: "16",
+        matches: ["duck"],
       },
     ]}
   />

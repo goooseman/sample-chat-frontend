@@ -139,7 +139,16 @@ class ChatPage extends PureComponent<ChatPageProps> {
         </div>
         <div className={cn(classes.messagesContainer)} ref={this.chatRef}>
           {chatMessages.map((c) => (
-            <ChatMessage onLoad={this.handleImageLoad} key={c.id} {...c} />
+            <ChatMessage
+              isCurrentSearch={
+                searchResults
+                  ? searchResults[currentSearchResult].id === c.id
+                  : false
+              }
+              onLoad={this.handleImageLoad}
+              key={c.id}
+              {...c}
+            />
           ))}
         </div>
         <ChatInput onSubmit={onSubmit} />

@@ -17,6 +17,7 @@ export interface ChatMessageProps {
   imageSrc?: string;
   youtubeId?: string;
   onLoad: () => void;
+  isCurrentSearch: boolean;
 }
 
 class ChatMessage extends PureComponent<ChatMessageProps & WithLocale> {
@@ -30,6 +31,7 @@ class ChatMessage extends PureComponent<ChatMessageProps & WithLocale> {
       t,
       onLoad,
       youtubeId,
+      isCurrentSearch,
     } = this.props;
 
     return (
@@ -37,6 +39,7 @@ class ChatMessage extends PureComponent<ChatMessageProps & WithLocale> {
         className={cn(classes.container, {
           [classes.inbox]: type === "inbox",
           [classes.outbox]: type === "outbox",
+          [classes.isCurrentSearch]: isCurrentSearch,
         })}
       >
         {type === "inbox" ? (
