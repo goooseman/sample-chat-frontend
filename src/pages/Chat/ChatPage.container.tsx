@@ -1,10 +1,71 @@
 import React, { PureComponent } from "react";
 import { RouteComponentProps, Redirect } from "react-router-dom";
-import ChatPage from "./ChatPage";
+import ChatPage, { SearchState } from "./ChatPage";
 import { WithSettings, withSettings } from "src/contexts/SettingsContext";
 import { Route } from "src/config/routes";
 import { WithChat, withChat } from "src/contexts/ChatContext";
 import { withLocale, WithLocale } from "react-targem";
+import { createMachine } from "src/utils/gstate";
+
+type SearchEvent =
+  | "SWITCH_SEARCH"
+  | "SEARCH"
+  | "SEARCH_SUCCESS"
+  | "SEARCH_FAILURE";
+
+const searchMachine = createMachine<SearchState, SearchEvent>({
+  chat: {
+    transitions: {
+      SWITCH_SEARCH: {
+        target: "search",
+      },
+    },
+  },
+  search: {
+    transitions: {
+      SEARCH: {
+        target: "searchLoading",
+      },
+      SWITCH_SEARCH: {
+        target: "chat",
+      },
+    },
+  },
+  searchLoading: {
+    transitions: {
+      SEARCH_SUCCESS: {
+        target: "searchFound",
+      },
+      SEARCH_FAILURE: {
+        target: "searchNotFound",
+      },
+      SWITCH_SEARCH: {
+        target: "chat",
+      },
+    },
+  },
+  searchNotFound: {
+    transitions: {
+      SWITCH_SEARCH: {
+        target: "chat",
+      },
+      SEARCH: {
+        target: "searchLoading",
+      },
+    },
+  },
+  searchFound: {
+    transitions: {
+      SWITCH_SEARCH: {
+        target: "chat",
+      },
+      SEARCH: {
+        target: "searchLoading",
+      },
+    },
+  },
+  initialState: "chat",
+});
 
 interface ChatPageContainerProps
   extends RouteComponentProps,
@@ -14,13 +75,16 @@ interface ChatPageContainerProps
 
 interface ChatPageContainerState {
   redirectTo?: Route;
+  searchState: SearchState;
 }
 
 class ChatPageContainer extends PureComponent<
   ChatPageContainerProps,
   ChatPageContainerState
 > {
-  public state: ChatPageContainerState = {};
+  public state: ChatPageContainerState = {
+    searchState: searchMachine.value,
+  };
 
   public componentDidMount() {
     this.setRedirectIfUsernameIsEmpty();
@@ -45,9 +109,21 @@ class ChatPageContainer extends PureComponent<
       <ChatPage
         chatMessages={this.props.chatMessages}
         onSubmit={this.props.sendMessage}
+        searchState={this.state.searchState}
+        onSearchButtonClick={this.handleSearchButtonClick}
       />
     );
   }
+
+  private performSearchTransition = (event: SearchEvent) => {
+    this.setState((s) => ({
+      searchState: searchMachine.transition(s.searchState, event),
+    }));
+  };
+
+  private handleSearchButtonClick = () => {
+    this.performSearchTransition("SWITCH_SEARCH");
+  };
 
   private setRedirectIfUsernameIsEmpty() {
     const { username, t } = this.props;

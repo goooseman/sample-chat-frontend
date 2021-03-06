@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: sample-chat-frontend 1.0.4\n"
+"Project-Id-Version: sample-chat-frontend 1.0.6\n"
 "Content-Type: text/plain; charset=utf-8\n"
-"POT-Creation-Date: Tue Jun 16 2020 14:25:04 GMT+0300 (Israel Daylight Time)\n"
+"POT-Creation-Date: Sat Mar 06 2021 18:39:10 GMT+0200 (Israel Standard Time)\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
@@ -14,6 +14,18 @@ msgstr[1] ""
 
 #: src/pages/Chat/ChatPage.container.tsx:
 msgid "Please, specify username to use chat"
+msgstr ""
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Search..."
+msgstr ""
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Open search"
+msgstr ""
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Close search"
 msgstr ""
 
 #: src/pages/Chat/components/ChatInput/ChatInput.tsx:

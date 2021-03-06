@@ -1,6 +1,6 @@
 import React from "react";
 import ChatPageContainer from "./ChatPage.container";
-import { render } from "__utils__/renderWithRouter";
+import { fireEvent, render, screen } from "__utils__/renderWithRouter";
 import { withRouter } from "react-router-dom";
 
 const Container = withRouter(ChatPageContainer);
@@ -45,4 +45,12 @@ it("should call markAllAdRead when mounted", () => {
 it("should show error alert if username is empty", () => {
   render(<Container username={undefined} />);
   expect(window.alert).toBeCalledTimes(1);
+});
+
+it("should open search when search icon is clicked", () => {
+  render(<Container username="foo" />);
+  fireEvent.click(screen.getByLabelText("Open search"));
+  expect(screen.getByPlaceholderText("Search...")).toBeInTheDocument();
+  fireEvent.click(screen.getByLabelText("Close search"));
+  expect(screen.queryByPlaceholderText("Search...")).not.toBeInTheDocument();
 });
