@@ -111,7 +111,7 @@ class ChatPage extends PureComponent<ChatPageProps> {
                 </Button>
               </div>
             ) : null}
-            {searchState === "searchFound" ? (
+            {searchState === "searchFound" && searchResults ? (
               <div className={cn(classes.searchNavigator)}>
                 <Button
                   size="sm"
@@ -125,8 +125,9 @@ class ChatPage extends PureComponent<ChatPageProps> {
                   <T
                     message="{{ from }} of {{ to }}"
                     scope={{
-                      from: currentSearchResult + 1,
-                      to: searchResults?.length,
+                      from:
+                        searchResults.length > 0 ? currentSearchResult + 1 : 0,
+                      to: searchResults.length || 0,
                     }}
                   />
                 </Typography>
@@ -134,9 +135,7 @@ class ChatPage extends PureComponent<ChatPageProps> {
                   onClick={onChangeCurrentSearchClick("next")}
                   aria-label={t("Next result")}
                   size="sm"
-                  disabled={
-                    currentSearchResult === (searchResults?.length || 0) - 1
-                  }
+                  disabled={currentSearchResult >= searchResults.length - 1}
                 >
                   <FontAwesomeIcon fixedWidth icon={faChevronDown} />
                 </Button>
@@ -161,7 +160,7 @@ class ChatPage extends PureComponent<ChatPageProps> {
         <div className={cn(classes.messagesContainer)} ref={this.chatRef}>
           {chatMessages.map((c) => {
             const isCurrentSearch = searchResults
-              ? searchResults[currentSearchResult].id === c.id
+              ? searchResults[currentSearchResult]?.id === c.id
               : false;
             return (
               <ChatMessage
