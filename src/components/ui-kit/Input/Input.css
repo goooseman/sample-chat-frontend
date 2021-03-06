@@ -27,6 +27,10 @@ select.common {
   appearance: none;
 }
 
+textarea.common {
+  height: 100%;
+}
+
 .container-inline {
   display: flex;
   flex-direction: row;
