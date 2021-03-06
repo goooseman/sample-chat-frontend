@@ -33,6 +33,18 @@ msgid "Search..."
 msgstr ""
 
 #: src/pages/Chat/ChatPage.tsx:
+msgid "Previous result"
+msgstr ""
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "{{ from }} of {{ to }}"
+msgstr ""
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Next result"
+msgstr ""
+
+#: src/pages/Chat/ChatPage.tsx:
 msgid "Open search"
 msgstr ""
 

@@ -68,7 +68,10 @@ const commonProps: React.ComponentProps<typeof ChatPage> = {
   onSubmit: action("onSubmit"),
   onSearchButtonClick: action("onSearchButtonClick"),
   onSearchInput: action("onSearchInput"),
+  onChangeCurrentSearchClick: () => action("onChangeCurrentSearchClick"),
   chatMessages: getChatMessages("1"),
+  currentSearchResult: 0,
+  searchQuery: "",
 };
 
 export const withDefaultChat = (): React.ReactNode => (
@@ -93,4 +96,17 @@ export const withSearchOpened = (): React.ReactNode => (
 
 export const withSearchLoading = (): React.ReactNode => (
   <ChatPage {...commonProps} searchState="searchLoading" />
+);
+
+export const withSearchResults = (): React.ReactNode => (
+  <ChatPage
+    {...commonProps}
+    searchState="searchFound"
+    searchResults={[
+      {
+        id: "1",
+        matches: ["foo"],
+      },
+    ]}
+  />
 );

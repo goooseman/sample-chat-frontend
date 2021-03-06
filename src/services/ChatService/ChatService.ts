@@ -28,6 +28,11 @@ interface MessagesList {
 
 const initialMessagesList = { messages: {}, count: 0, unreadCount: 0 };
 
+export interface SearchResult {
+  id: string;
+  matches: string[];
+}
+
 class ChatService {
   private onMessagesListChangeCb?: (messagesList: MessagesList) => void;
 
@@ -55,12 +60,10 @@ class ChatService {
     return this.adapter.disconnect();
   }
 
-  public async search(
-    query: string
-  ): Promise<{ id: string; matches: string[] }[]> {
+  public async search(query: string): Promise<SearchResult[]> {
     const result = [];
     for (const message of Object.values(this.messagesList.messages)) {
-      const matches = message.text.match(new RegExp(query, "g"));
+      const matches = message.text.match(new RegExp(query, "gi"));
       if (!matches || matches.length === 0) {
         continue;
       }

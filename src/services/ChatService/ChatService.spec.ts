@@ -2,7 +2,6 @@
 import ChatService, { ChatMessage } from "./ChatService";
 import ChatAdapter from "./ChatAdapter";
 import { fakeTransformedMessage } from "./__fixtures__";
-import { search } from "*.eot";
 
 const setupService = (
   options: {
@@ -155,5 +154,22 @@ describe("search", () => {
 
     const searchResult = await chatService.search("foo");
     expect(searchResult).toEqual([]);
+  });
+
+  it("should search case insensitive", async () => {
+    const { chatService } = setupService({
+      emitListMessagesRes: [
+        { ...fakeTransformedMessage, text: "A very very informative message!" },
+        {
+          ...fakeTransformedMessage,
+          text: "Vary informative message",
+          id: "2",
+        },
+      ],
+    });
+    await chatService.connect();
+
+    const searchResult = await chatService.search("Very");
+    expect(searchResult).toEqual([{ id: "1", matches: ["very", "very"] }]);
   });
 });

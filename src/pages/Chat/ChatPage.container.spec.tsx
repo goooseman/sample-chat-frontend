@@ -3,6 +3,7 @@ import ChatPageContainer from "./ChatPage.container";
 import { render, screen } from "__utils__/renderWithRouter";
 import { withRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
+import { fakeTransformedMessage } from "src/services/ChatService/__fixtures__";
 
 const Container = withRouter(ChatPageContainer);
 
@@ -61,4 +62,41 @@ it("should show loading indicator while searching", () => {
   userEvent.click(screen.getByLabelText("Open search"));
   userEvent.type(screen.getByPlaceholderText("Search..."), "foo");
   expect(screen.getByLabelText("Loading")).toBeInTheDocument();
+});
+
+const searchMessages = [
+  { ...fakeTransformedMessage, text: "One two three", id: "1" },
+  { ...fakeTransformedMessage, text: "Three two one", id: "2" },
+];
+const searchString = "two";
+const searchResults = [
+  {
+    id: "1",
+    matches: ["two"],
+  },
+  {
+    id: "2",
+    matches: ["two"],
+  },
+];
+
+it("should show 1 of 2 when search is completed", async () => {
+  const searchMessageSpy = jest.fn().mockImplementation(() => {
+    return Promise.resolve(searchResults);
+  });
+  render(
+    <Container
+      username="foo"
+      chatMessages={searchMessages}
+      searchMessage={searchMessageSpy}
+    />
+  );
+  userEvent.click(screen.getByLabelText("Open search"));
+  userEvent.type(screen.getByPlaceholderText("Search..."), searchString);
+  expect(searchMessageSpy).toBeCalled();
+  expect(await screen.findByText("1 of 2")).toBeInTheDocument();
+  expect(screen.getByLabelText("Previous result")).toBeDisabled();
+  userEvent.click(screen.getByLabelText("Next result"));
+  expect(await screen.findByText("2 of 2")).toBeInTheDocument();
+  expect(screen.getByLabelText("Next result")).toBeDisabled();
 });

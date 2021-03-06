@@ -3,13 +3,22 @@ import classes from "./ChatPage.css";
 import cn from "clsx";
 import ChatMessage from "./components/ChatMessage";
 import ChatInput from "./components/ChatInput";
-import { ChatMessage as ChatMessageType } from "src/services/ChatService";
+import {
+  ChatMessage as ChatMessageType,
+  SearchResult,
+} from "src/services/ChatService";
 import Button from "src/components/ui-kit/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { WithLocale, withLocale } from "react-targem";
+import {
+  faSearch,
+  faTimes,
+  faChevronDown,
+  faChevronUp,
+} from "@fortawesome/free-solid-svg-icons";
+import { WithLocale, withLocale, T } from "react-targem";
 import Input from "src/components/ui-kit/Input";
 import Loading from "src/components/ui-kit/Loading";
+import Typography from "src/components/ui-kit/Typography";
 
 export type SearchState =
   | "chat"
@@ -22,8 +31,14 @@ interface ChatPageProps extends WithLocale {
   chatMessages: ChatMessageType[];
   onSubmit: (message: string) => void;
   searchState: SearchState;
+  searchQuery: string;
+  searchResults?: SearchResult[];
+  currentSearchResult: number;
   onSearchButtonClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onSearchInput: (event: React.MouseEvent<HTMLInputElement>) => void;
+  onChangeCurrentSearchClick: (
+    direction: "prev" | "next"
+  ) => (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 class ChatPage extends PureComponent<ChatPageProps> {
@@ -48,6 +63,10 @@ class ChatPage extends PureComponent<ChatPageProps> {
       searchState,
       onSearchButtonClick,
       onSearchInput,
+      searchQuery,
+      currentSearchResult,
+      searchResults,
+      onChangeCurrentSearchClick,
     } = this.props;
 
     return (
@@ -55,6 +74,7 @@ class ChatPage extends PureComponent<ChatPageProps> {
         <div className={cn(classes.searchContainer)}>
           {searchState !== "chat" ? (
             <Input
+              value={searchQuery}
               id="search"
               onInput={onSearchInput}
               component="input"
@@ -62,6 +82,36 @@ class ChatPage extends PureComponent<ChatPageProps> {
               addonRight={searchState === "searchLoading" && <Loading />}
             />
           ) : null}
+          {searchState === "searchFound" ? (
+            <>
+              <Button
+                onClick={onChangeCurrentSearchClick("prev")}
+                aria-label={t("Previous result")}
+                disabled={currentSearchResult === 0}
+              >
+                <FontAwesomeIcon icon={faChevronUp} />
+              </Button>
+              <Typography>
+                <T
+                  message="{{ from }} of {{ to }}"
+                  scope={{
+                    from: currentSearchResult + 1,
+                    to: searchResults?.length,
+                  }}
+                />
+              </Typography>
+              <Button
+                onClick={onChangeCurrentSearchClick("next")}
+                aria-label={t("Next result")}
+                disabled={
+                  currentSearchResult === (searchResults?.length || 0) - 1
+                }
+              >
+                <FontAwesomeIcon icon={faChevronDown} />
+              </Button>
+            </>
+          ) : null}
+
           <Button
             className={cn(classes.searchButton)}
             onClick={onSearchButtonClick}
