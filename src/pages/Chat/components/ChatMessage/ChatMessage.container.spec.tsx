@@ -10,6 +10,7 @@ const defaultMessage = {
   createdAt: new Date(),
   status: "none",
   onLoad: jest.fn(),
+  isCurrentSearch: false,
 } as const;
 
 jest.setTimeout(10 * 1000);
