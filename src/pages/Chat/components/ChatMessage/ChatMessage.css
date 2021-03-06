@@ -5,6 +5,11 @@
   padding: 0.4rem 0.8rem;
 
   --triangle-size: 14px;
+  --background-color: var(--color-primary-lighter);
+}
+
+.is-current-search.container {
+  --background-color: var(--color-secondary-lighter);
 }
 
 .bubble-container {
@@ -30,7 +35,7 @@
 
 .bubble {
   max-width: 60%;
-  background-color: var(--color-primary-lighter);
+  background-color: var(--background-color);
   word-break: break-word;
 }
 
@@ -39,7 +44,7 @@
 }
 
 .triangle {
-  border-top: var(--triangle-size) solid var(--color-primary-lighter);
+  border-top: var(--triangle-size) solid var(--background-color);
 }
 
 [dir="ltr"] .inbox .bubble,

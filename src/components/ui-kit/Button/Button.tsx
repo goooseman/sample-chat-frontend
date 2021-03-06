@@ -7,7 +7,8 @@ interface ButtonProps
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  size: "md" | "lg";
+  size: "sm" | "md" | "lg";
+  color: "primary" | "secondary";
   hasBorderRadius: boolean;
 }
 
@@ -18,6 +19,7 @@ class Button extends PureComponent<ButtonProps> {
   public static defaultProps = {
     size: "md",
     hasBorderRadius: true,
+    color: "primary",
   };
 
   render(): React.ReactNode {
@@ -26,6 +28,7 @@ class Button extends PureComponent<ButtonProps> {
       className,
       size,
       hasBorderRadius,
+      color,
       ...otherProps
     } = this.props;
 
@@ -33,7 +36,9 @@ class Button extends PureComponent<ButtonProps> {
       <button
         className={cn(className, classes.button, {
           [classes.buttonLg]: size === "lg",
+          [classes.buttonSm]: size === "sm",
           [classes.borderRadius]: hasBorderRadius,
+          [classes.buttonSecondary]: color === "secondary",
         })}
         {...otherProps}
       >

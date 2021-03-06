@@ -3,6 +3,7 @@ import {
   ChatMessage,
   getChatService,
   ChatService,
+  SearchResult,
 } from "src/services/ChatService";
 import createContextHOC from "../createContextHOC";
 import { WithLocale, withLocale } from "react-targem";
@@ -20,6 +21,7 @@ interface ChatContextProviderProps extends WithLocale {
 
 export interface WithChat extends ChatContextProviderState {
   sendMessage: (text: string) => void;
+  searchMessage: (query: string) => Promise<SearchResult[]>;
   markAllAsRead: () => void;
 }
 
@@ -31,10 +33,11 @@ const defaults: ChatContextProviderState = {
 
 const { Provider, Consumer } = React.createContext<WithChat>({
   ...defaults,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  /* eslint-disable @typescript-eslint/no-empty-function */
   sendMessage: () => {},
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   markAllAsRead: () => {},
+  searchMessage: () => Promise.resolve([]),
+  /* eslint-enable @typescript-eslint/no-empty-function */
 });
 
 class ChatContextProviderPure extends React.PureComponent<
@@ -71,10 +74,18 @@ class ChatContextProviderPure extends React.PureComponent<
       ...state,
       sendMessage: this.sendMessage,
       markAllAsRead: this.markAllAsRead,
+      searchMessage: this.searchMessage,
     };
 
     return <Provider value={providerValue}>{props.children}</Provider>;
   }
+
+  private searchMessage = (query: string) => {
+    if (!this.chatService) {
+      return Promise.resolve([]);
+    }
+    return this.chatService.search(query);
+  };
 
   private handleMessagesListChange = (messagesList: {
     messages: ChatMessage[];
@@ -130,3 +141,4 @@ class ChatContextProviderPure extends React.PureComponent<
 export const ChatContextProvider = withLocale(ChatContextProviderPure);
 
 export const withChat = createContextHOC(Consumer);
+export type { SearchResult };

@@ -8,6 +8,9 @@
   --color-primary-lighter: #ffe0b2; /* 100 */
   --color-primary: #ff9800; /* 500 */
   --color-primary-darker: #d84315; /* 800 */
+  --color-secondary-lighter: #b3e5fc; /* 100 */
+  --color-secondary: #03a9f4; /* 500 */
+  --color-secondary-darker: #0277bd; /* 800 */
   --color-text: #000;
   --color-text-muted: #808080;
   --color-text-contrast: #fff;

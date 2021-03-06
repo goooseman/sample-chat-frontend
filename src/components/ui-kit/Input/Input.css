@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   display: inline-flex;
   width: 100%;
   flex-direction: column;
@@ -27,6 +28,10 @@ select.common {
   appearance: none;
 }
 
+textarea.common {
+  height: 100%;
+}
+
 .container-inline {
   display: flex;
   flex-direction: row;
@@ -43,4 +48,22 @@ select.common {
 .container-inline label.label {
   order: 1;
   margin-bottom: 0;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-addon-right {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  bottom: 0;
+  height: 20px;
+  margin: auto 0;
+}
+
+[dir="rtl"] .input-addon-right {
+  right: auto;
+  left: 1rem;
 }

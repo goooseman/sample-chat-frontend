@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: sample-chat-frontend 1.0.4\n"
+"Project-Id-Version: sample-chat-frontend 1.0.6\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "POT-Creation-Date: Wed Jun 10 2020 08:42:40 GMT+0300 (Israel Daylight Time)\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -9,9 +9,13 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.2\n"
 "Last-Translator: \n"
 "Language: he\n"
+
+#: src/components/ui-kit/Loading/Loading.tsx:
+msgid "Loading"
+msgstr "טוען"
 
 #: src/contexts/ChatContext/ChatContext.tsx:
 msgid "New message is received!"
@@ -24,6 +28,38 @@ msgstr[3] "‫מתקבלות {{ count }} הודעו!"
 #: src/pages/Chat/ChatPage.container.tsx:
 msgid "Please, specify username to use chat"
 msgstr "אנא, ציין את שם המשתמש לשימוש בצ’אט"
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Search..."
+msgstr "חיפוש..."
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Ooops..."
+msgstr "אופס..."
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Retry"
+msgstr "לנסות שוב"
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Previous result"
+msgstr "התוצאה הקודמת"
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "{{ from }} of {{ to }}"
+msgstr "‫{{ from }} מתוך {{ to }}"
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Next result"
+msgstr "התוצאה הבאה"
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Open search"
+msgstr "פתח חיפוש"
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Close search"
+msgstr "סגירת החיפוש"
 
 #: src/pages/Chat/components/ChatInput/ChatInput.tsx:
 msgid "Message contents"

@@ -17,6 +17,8 @@ export interface ChatMessageProps {
   imageSrc?: string;
   youtubeId?: string;
   onLoad: () => void;
+  isCurrentSearch: boolean;
+  messageRef?: React.RefObject<HTMLDivElement>;
 }
 
 class ChatMessage extends PureComponent<ChatMessageProps & WithLocale> {
@@ -30,13 +32,17 @@ class ChatMessage extends PureComponent<ChatMessageProps & WithLocale> {
       t,
       onLoad,
       youtubeId,
+      isCurrentSearch,
+      messageRef,
     } = this.props;
 
     return (
       <div
+        ref={messageRef}
         className={cn(classes.container, {
           [classes.inbox]: type === "inbox",
           [classes.outbox]: type === "outbox",
+          [classes.isCurrentSearch]: isCurrentSearch,
         })}
       >
         {type === "inbox" ? (
@@ -99,7 +105,7 @@ class ChatMessage extends PureComponent<ChatMessageProps & WithLocale> {
   private getStatusIcon = () => {
     const { status, type } = this.props;
     if (status === "receivedByServer" && type === "outbox") {
-      return <FontAwesomeIcon icon={faCheck} />;
+      return <FontAwesomeIcon fixedWidth icon={faCheck} />;
     }
     return null;
   };

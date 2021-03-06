@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: sample-chat-frontend 1.0.4\n"
+"Project-Id-Version: sample-chat-frontend 1.0.6\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "POT-Creation-Date: Wed Jun 10 2020 08:42:40 GMT+0300 (Israel Daylight Time)\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -9,9 +9,13 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.2\n"
 "Last-Translator: \n"
 "Language: ru\n"
+
+#: src/components/ui-kit/Loading/Loading.tsx:
+msgid "Loading"
+msgstr "Загрузка"
 
 #: src/contexts/ChatContext/ChatContext.tsx:
 msgid "New message is received!"
@@ -23,6 +27,38 @@ msgstr[2] "Получено {{ count }} новых сообщений!"
 #: src/pages/Chat/ChatPage.container.tsx:
 msgid "Please, specify username to use chat"
 msgstr "Пожалуйста, укажите имя пользователя, чтобы пользоваться чатом"
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Search..."
+msgstr "Поиск…"
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Ooops..."
+msgstr "Ууупс…"
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Retry"
+msgstr "Ещё раз"
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Previous result"
+msgstr "Предыдущий результат"
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "{{ from }} of {{ to }}"
+msgstr "{{ from }} из {{ to }}"
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Next result"
+msgstr "Следующий результат"
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Open search"
+msgstr "Открыть поиск"
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Close search"
+msgstr "Закрыть поиск"
 
 #: src/pages/Chat/components/ChatInput/ChatInput.tsx:
 msgid "Message contents"
