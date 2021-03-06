@@ -61,6 +61,9 @@ class ChatService {
   }
 
   public async search(query: string): Promise<SearchResult[]> {
+    if (query == "") {
+      return [];
+    }
     const result = [];
     for (const message of Object.values(this.messagesList.messages)) {
       const matches = message.text.match(new RegExp(query, "gi"));

@@ -172,4 +172,21 @@ describe("search", () => {
     const searchResult = await chatService.search("Very");
     expect(searchResult).toEqual([{ id: "1", matches: ["very", "very"] }]);
   });
+
+  it("should return nothing for empty query", async () => {
+    const { chatService } = setupService({
+      emitListMessagesRes: [
+        { ...fakeTransformedMessage, text: "A very very informative message!" },
+        {
+          ...fakeTransformedMessage,
+          text: "Vary informative message",
+          id: "2",
+        },
+      ],
+    });
+    await chatService.connect();
+
+    const searchResult = await chatService.search("");
+    expect(searchResult).toEqual([]);
+  });
 });
