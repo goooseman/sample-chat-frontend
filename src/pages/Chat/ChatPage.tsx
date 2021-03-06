@@ -87,7 +87,7 @@ class ChatPage extends PureComponent<ChatPageProps> {
         {searchState !== "chat" ? (
           <div className={cn(classes.searchContainer)}>
             <Input
-              className={cn(classes.searchInput)}
+              containerClassName={cn(classes.searchInput)}
               value={searchQuery}
               id="search"
               onInput={onSearchInput}
@@ -97,13 +97,12 @@ class ChatPage extends PureComponent<ChatPageProps> {
             />
 
             {searchState === "searchNotFound" ? (
-              <div>
-                <Typography>
+              <div className={classes.errorContainer}>
+                <Typography gutterBottom={false} color="contrast">
                   <T message="Ooops..." />
                 </Typography>
                 <Button
                   size="sm"
-                  color="secondary"
                   onClick={onRetryButtonClick}
                   aria-label={t("Retry")}
                 >

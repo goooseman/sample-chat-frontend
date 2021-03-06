@@ -42,6 +42,17 @@
   white-space: nowrap;
 }
 
+.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 -0.5rem;
+}
+
+.error-container > * {
+  margin: 0 0.5rem;
+}
+
 [dir="rtl"] .search-button {
   right: auto;
   left: 1rem;

@@ -6,6 +6,7 @@ import Typography from "src/components/ui-kit/Typography";
 interface CommonInputProps {
   labelledWith?: React.ReactNode;
   addonRight?: React.ReactNode;
+  containerClassName?: string;
 }
 
 interface TextAreaProps
@@ -42,11 +43,11 @@ export type InputElementProps = TextAreaProps | InpurProps | SelectProps;
  */
 class Input extends PureComponent<InputElementProps & CommonInputProps> {
   render(): React.ReactNode {
-    const { labelledWith, addonRight } = this.props;
+    const { labelledWith, addonRight, containerClassName } = this.props;
 
     return (
       <div
-        className={cn(classes.container, {
+        className={cn(classes.container, containerClassName, {
           [classes.containerInline]: this.isInline(),
         })}
       >
@@ -81,6 +82,7 @@ class Input extends PureComponent<InputElementProps & CommonInputProps> {
       className,
       labelledWith,
       addonRight,
+      containerClassName,
       ...inputProps
     } = this.props;
     /* eslint-enable @typescript-eslint/no-unused-vars */
