@@ -27,7 +27,7 @@
 
 .search-button {
   position: absolute;
-  right: 2rem;
+  right: 1rem;
   bottom: calc(100% + 0.8rem);
 }
 
@@ -43,6 +43,6 @@
 }
 
 [dir="rtl"] .search-button {
-  margin-right: auto;
-  margin-left: 0;
+  right: auto;
+  left: 1rem;
 }
