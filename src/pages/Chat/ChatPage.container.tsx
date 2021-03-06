@@ -70,22 +70,6 @@ class ChatPageContainer extends PureComponent<
       transitions: {
         SEARCH: {
           target: "searchLoading",
-          action: async (event) => {
-            if (event.type !== "SEARCH") {
-              return;
-            }
-            try {
-              const results = await this.props.searchMessage(event.payload);
-              this.performSearchTransition({
-                type: "SEARCH_SUCCESS",
-                payload: results,
-              });
-            } catch (e) {
-              this.performSearchTransition({
-                type: "SEARCH_FAILURE",
-              });
-            }
-          },
         },
         SWITCH_SEARCH: {
           target: "chat",
@@ -93,6 +77,24 @@ class ChatPageContainer extends PureComponent<
       },
     },
     searchLoading: {
+      actions: {
+        onEnter: async (event) => {
+          if (event.type !== "SEARCH") {
+            return;
+          }
+          try {
+            const results = await this.props.searchMessage(event.payload);
+            this.performSearchTransition({
+              type: "SEARCH_SUCCESS",
+              payload: results,
+            });
+          } catch (e) {
+            this.performSearchTransition({
+              type: "SEARCH_FAILURE",
+            });
+          }
+        },
+      },
       transitions: {
         SEARCH_SUCCESS: {
           target: "searchFound",
@@ -172,6 +174,7 @@ class ChatPageContainer extends PureComponent<
         searchResults={this.state.searchResults}
         searchQuery={this.state.searchQuery}
         currentSearchResult={this.state.currentSearchResult}
+        onRetryButtonClick={this.handleRetryButtonClick}
       />
     );
   }
@@ -184,6 +187,13 @@ class ChatPageContainer extends PureComponent<
 
   private handleSearchButtonClick = () => {
     this.performSearchTransition({ type: "SWITCH_SEARCH" });
+  };
+
+  private handleRetryButtonClick = () => {
+    this.performSearchTransition({
+      type: "SEARCH",
+      payload: this.state.searchQuery,
+    });
   };
 
   private handleChangeCurrentSearchClick = (dir: "next" | "prev") => () => {

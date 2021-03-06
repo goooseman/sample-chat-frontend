@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sample-chat-frontend 1.0.6\n"
 "Content-Type: text/plain; charset=utf-8\n"
-"POT-Creation-Date: Sat Mar 06 2021 21:53:50 GMT+0200 (Israel Standard Time)\n"
+"POT-Creation-Date: Sat Mar 06 2021 22:08:50 GMT+0200 (Israel Standard Time)\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
@@ -22,6 +22,14 @@ msgstr ""
 
 #: src/pages/Chat/ChatPage.tsx:
 msgid "Search..."
+msgstr ""
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Ooops..."
+msgstr ""
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Retry"
 msgstr ""
 
 #: src/pages/Chat/ChatPage.tsx:

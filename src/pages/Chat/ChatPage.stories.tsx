@@ -69,6 +69,7 @@ const commonProps: React.ComponentProps<typeof ChatPage> = {
   onSearchButtonClick: action("onSearchButtonClick"),
   onSearchInput: action("onSearchInput"),
   onChangeCurrentSearchClick: () => action("onChangeCurrentSearchClick"),
+  onRetryButtonClick: action("onRetryButtonClick"),
   chatMessages: getChatMessages("1"),
   currentSearchResult: 0,
   searchQuery: "",
@@ -109,4 +110,8 @@ export const withSearchResults = (): React.ReactNode => (
       },
     ]}
   />
+);
+
+export const withSearchFailed = (): React.ReactNode => (
+  <ChatPage {...commonProps} searchState="searchNotFound" />
 );

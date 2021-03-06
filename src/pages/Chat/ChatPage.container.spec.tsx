@@ -100,3 +100,24 @@ it("should show 1 of 2 when search is completed", async () => {
   expect(await screen.findByText("2 of 2")).toBeInTheDocument();
   expect(screen.getByLabelText("Next result")).toBeDisabled();
 });
+
+it("should show a retry button if fails", async () => {
+  const searchMessageSpy = jest.fn().mockImplementation(() => {
+    return Promise.reject(new Error("Powerfull search engine is down"));
+  });
+  render(
+    <Container
+      username="foo"
+      chatMessages={searchMessages}
+      searchMessage={searchMessageSpy}
+    />
+  );
+  userEvent.click(screen.getByLabelText("Open search"));
+  userEvent.type(screen.getByPlaceholderText("Search..."), searchString);
+  expect(await screen.findByText("Ooops...")).toBeInTheDocument();
+  searchMessageSpy.mockImplementation(() => {
+    return Promise.resolve(searchResults);
+  });
+  userEvent.click(screen.getByLabelText("Retry"));
+  expect(await screen.findByText("1 of 2")).toBeInTheDocument();
+});

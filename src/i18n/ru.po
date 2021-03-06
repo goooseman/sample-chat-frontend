@@ -33,6 +33,14 @@ msgid "Search..."
 msgstr ""
 
 #: src/pages/Chat/ChatPage.tsx:
+msgid "Ooops..."
+msgstr ""
+
+#: src/pages/Chat/ChatPage.tsx:
+msgid "Retry"
+msgstr ""
+
+#: src/pages/Chat/ChatPage.tsx:
 msgid "Previous result"
 msgstr ""
 

@@ -14,6 +14,7 @@ import {
   faTimes,
   faChevronDown,
   faChevronUp,
+  faRedo,
 } from "@fortawesome/free-solid-svg-icons";
 import { WithLocale, withLocale, T } from "react-targem";
 import Input from "src/components/ui-kit/Input";
@@ -39,6 +40,7 @@ interface ChatPageProps extends WithLocale {
   onChangeCurrentSearchClick: (
     direction: "prev" | "next"
   ) => (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onRetryButtonClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 class ChatPage extends PureComponent<ChatPageProps> {
@@ -67,6 +69,7 @@ class ChatPage extends PureComponent<ChatPageProps> {
       currentSearchResult,
       searchResults,
       onChangeCurrentSearchClick,
+      onRetryButtonClick,
     } = this.props;
 
     return (
@@ -81,6 +84,16 @@ class ChatPage extends PureComponent<ChatPageProps> {
               placeholder={t("Search...")}
               addonRight={searchState === "searchLoading" && <Loading />}
             />
+          ) : null}
+          {searchState === "searchNotFound" ? (
+            <div>
+              <Typography>
+                <T message="Ooops..." />
+              </Typography>
+              <Button onClick={onRetryButtonClick} aria-label={t("Retry")}>
+                <FontAwesomeIcon icon={faRedo} />
+              </Button>
+            </div>
           ) : null}
           {searchState === "searchFound" ? (
             <>
