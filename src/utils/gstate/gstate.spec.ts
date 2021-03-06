@@ -1,9 +1,13 @@
-import { createMachine, GMachine } from "./gstate";
+import { createMachine, GMachine, EmptyEvent } from "./gstate";
 
 type MachineStates = "off" | "on";
 type MachineEvents = "switch";
 
-let machine: GMachine<MachineStates, MachineEvents>;
+interface SwitchEvent extends EmptyEvent<MachineEvents> {
+  type: "switch";
+}
+
+let machine: GMachine<MachineStates, MachineEvents, SwitchEvent>;
 
 let transitionActionSpy: jest.Mock;
 let onEnterSpy: jest.Mock;
@@ -13,7 +17,7 @@ beforeEach(() => {
   transitionActionSpy = jest.fn();
   onEnterSpy = jest.fn();
   onExitSpy = jest.fn();
-  machine = createMachine<MachineStates, MachineEvents>({
+  machine = createMachine<MachineStates, MachineEvents, SwitchEvent>({
     off: {
       transitions: {
         switch: {
@@ -47,37 +51,37 @@ it("should use initialState as default value", () => {
 });
 
 it("should contain transiton function which returns value", () => {
-  expect(machine.transition("off", "switch")).toBe("on");
+  expect(machine.transition("off", { type: "switch" })).toBe("on");
 });
 
 it("should switch the state", () => {
   let state = machine.value;
-  state = machine.transition(state, "switch");
+  state = machine.transition(state, { type: "switch" });
   expect(state).toBe("on");
-  state = machine.transition(state, "switch");
+  state = machine.transition(state, { type: "switch" });
   expect(state).toBe("off");
 });
 
 it("should fire action", () => {
   let state = machine.value;
-  state = machine.transition(state, "switch");
+  state = machine.transition(state, { type: "switch" });
   expect(transitionActionSpy).toBeCalledTimes(1);
-  machine.transition(state, "switch");
+  machine.transition(state, { type: "switch" });
   expect(transitionActionSpy).toBeCalledTimes(2);
 });
 
 it("should fire onEnter", () => {
   let state = machine.value;
-  state = machine.transition(state, "switch");
+  state = machine.transition(state, { type: "switch" });
   expect(onEnterSpy).toBeCalledTimes(1);
-  machine.transition(state, "switch");
+  machine.transition(state, { type: "switch" });
   expect(onEnterSpy).toBeCalledTimes(2);
 });
 
 it("should fire onExit", () => {
   let state = machine.value;
-  state = machine.transition(state, "switch");
+  state = machine.transition(state, { type: "switch" });
   expect(onExitSpy).toBeCalledTimes(1);
-  machine.transition(state, "switch");
+  machine.transition(state, { type: "switch" });
   expect(onExitSpy).toBeCalledTimes(2);
 });
