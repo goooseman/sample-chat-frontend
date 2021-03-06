@@ -54,7 +54,7 @@ class ChatInput extends PureComponent<ChatInputProps, ChatInputState> {
           placeholder={t("Type a message...")}
         />
         <Button onClick={this.handleSubmit}>
-          <FontAwesomeIcon icon={faEnvelope} title={t("Send!")} />
+          <FontAwesomeIcon fixedWidth icon={faEnvelope} title={t("Send!")} />
         </Button>
       </div>
     );

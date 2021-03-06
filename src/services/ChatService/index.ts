@@ -1,6 +1,6 @@
 import socketIoClient from "socket.io-client";
 import ChatAdapter from "./ChatAdapter";
-import ChatService, { ChatMessage } from "./ChatService";
+import ChatService, { ChatMessage, SearchResult } from "./ChatService";
 import { CHAT_BACKEND_URL } from "src/config/env";
 
 export const getChatService = (userId: string): ChatService => {
@@ -21,4 +21,4 @@ export const getChatService = (userId: string): ChatService => {
 };
 
 export { ChatService };
-export type { ChatMessage };
+export type { ChatMessage, SearchResult };

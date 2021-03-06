@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   display: flex;
   width: 100%;
 
@@ -10,4 +11,55 @@
 .messages-container {
   flex-grow: 1;
   overflow-y: auto;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  background-color: var(--color-secondary-darker);
+}
+
+.search-input {
+  max-width: 40rem;
+}
+
+.search-button {
+  position: absolute;
+  right: 1rem;
+  bottom: calc(100% + 0.8rem);
+}
+
+.search-navigator {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.search-navigator p {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
+
+.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 -0.5rem;
+}
+
+.error-container > * {
+  margin: 0 0.5rem;
+}
+
+[dir="rtl"] .search-button {
+  right: auto;
+  left: 1rem;
+}
+
+[dir="rtl"] .search-navigator {
+  margin-right: 1rem;
+  margin-left: 0;
 }

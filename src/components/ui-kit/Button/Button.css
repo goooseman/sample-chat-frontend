@@ -16,12 +16,36 @@
   border-radius: var(--border-radius);
 }
 
+.button[disabled] {
+  background-color: var(--color-primary-lighter);
+  pointer-events: none;
+}
+
 .button:hover,
 .button:active,
 .button:focus {
   background-color: var(--color-primary-darker);
 }
 
+.button-secondary {
+  background-color: var(--color-secondary);
+}
+
+.button-secondary[disabled] {
+  background-color: var(--color-secondary-lighter);
+}
+
+.button-secondary:hover,
+.button-secondary:active,
+.button-secondary:focus {
+  background-color: var(--color-secondary-darker);
+}
+
 .button-lg {
   padding: 1rem 1.5rem;
+}
+
+.button-sm {
+  min-width: 0;
+  padding: 0.5rem 0.5rem;
 }

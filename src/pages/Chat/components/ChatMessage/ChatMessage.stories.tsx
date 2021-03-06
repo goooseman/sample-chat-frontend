@@ -14,10 +14,15 @@ const defaultMessage = {
   createdAt: new Date(),
   status: "none",
   onLoad: action("onLoad"),
+  isCurrentSearch: false,
 } as const;
 
 export const withRecievedMessage = (): React.ReactNode => (
   <ChatMessage {...defaultMessage} />
+);
+
+export const withCurrentSearch = (): React.ReactNode => (
+  <ChatMessage {...defaultMessage} isCurrentSearch />
 );
 
 export const withALink = (): React.ReactNode => (
