@@ -55,6 +55,23 @@ class ChatService {
     return this.adapter.disconnect();
   }
 
+  public async search(
+    query: string
+  ): Promise<{ id: string; matches: string[] }[]> {
+    const result = [];
+    for (const message of Object.values(this.messagesList.messages)) {
+      const matches = message.text.match(new RegExp(query, "g"));
+      if (!matches || matches.length === 0) {
+        continue;
+      }
+      result.push({
+        id: message.id,
+        matches: matches,
+      });
+    }
+    return result;
+  }
+
   public async sendMessage(message: {
     text: string;
     username: string;
