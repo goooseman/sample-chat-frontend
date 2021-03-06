@@ -9,13 +9,13 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.2\n"
 "Last-Translator: \n"
 "Language: he\n"
 
 #: src/components/ui-kit/Loading/Loading.tsx:
 msgid "Loading"
-msgstr ""
+msgstr "טוען"
 
 #: src/contexts/ChatContext/ChatContext.tsx:
 msgid "New message is received!"
@@ -31,35 +31,35 @@ msgstr "אנא, ציין את שם המשתמש לשימוש בצ’אט"
 
 #: src/pages/Chat/ChatPage.tsx:
 msgid "Search..."
-msgstr ""
+msgstr "חיפוש..."
 
 #: src/pages/Chat/ChatPage.tsx:
 msgid "Ooops..."
-msgstr ""
+msgstr "אופס..."
 
 #: src/pages/Chat/ChatPage.tsx:
 msgid "Retry"
-msgstr ""
+msgstr "לנסות שוב"
 
 #: src/pages/Chat/ChatPage.tsx:
 msgid "Previous result"
-msgstr ""
+msgstr "התוצאה הקודמת"
 
 #: src/pages/Chat/ChatPage.tsx:
 msgid "{{ from }} of {{ to }}"
-msgstr ""
+msgstr "‫{{ from }} מתוך {{ to }}"
 
 #: src/pages/Chat/ChatPage.tsx:
 msgid "Next result"
-msgstr ""
+msgstr "התוצאה הבאה"
 
 #: src/pages/Chat/ChatPage.tsx:
 msgid "Open search"
-msgstr ""
+msgstr "פתח חיפוש"
 
 #: src/pages/Chat/ChatPage.tsx:
 msgid "Close search"
-msgstr ""
+msgstr "סגירת החיפוש"
 
 #: src/pages/Chat/components/ChatInput/ChatInput.tsx:
 msgid "Message contents"
