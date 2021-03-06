@@ -67,6 +67,13 @@ class ChatPageContainer extends PureComponent<
       },
     },
     search: {
+      actions: {
+        onEnter: () => {
+          this.setState({
+            searchQuery: "",
+          });
+        },
+      },
       transitions: {
         SEARCH: {
           target: "searchLoading",

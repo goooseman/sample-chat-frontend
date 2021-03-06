@@ -140,3 +140,12 @@ it("should show a retry button if fails", async () => {
   userEvent.click(screen.getByLabelText("Retry"));
   expect(await screen.findByText("1 of 2")).toBeInTheDocument();
 });
+
+it("should empty searchQuery when closed", async () => {
+  render(<Container username="foo" chatMessages={searchMessages} />);
+  userEvent.click(screen.getByLabelText("Open search"));
+  userEvent.type(screen.getByPlaceholderText("Search..."), searchString);
+  userEvent.click(screen.getByLabelText("Close search"));
+  userEvent.click(screen.getByLabelText("Open search"));
+  expect(screen.getByPlaceholderText("Search...")).toHaveValue("");
+});
