@@ -45,15 +45,23 @@ interface ChatPageProps extends WithLocale {
 
 class ChatPage extends PureComponent<ChatPageProps> {
   public chatRef = React.createRef<HTMLDivElement>();
+  public currentSearchedMessageRef = React.createRef<HTMLDivElement>();
 
   public componentDidMount(): void {
     this.scrollChatToBottom();
+    this.scrollToSearchedMessage();
   }
 
-  public componentDidUpdate(): void {
+  public componentDidUpdate(prevProps: ChatPageProps): void {
     const chat = this.chatRef.current;
     if (chat && chat.scrollHeight - chat.scrollTop !== chat.clientHeight) {
       this.scrollChatToBottom();
+    }
+    if (
+      prevProps.currentSearchResult !== this.props.currentSearchResult ||
+      prevProps.searchResults !== this.props.searchResults
+    ) {
+      this.scrollToSearchedMessage();
     }
   }
 
@@ -138,18 +146,22 @@ class ChatPage extends PureComponent<ChatPageProps> {
           </Button>
         </div>
         <div className={cn(classes.messagesContainer)} ref={this.chatRef}>
-          {chatMessages.map((c) => (
-            <ChatMessage
-              isCurrentSearch={
-                searchResults
-                  ? searchResults[currentSearchResult].id === c.id
-                  : false
-              }
-              onLoad={this.handleImageLoad}
-              key={c.id}
-              {...c}
-            />
-          ))}
+          {chatMessages.map((c) => {
+            const isCurrentSearch = searchResults
+              ? searchResults[currentSearchResult].id === c.id
+              : false;
+            return (
+              <ChatMessage
+                messageRef={
+                  isCurrentSearch ? this.currentSearchedMessageRef : undefined
+                }
+                isCurrentSearch={isCurrentSearch}
+                onLoad={this.handleImageLoad}
+                key={c.id}
+                {...c}
+              />
+            );
+          })}
         </div>
         <ChatInput onSubmit={onSubmit} />
       </main>
@@ -168,6 +180,20 @@ class ChatPage extends PureComponent<ChatPageProps> {
     if (chat) {
       chat.scrollTop = chat.scrollHeight - chat.clientHeight;
     }
+  }
+
+  private scrollToSearchedMessage() {
+    const { searchResults } = this.props;
+    const chat = this.chatRef.current;
+    const currentSearchedMessage = this.currentSearchedMessageRef.current;
+    if (!chat || !currentSearchedMessage || !searchResults) {
+      return;
+    }
+
+    chat.scrollTop =
+      currentSearchedMessage.offsetTop +
+      currentSearchedMessage.clientHeight -
+      chat.clientHeight;
   }
 }
 

@@ -103,9 +103,15 @@ export const withSearchResults = (): React.ReactNode => (
   <ChatPage
     {...commonProps}
     searchState="searchFound"
+    chatMessages={[
+      ...getChatMessages("1"),
+      ...getChatMessages("2"),
+      ...getChatMessages("3"),
+      ...getChatMessages("4"),
+    ]}
     searchResults={[
       {
-        id: "16",
+        id: "26",
         matches: ["duck"],
       },
     ]}

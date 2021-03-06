@@ -18,6 +18,7 @@ export interface ChatMessageProps {
   youtubeId?: string;
   onLoad: () => void;
   isCurrentSearch: boolean;
+  messageRef?: React.RefObject<HTMLDivElement>;
 }
 
 class ChatMessage extends PureComponent<ChatMessageProps & WithLocale> {
@@ -32,10 +33,12 @@ class ChatMessage extends PureComponent<ChatMessageProps & WithLocale> {
       onLoad,
       youtubeId,
       isCurrentSearch,
+      messageRef,
     } = this.props;
 
     return (
       <div
+        ref={messageRef}
         className={cn(classes.container, {
           [classes.inbox]: type === "inbox",
           [classes.outbox]: type === "outbox",
